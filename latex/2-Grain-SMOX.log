@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2019.11.27)  29 NOV 2019 15:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2019.11.27)  29 NOV 2019 17:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1141,8 +1141,17 @@ LaTeX Warning: Command \texttwosuperior invalid in math mode on input line 679.
 
 Missing character: There is no ² in font pplr7t!
 Missing character: There is no ² in font pplr7t!
+
+LaTeX Warning: Citation `Barsan2015' on page 7 undefined on input line 693.
+
 [7]
 
+LaTeX Warning: Citation `Barsan2015' on page 8 undefined on input line 726.
+
+
+LaTeX Warning: Citation `Barsan2011a' on page 8 undefined on input line 735.
+
+
 LaTeX Warning: Command \texttwosuperior invalid in math mode on input line 773.
 
 
@@ -1151,25 +1160,13 @@ LaTeX Warning: Command \texttwosuperior invalid in math mode on input line 773.
 
 
 Missing character: There is no ² in font pplr7t!
+
+LaTeX Warning: Citation `Batzill2005' on page 8 undefined on input line 780.
+
 [8]
 
-LaTeX Warning: Command \texttwosuperior invalid in math mode on input line 814.
+LaTeX Warning: Citation `Barsan2015' on page 9 undefined on input line 784.
 
-
-
-LaTeX Warning: Command \texttwosuperior invalid in math mode on input line 814.
-
-
-
-LaTeX Warning: Command \texttwosuperior invalid in math mode on input line 814.
-
-
-
-LaTeX Warning: Command \texttwosuperior invalid in math mode on input line 814.
-
-
-Missing character: There is no ² in font pplr7t!
-Missing character: There is no ² in font pplr7t!
 
 LaTeX Warning: Command \texttwosuperior invalid in math mode on input line 814.
 
@@ -1188,6 +1185,28 @@ LaTeX Warning: Command \texttwosuperior invalid in math mode on input line 814.
 
 Missing character: There is no ² in font pplr7t!
 Missing character: There is no ² in font pplr7t!
+
+LaTeX Warning: Command \texttwosuperior invalid in math mode on input line 814.
+
+
+
+LaTeX Warning: Command \texttwosuperior invalid in math mode on input line 814.
+
+
+
+LaTeX Warning: Command \texttwosuperior invalid in math mode on input line 814.
+
+
+
+LaTeX Warning: Command \texttwosuperior invalid in math mode on input line 814.
+
+
+Missing character: There is no ² in font pplr7t!
+Missing character: There is no ² in font pplr7t!
+
+LaTeX Warning: Citation `S.RoyMorrison1977' on page 9 undefined on input line 8
+20.
+
 
 LaTeX Warning: Command \texttwosuperior invalid in math mode on input line 828.
 
@@ -1224,7 +1243,11 @@ LaTeX Warning: Command \texttwosuperior invalid in math mode on input line 828.
 
 Missing character: There is no ² in font pplr7t!
 Missing character: There is no ² in font pplr7t!
-[9] [10]
+[9]
+
+LaTeX Warning: Citation `Jones' on page 10 undefined on input line 916.
+
+[10]
 
 LaTeX Warning: Command \texttwosuperior invalid in math mode on input line 941.
 
@@ -1320,7 +1343,7 @@ LaTeX Warning: Command \texttwosuperior invalid in math mode on input line 1147
 
 Missing character: There is no ² in font pplr7t!
 [14] [15] [16]
-<"media/""DensityOfStates".png, id=330, 657.45625pt x 909.3975pt>
+<"media/""DensityOfStates".png, id=318, 657.45625pt x 909.3975pt>
 File: "media/""DensityOfStates".png Graphic file (type png)
 <use "media/""DensityOfStates".png>
 Package pdftex.def Info: "media/""DensityOfStates".png  used on input line 1347
@@ -1339,7 +1362,7 @@ c-itly mod-i-fy-ing it.''
  []
 
 [20] [21]
-<"2-Grain-SMOX_files/""2-Grain-SMOX_32_0".png, id=365, 981.6675pt x 567.11874pt
+<"2-Grain-SMOX_files/""2-Grain-SMOX_32_0".png, id=353, 981.6675pt x 567.11874pt
 >
 File: "2-Grain-SMOX_files/""2-Grain-SMOX_32_0".png Graphic file (type png)
 <use "2-Grain-SMOX_files/""2-Grain-SMOX_32_0".png>
@@ -1351,8 +1374,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 1544--1545
 
  []
 
+
+LaTeX Warning: Citation `Barsan2011a' on page 22 undefined on input line 1551.
+
 [22 <./2-Grain-SMOX_files/2-Grain-SMOX_32_0.png>] [23]
-<"2-Grain-SMOX_files/""2-Grain-SMOX_37_0".png, id=377, 964.60374pt x 554.07pt>
+<"2-Grain-SMOX_files/""2-Grain-SMOX_37_0".png, id=364, 964.60374pt x 554.07pt>
 File: "2-Grain-SMOX_files/""2-Grain-SMOX_37_0".png Graphic file (type png)
 <use "2-Grain-SMOX_files/""2-Grain-SMOX_37_0".png>
 Package pdftex.def Info: "2-Grain-SMOX_files/""2-Grain-SMOX_37_0".png  used on 
@@ -1400,7 +1426,7 @@ LaTeX Warning: Command \texttwosuperior invalid in math mode on input line 1679
 
 Missing character: There is no ² in font pplr7t!
 [25 <./2-Grain-SMOX_files/2-Grain-SMOX_37_0.png>]
-<"2-Grain-SMOX_files/""2-Grain-SMOX_40_1".png, id=392, 387.4475pt x 262.9825pt>
+<"2-Grain-SMOX_files/""2-Grain-SMOX_40_1".png, id=379, 387.4475pt x 262.9825pt>
 
 File: "2-Grain-SMOX_files/""2-Grain-SMOX_40_1".png Graphic file (type png)
 <use "2-Grain-SMOX_files/""2-Grain-SMOX_40_1".png>
@@ -1419,7 +1445,7 @@ n: \T1/cmtt/m/n/10.95 from scipy.optimize import
  []
 
 [26 <./2-Grain-SMOX_files/2-Grain-SMOX_40_1.png>] [27]
-<"2-Grain-SMOX_files/""2-Grain-SMOX_44_0".png, id=406, 964.60374pt x 601.24625p
+<"2-Grain-SMOX_files/""2-Grain-SMOX_44_0".png, id=392, 964.60374pt x 601.24625p
 t>
 File: "2-Grain-SMOX_files/""2-Grain-SMOX_44_0".png Graphic file (type png)
 <use "2-Grain-SMOX_files/""2-Grain-SMOX_44_0".png>
@@ -1432,7 +1458,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1830--1831
  []
 
 [28 <./2-Grain-SMOX_files/2-Grain-SMOX_44_0.png>] [29] [30] [31]
-<"2-Grain-SMOX_files/""2-Grain-SMOX_56_0".png, id=429, 975.645pt x 572.1375pt>
+<"2-Grain-SMOX_files/""2-Grain-SMOX_56_0".png, id=416, 975.645pt x 572.1375pt>
 File: "2-Grain-SMOX_files/""2-Grain-SMOX_56_0".png Graphic file (type png)
 <use "2-Grain-SMOX_files/""2-Grain-SMOX_56_0".png>
 Package pdftex.def Info: "2-Grain-SMOX_files/""2-Grain-SMOX_56_0".png  used on 
@@ -1443,7 +1469,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 2032--2033
 
  []
 
-<"2-Grain-SMOX_files/""2-Grain-SMOX_56_1".png, id=430, 975.645pt x 572.1375pt>
+<"2-Grain-SMOX_files/""2-Grain-SMOX_56_1".png, id=417, 975.645pt x 572.1375pt>
 File: "2-Grain-SMOX_files/""2-Grain-SMOX_56_1".png Graphic file (type png)
 <use "2-Grain-SMOX_files/""2-Grain-SMOX_56_1".png>
 Package pdftex.def Info: "2-Grain-SMOX_files/""2-Grain-SMOX_56_1".png  used on 
@@ -1454,7 +1480,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 2037--2038
 
  []
 
-<"2-Grain-SMOX_files/""2-Grain-SMOX_56_2".png, id=436, 975.645pt x 572.1375pt>
+<"2-Grain-SMOX_files/""2-Grain-SMOX_56_2".png, id=423, 975.645pt x 572.1375pt>
 File: "2-Grain-SMOX_files/""2-Grain-SMOX_56_2".png Graphic file (type png)
 <use "2-Grain-SMOX_files/""2-Grain-SMOX_56_2".png>
 Package pdftex.def Info: "2-Grain-SMOX_files/""2-Grain-SMOX_56_2".png  used on 
@@ -1465,7 +1491,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 2042--2043
 
  []
 
-<"2-Grain-SMOX_files/""2-Grain-SMOX_56_3".png, id=437, 975.645pt x 572.1375pt>
+<"2-Grain-SMOX_files/""2-Grain-SMOX_56_3".png, id=424, 975.645pt x 572.1375pt>
 File: "2-Grain-SMOX_files/""2-Grain-SMOX_56_3".png Graphic file (type png)
 <use "2-Grain-SMOX_files/""2-Grain-SMOX_56_3".png>
 Package pdftex.def Info: "2-Grain-SMOX_files/""2-Grain-SMOX_56_3".png  used on 
@@ -1489,13 +1515,16 @@ Package rerunfilecheck Info: File `2-Grain-SMOX.out' has not changed.
 (rerunfilecheck)             Checksum: 9E8D64113B5E83B90EDF89BB91953692;2468.
 
 
+LaTeX Warning: There were undefined references.
+
+
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
  21821 strings out of 492167
  390970 string characters out of 6131557
- 532316 words of memory out of 5000000
+ 532132 words of memory out of 5000000
  25556 multiletter control sequences out of 15000+600000
  56746 words of font info for 145 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1512,10 +1541,10 @@ b></usr/share/texmf-dist/fonts/type1/public/cm-super/sfit1095.pfb></usr/share/t
 exmf-dist/fonts/type1/public/cm-super/sftt1095.pfb></usr/share/texmf-dist/fonts
 /type1/urw/palatino/uplb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/palatino/
 uplr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on 2-Grain-SMOX.pdf (35 pages, 809889 bytes).
+Output written on 2-Grain-SMOX.pdf (35 pages, 809838 bytes).
 PDF statistics:
- 548 PDF objects out of 1000 (max. 8388607)
- 475 compressed objects within 5 object streams
+ 540 PDF objects out of 1000 (max. 8388607)
+ 467 compressed objects within 5 object streams
  156 named destinations out of 1000 (max. 500000)
  319 words of extra memory for PDF output out of 10000 (max. 10000000)
 

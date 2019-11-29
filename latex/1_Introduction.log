@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2019.11.27)  29 NOV 2019 15:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2019.11.27)  29 NOV 2019 17:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1097,11 +1097,17 @@ LaTeX Font Info:    Trying to load font information for TS1+ppl on input line 4
 
 (/usr/share/texmf-dist/tex/latex/psnfss/ts1ppl.fd
 File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
-) [2]
+)
+
+LaTeX Warning: Citation `Unpingco2014' on page 2 undefined on input line 426.
+
+
+LaTeX Warning: Citation `Osipov2016' on page 2 undefined on input line 431.
+
+[2]
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 4
 99.
-
-(/usr/share/texmf-dist/tex/latex/base/t1cmtt.fd
+ (/usr/share/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
@@ -1116,13 +1122,21 @@ LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line
 (/usr/share/texmf-dist/tex/latex/base/ts1cmtt.fd
 File: ts1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 ) [3]
-<"media/icons/""jupyter".png, id=102, 128.48pt x 128.48pt>
+<"media/icons/""jupyter".png, id=98, 128.48pt x 128.48pt>
 File: "media/icons/""jupyter".png Graphic file (type png)
 <use "media/icons/""jupyter".png>
 Package pdftex.def Info: "media/icons/""jupyter".png  used on input line 560.
 (pdftex.def)             Requested size: 128.47968pt x 128.47968pt.
- [4 <./media/icons/jupyter.png>] [5]
-<"1_Introduction_files/""1_Introduction_9_1".png, id=127, 403.5075pt x 248.93pt
+
+
+LaTeX Warning: Citation `Randles2017' on page 4 undefined on input line 597.
+
+[4 <./media/icons/jupyter.png>]
+
+LaTeX Warning: Citation `Hunter2007' on page 5 undefined on input line 670.
+
+[5]
+<"1_Introduction_files/""1_Introduction_9_1".png, id=119, 403.5075pt x 248.93pt
 >
 File: "1_Introduction_files/""1_Introduction_9_1".png Graphic file (type png)
 <use "1_Introduction_files/""1_Introduction_9_1".png>
@@ -1173,12 +1187,19 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 953.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 953.
 Package rerunfilecheck Info: File `1_Introduction.out' has not changed.
 (rerunfilecheck)             Checksum: B859441A43442750F48C77EE35525088;923.
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 21545 strings out of 492167
- 384844 string characters out of 6131557
- 480964 words of memory out of 5000000
- 25404 multiletter control sequences out of 15000+600000
+ 21549 strings out of 492167
+ 384948 string characters out of 6131557
+ 480815 words of memory out of 5000000
+ 25408 multiletter control sequences out of 15000+600000
  43796 words of font info for 111 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  59i,9n,77p,893b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1191,10 +1212,10 @@ ist/fonts/type1/public/cm-super/sfit1095.pfb></usr/share/texmf-dist/fonts/type1
 /public/cm-super/sftt1095.pfb></usr/share/texmf-dist/fonts/type1/urw/palatino/u
 plb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/shar
 e/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on 1_Introduction.pdf (10 pages, 184604 bytes).
+Output written on 1_Introduction.pdf (10 pages, 184900 bytes).
 PDF statistics:
- 226 PDF objects out of 1000 (max. 8388607)
- 200 compressed objects within 2 object streams
+ 222 PDF objects out of 1000 (max. 8388607)
+ 196 compressed objects within 2 object streams
  49 named destinations out of 1000 (max. 500000)
  135 words of extra memory for PDF output out of 10000 (max. 10000000)
 
