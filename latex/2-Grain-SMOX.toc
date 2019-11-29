@@ -1,0 +1,45 @@
+\contentsline {section}{\numberline {1}Abstract}{2}{section.1}% 
+\contentsline {section}{\numberline {2}General Aspects of \(SnO_2\) based gas sensors}{2}{section.2}% 
+\contentsline {subsection}{\numberline {2.1}Common preparation routes of \(SnO_{2}\) materials}{2}{subsection.2.1}% 
+\contentsline {subsubsection}{\numberline {2.1.1}SOl gel}{2}{subsubsection.2.1.1}% 
+\contentsline {paragraph}{Morphologies and shape}{2}{section*.2}% 
+\contentsline {subsubsection}{\numberline {2.1.2}Flame spray pyrolysis}{2}{subsubsection.2.1.2}% 
+\contentsline {paragraph}{Morphologies and shape}{2}{section*.3}% 
+\contentsline {subsection}{\numberline {2.2}Bulk properties of the SnO\_\{2\}}{3}{subsection.2.2}% 
+\contentsline {subsection}{\numberline {2.3}Work function}{3}{subsection.2.3}% 
+\contentsline {subsubsection}{\numberline {2.3.1}Kelvin Probe}{3}{subsubsection.2.3.1}% 
+\contentsline {subsection}{\numberline {2.4}Surface reactions}{3}{subsection.2.4}% 
+\contentsline {subsection}{\numberline {2.5}Modelling for the transduction and reaction}{3}{subsection.2.5}% 
+\contentsline {subsubsection}{\numberline {2.5.1}General principle of measurement}{3}{subsubsection.2.5.1}% 
+\contentsline {subsubsection}{\numberline {2.5.2}Schottky approximation}{3}{subsubsection.2.5.2}% 
+\contentsline {subsubsection}{\numberline {2.5.3}Boltzmann Approximation}{3}{subsubsection.2.5.3}% 
+\contentsline {subsubsection}{\numberline {2.5.4}Effective density of states N\_\{C\}}{3}{subsubsection.2.5.4}% 
+\contentsline {subsubsection}{\numberline {2.5.5}Current models, State of the art}{3}{subsubsection.2.5.5}% 
+\contentsline {section}{\numberline {3}Motivation}{3}{section.3}% 
+\contentsline {section}{\numberline {4}Numerical calculation of semiconductors gas sensors}{5}{section.4}% 
+\contentsline {subsection}{\numberline {4.1}Introduction}{5}{subsection.4.1}% 
+\contentsline {subsection}{\numberline {4.2}Semiconductor properties of the SMOX grains}{5}{subsection.4.2}% 
+\contentsline {subsection}{\numberline {4.3}Choice of geometric model}{6}{subsection.4.3}% 
+\contentsline {subsection}{\numberline {4.4}Poisson's equation}{6}{subsection.4.4}% 
+\contentsline {subsection}{\numberline {4.5}Charge density}{7}{subsection.4.5}% 
+\contentsline {subsection}{\numberline {4.6}Poisson equation as system of ODEs}{11}{subsection.4.6}% 
+\contentsline {subsection}{\numberline {4.7}Constants}{11}{subsection.4.7}% 
+\contentsline {subsection}{\numberline {4.8}Materials}{13}{subsection.4.8}% 
+\contentsline {subsubsection}{\numberline {4.8.1}Solving integrals numerically}{13}{subsubsection.4.8.1}% 
+\contentsline {paragraph}{Introduction}{13}{section*.17}% 
+\contentsline {paragraph}{The \texttt {quad} function}{13}{section*.18}% 
+\contentsline {paragraph}{Side-Note:}{14}{section*.19}% 
+\contentsline {subsubsection}{\numberline {4.8.2}Numerical description of the semiconductor}{15}{subsubsection.4.8.2}% 
+\contentsline {paragraph}{Helper functions for semiconductor calculations}{15}{section*.20}% 
+\contentsline {paragraph}{Define the smox-material class}{17}{section*.21}% 
+\contentsline {paragraph}{How to derive the charge density (PDF copy, source unknown, sorry)}{18}{figure.caption.23}% 
+\contentsline {paragraph}{Hint:}{20}{section*.24}% 
+\contentsline {paragraph}{Free charge carrier conc. using the Boltzmann approximation}{21}{section*.25}% 
+\contentsline {paragraph}{Compare the numerical solution with the approximations}{21}{section*.26}% 
+\contentsline {subsubsection}{\numberline {4.8.3}Numerical description of the semiconductor grains}{22}{subsubsection.4.8.3}% 
+\contentsline {paragraph}{Example usage of \texttt {np.trapz}}{26}{section*.29}% 
+\contentsline {subsubsection}{\numberline {4.8.4}Putting the pieces together}{29}{subsubsection.4.8.4}% 
+\contentsline {paragraph}{Export/Import data}{31}{section*.30}% 
+\contentsline {subsubsection}{\numberline {4.8.5}Represent the results}{31}{subsubsection.4.8.5}% 
+\contentsline {section}{\numberline {5}Summary}{34}{section.5}% 
+\contentsline {section}{\numberline {6}Bibliography section}{35}{section.6}% 

@@ -1,0 +1,953 @@
+\documentclass[11pt]{article}
+
+    \usepackage[breakable]{tcolorbox}
+    \usepackage{parskip} % Stop auto-indenting (to mimic markdown behaviour)
+    
+    \usepackage{iftex}
+    \ifPDFTeX
+    	\usepackage[T1]{fontenc}
+    	\usepackage{mathpazo}
+    \else
+    	\usepackage{fontspec}
+    \fi
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % Maintain compatibility with old templates. Remove in nbconvert 6.0
+    \let\Oldincludegraphics\includegraphics
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionFormat{nocaption}{}
+    \captionsetup{format=nocaption,aboveskip=0pt,belowskip=0pt}
+
+    \usepackage[Export]{adjustbox} % Used to constrain images to a maximum size
+    \adjustboxset{max size={0.9\linewidth}{0.9\paperheight}}
+    \usepackage{float}
+    \floatplacement{figure}{H} % forces figures to be placed at the correct location
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range
+    \makeatletter % fix for grffile with XeLaTeX
+    \def\Gread@@xetex#1{%
+      \IfFileExists{"\Gin@base".bb}%
+      {\Gread@eps{\Gin@base.bb}}%
+      {\Gread@@xetex@aux#1}%
+    }
+    \makeatother
+
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    % The default LaTeX title has an obnoxious amount of whitespace. By default,
+    % titling removes some of it. It also provides customization options.
+    \usepackage{titling}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    \usepackage{mathrsfs}
+    
+
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+    \definecolor{ansi-default-inverse-fg}{HTML}{FFFFFF}
+    \definecolor{ansi-default-inverse-bg}{HTML}{000000}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatibility definitions
+    \def\gt{>}
+    \def\lt{<}
+    \let\Oldtex\TeX
+    \let\Oldlatex\LaTeX
+    \renewcommand{\TeX}{\textrm{\Oldtex}}
+    \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
+    % Document parameters
+    % Document title
+    \title{Numerical calculations of SMOx based gas sensors with Python}
+    
+    
+    
+    
+    
+% Pygments definitions
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % For linebreaks inside Verbatim environment from package fancyvrb. 
+    \makeatletter
+        \newbox\Wrappedcontinuationbox 
+        \newbox\Wrappedvisiblespacebox 
+        \newcommand*\Wrappedvisiblespace {\textcolor{red}{\textvisiblespace}} 
+        \newcommand*\Wrappedcontinuationsymbol {\textcolor{red}{\llap{\tiny$\m@th\hookrightarrow$}}} 
+        \newcommand*\Wrappedcontinuationindent {3ex } 
+        \newcommand*\Wrappedafterbreak {\kern\Wrappedcontinuationindent\copy\Wrappedcontinuationbox} 
+        % Take advantage of the already applied Pygments mark-up to insert 
+        % potential linebreaks for TeX processing. 
+        %        {, <, #, %, $, ' and ": go to next line. 
+        %        _, }, ^, &, >, - and ~: stay at end of broken line. 
+        % Use of \textquotesingle for straight quote. 
+        \newcommand*\Wrappedbreaksatspecials {% 
+            \def\PYGZus{\discretionary{\char`\_}{\Wrappedafterbreak}{\char`\_}}% 
+            \def\PYGZob{\discretionary{}{\Wrappedafterbreak\char`\{}{\char`\{}}% 
+            \def\PYGZcb{\discretionary{\char`\}}{\Wrappedafterbreak}{\char`\}}}% 
+            \def\PYGZca{\discretionary{\char`\^}{\Wrappedafterbreak}{\char`\^}}% 
+            \def\PYGZam{\discretionary{\char`\&}{\Wrappedafterbreak}{\char`\&}}% 
+            \def\PYGZlt{\discretionary{}{\Wrappedafterbreak\char`\<}{\char`\<}}% 
+            \def\PYGZgt{\discretionary{\char`\>}{\Wrappedafterbreak}{\char`\>}}% 
+            \def\PYGZsh{\discretionary{}{\Wrappedafterbreak\char`\#}{\char`\#}}% 
+            \def\PYGZpc{\discretionary{}{\Wrappedafterbreak\char`\%}{\char`\%}}% 
+            \def\PYGZdl{\discretionary{}{\Wrappedafterbreak\char`\$}{\char`\$}}% 
+            \def\PYGZhy{\discretionary{\char`\-}{\Wrappedafterbreak}{\char`\-}}% 
+            \def\PYGZsq{\discretionary{}{\Wrappedafterbreak\textquotesingle}{\textquotesingle}}% 
+            \def\PYGZdq{\discretionary{}{\Wrappedafterbreak\char`\"}{\char`\"}}% 
+            \def\PYGZti{\discretionary{\char`\~}{\Wrappedafterbreak}{\char`\~}}% 
+        } 
+        % Some characters . , ; ? ! / are not pygmentized. 
+        % This macro makes them "active" and they will insert potential linebreaks 
+        \newcommand*\Wrappedbreaksatpunct {% 
+            \lccode`\~`\.\lowercase{\def~}{\discretionary{\hbox{\char`\.}}{\Wrappedafterbreak}{\hbox{\char`\.}}}% 
+            \lccode`\~`\,\lowercase{\def~}{\discretionary{\hbox{\char`\,}}{\Wrappedafterbreak}{\hbox{\char`\,}}}% 
+            \lccode`\~`\;\lowercase{\def~}{\discretionary{\hbox{\char`\;}}{\Wrappedafterbreak}{\hbox{\char`\;}}}% 
+            \lccode`\~`\:\lowercase{\def~}{\discretionary{\hbox{\char`\:}}{\Wrappedafterbreak}{\hbox{\char`\:}}}% 
+            \lccode`\~`\?\lowercase{\def~}{\discretionary{\hbox{\char`\?}}{\Wrappedafterbreak}{\hbox{\char`\?}}}% 
+            \lccode`\~`\!\lowercase{\def~}{\discretionary{\hbox{\char`\!}}{\Wrappedafterbreak}{\hbox{\char`\!}}}% 
+            \lccode`\~`\/\lowercase{\def~}{\discretionary{\hbox{\char`\/}}{\Wrappedafterbreak}{\hbox{\char`\/}}}% 
+            \catcode`\.\active
+            \catcode`\,\active 
+            \catcode`\;\active
+            \catcode`\:\active
+            \catcode`\?\active
+            \catcode`\!\active
+            \catcode`\/\active 
+            \lccode`\~`\~ 	
+        }
+    \makeatother
+
+    \let\OriginalVerbatim=\Verbatim
+    \makeatletter
+    \renewcommand{\Verbatim}[1][1]{%
+        %\parskip\z@skip
+        \sbox\Wrappedcontinuationbox {\Wrappedcontinuationsymbol}%
+        \sbox\Wrappedvisiblespacebox {\FV@SetupFont\Wrappedvisiblespace}%
+        \def\FancyVerbFormatLine ##1{\hsize\linewidth
+            \vtop{\raggedright\hyphenpenalty\z@\exhyphenpenalty\z@
+                \doublehyphendemerits\z@\finalhyphendemerits\z@
+                \strut ##1\strut}%
+        }%
+        % If the linebreak is at a space, the latter will be displayed as visible
+        % space at end of first line, and a continuation symbol starts next line.
+        % Stretch/shrink are however usually zero for typewriter font.
+        \def\FV@Space {%
+            \nobreak\hskip\z@ plus\fontdimen3\font minus\fontdimen4\font
+            \discretionary{\copy\Wrappedvisiblespacebox}{\Wrappedafterbreak}
+            {\kern\fontdimen2\font}%
+        }%
+        
+        % Allow breaks at special characters using \PYG... macros.
+        \Wrappedbreaksatspecials
+        % Breaks at punctuation characters . , ; ? ! and / need catcode=\active 	
+        \OriginalVerbatim[#1,codes*=\Wrappedbreaksatpunct]%
+    }
+    \makeatother
+
+    % Exact colors from NB
+    \definecolor{incolor}{HTML}{303F9F}
+    \definecolor{outcolor}{HTML}{D84315}
+    \definecolor{cellborder}{HTML}{CFCFCF}
+    \definecolor{cellbackground}{HTML}{F7F7F7}
+    
+    % prompt
+    \makeatletter
+    \newcommand{\boxspacing}{\kern\kvtcb@left@rule\kern\kvtcb@boxsep}
+    \makeatother
+    \newcommand{\prompt}[4]{
+        \ttfamily\llap{{\color{#2}[#3]:\hspace{3pt}#4}}\vspace{-\baselineskip}
+    }
+    
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+\begin{document}
+    
+    \maketitle
+    
+    
+
+    
+    \tableofcontents 
+\setcounter{section}{0}
+
+    \hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+\hypertarget{motivation}{%
+\subsection{Motivation}\label{motivation}}
+
+When I first started working in the field of metal-oxide semiconducting
+gas sensors, I still had the wish to finish my time at university with a
+degree of eduction in math and physics. But while having spend 4 month
+in a school and experiencing the joy of teaching, I also felt a strong
+urge to continue learning and explore the possibilities science and
+research would allow me. Long story short, I ended up starting my Phd.
+in the ``Institute of Theoretical and Physical Chemistry'' at the
+University of Tübingen. Lucky as I was I directly got the possibility of
+working on a project with an industrial partner about gas sensors. This
+allowed me to investigate the sate-of-the-art of industrialized sensor
+production. Besides the benefits of learning to give regular
+presentations and reports, working in teams and funding for interesting
+research activities, it also imposed some new problems needed to be
+solved. The biggest of challenges has been the continuous increase of
+sensor date in always shorter intervals. Luck as I was, I was not the
+only one facing problems with the increasing amount of data needed to be
+analyzed. Aside from the conventional way of wiring
+applications/programs, the need was rather on having efficient tool sets
+to reduce time consuming parts of the data analysis. Especially those
+which could theoretically be done by an algorithm. At this point my very
+basic knowledge in the area of programming and the need to solve urgent
+tasks, created the need for efficient solutions with a steep learning
+curve. Until then my, and of some others in the lab, standard procedure
+of working with our data was:
+
+\begin{itemize}
+\tightlist
+\item
+  first to extract relevant features at well defined time-points to
+  reduce the initial amount to a reasonable quantity of data points
+\item
+  in a second step a unified representation of the extracted features
+  had to be created
+\item
+  analysis of the data and taking further steps
+\end{itemize}
+
+When Working with a limited amount of samples, manually doing these
+steps was acceptable. With the industrial cooperation gaining speed, the
+number of samples increased also rapidly. Soon we reached the point
+where the pre-processing of the data would easily consume a large amount
+of time. And that without even having started with the analysis. Luckily
+I was not the only one facing such problems and a project from the
+Python community gained more and more interest. Articles like
+\cite{Unpingco2014} pointed me to a new way of dealing with data and
+using the Python programming language. Regarding the fact, that Python
+was already a well estblished programming language, the introduction of
+the ``IPtyhon notebook ecosystem'' was making the use of Python for in
+an scientific workflow very attractive. As mentioned in this article:
+\cite{Osipov2016}
+
+\begin{quote}
+``\ldots{} what they do offer is an environment for exploration,
+collaboration, and visualization.''
+\end{quote}
+
+I also realized the large potential for my research field. Not only that
+I got efficient tools for calculations, analysis and representations,
+but the new tools have been build with the focus of easy reporting
+results. Such an environment around the so called notebooks was the
+ideal piece, which I experienced as a missing block in the scientific
+work I was after. Besides my work for our industrial partner I also did
+fundamental research about semiconducting metaloxide gas sensors. On the
+basis of the great works on gas sensors, my focus was on one the
+numerically calculation of the gas sensors semiconducting properties.
+Typically a model of a gas sensor is developed and compared with
+experimental results. The pees review system assures, that the
+publications published in the journals are well written, documented the
+on a solid and proven basis. Unfortunately the transfer from the
+presented model in the publication to other model and a direct
+comparison of the results experimental data aired on other sensors is
+often not done. One of the main obstacles for the average experimental
+oriented researcher is the lack of the programming knowledge to
+implement algorithm based on the presented work.
+
+With the results I gained while my Phd. thesis I had the experience,
+that others understood the value of my work but could not transfer it to
+their particular problem. At this point I decided to orient myself back
+to my educational roots and use the powerful ecosystem around the
+IPython notebooks and write my thesis with the large focus on suppling a
+introduction to this excellent toolbox.
+
+The presented results will allow more people to gain insides in the
+semiconductors influence on the sensing properties. More than this I
+hope this thesis will also be a useful introduction into Python,
+specially IPython notebooks, for scientific work.
+
+These hopes are not unfunded.In my time working at the ``Eberhard Karls
+University of Tübingen'' i was also assigned to give multiple lectures.
+One lecture branch has been the introduction to data mining. Often the
+lack of programming knowledge and the limited amount of time did not
+allow a usage of Python as a supporting programming language. In these
+cases classical tools like Excel of Origin have been used to mine data
+examples for hidden facts. Most attendees have been very fast and
+understood the general concept of data mining. Just the lack of a the
+minimal requirement to translate the concept into machine understandable
+instructions stopped them from using them. When enough time was
+available, a short introduction into programming with Python gained a
+lot of interest and was generally seen as a positive experience. This
+thesis is therefore structured in such a way, that one the one side I
+will present my research results from the past years in a condensed form
+and on the other side uses this the opportunity to introduce and explain
+the importance of applying programming tools in the common work flow of
+scientific work. Since the potential of ``outsourcing'' repetitive tasks
+to machine executed scripts and invest more time in our ceativity and
+intelligence is huge. My hope is to bring with this thesis not only a
+deeper insight in the understanding of SMOX based gas sensors, but also
+help others to start a interesting journey into the wide area of data
+mining and machine learning with python.
+
+I typically finish my introductions to Python by letting the students
+run their first commands. Typically for other introductions found around
+the globe, this is a program which outputs ``Hello World''. For Python I
+prefer to execute some other commands with boils almost down to the
+philosophical essence on how ``instructions'' should be.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{1}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import} \PY{n+nn}{this}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The Zen of Python, by Tim Peters
+
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!
+    \end{Verbatim}
+
+    \hypertarget{smox-based-gas-sensors}{%
+\subsection{SMOX based gas sensors}\label{smox-based-gas-sensors}}
+
+This section list a collection of high quality publications which will
+broadcast all relevant information about semiconductor based gas sensors
+directly into your brain! In the course of this thesis many of those
+aspects will be explained, analyzed in discussed in required detail at
+the relevant places. So reading these publications now is not necessary
+to follow this thesis. This section is therefore a good point to come
+back if a more detailed view on the subject is desired. Especially when
+this thesis is used to apply the presented concepts to individual
+research topics.
+
+When solving numerical problems it typical to introduction some
+assumptions, which are only valid under specific boundary conditions.
+These assumptions simplify the problem to a level where a numerical
+calculation is possible, but will reduce the validity of the results
+only to a small subset of all possible situations. The calculations in
+this thesis are also packed with assumptions and boundary conditions. My
+intention is to supply enough information to understand the relevance of
+the assumption and it's implications. With my presented work I do not
+claim to calculate all aspects of SMOX gas sensors, but present a tool
+which helps to understand specific aspects. The way of presenting this
+knowledge should lead/motivate others to adapt the presented work to
+individual other cases with completely different boundary conditions. A
+general understanding of gas sensors will only be gained to a certain
+level, but with time, work and data this understanding will definitely
+grow.
+
+    \begin{figure}
+\centering
+\includegraphics{media/icons/jupyter.png}
+\caption{Juypter}
+\end{figure}
+
+    \hypertarget{notebooks}{%
+\subsection{Notebooks}\label{notebooks}}
+
+``The Zen of Python'' might not always be the primary directive of each
+developer, but the Python community consists most probably of many
+people how would consider the latter points as important. So did also
+the inventors of the IPython and Jupyter. A quick search will reveal
+multiple sources in the world wide web giving a detailed picture about
+what Notebooks are and how Jupyter in connected with them. Here I will
+not try to give an general overview about this tool and rather stick to
+the phrase ``Learning by doing.''. By explaining topic related parts
+this notebooks will guide an interested reader to the point where:
+
+\begin{itemize}
+\tightlist
+\item
+  understanding the fundamental instructions of Python
+\item
+  using the basic functionality of the Notebooks
+\item
+  fundamental understanding of SMOX based gas sensors
+\end{itemize}
+
+is gained.
+
+It is worth mentioning, that the intention of such notebooks is to merge
+the essential tools of scientific work flows together. Data acquisition,
+preparation, analysis, representation and documentation should available
+in one place. The strength of not just sharing final conclusions in a
+nicely formatted way, but also being able to share the full stack of
+steps necessary to reach the final conclusion is essentially the
+strength of the Jupyter notebooks. This feature is already changing the
+way how scientific results are shared/published and was intentionally
+designed this way \cite{Randles2017}.
+
+The formatting used in this notebook is based on Markdown. Wikipedia
+summarizes Markdown like this:
+
+\begin{quote}
+Markdown is a lightweight markup language with plain text formatting
+syntax. Wikipedia
+\end{quote}
+
+This means a document is formatted by writing plaintext and special text
+blocks are interpreted as formatting commands. E.g. \textbf{BOLD}
+letters are generated by encapsulating the text with
+\texttt{**\ Text\ here\ **}, headings are generated by starting the
+heading with \texttt{\#}. Depending on the number of \texttt{\#},
+subsections are created. I will not go into detail here about the
+features of Markdown. Many features are used in this notebook and are
+directly accessible by double-clicking the text element. The plain text
+will reveal the way it was created, and the execution of the cell with
+\texttt{CTRL+ENTER} will reveal its Markdown formatted representation.
+One other handy feature of the Jupyter ecosystem I use is the ability to
+transform notebooks into multiple other formats. Just to name some:
+HTML, WORD (DOC, DOCX), Latex. The tool \texttt{nbconvert} is used
+internally to convert the Markdown formatted representation into other
+formats. For this thesis the default option ``Export as PDF'' under the
+File option generates a Latex based PDF file.
+\href{https://guides.github.com/features/mastering-markdown/}{Mastering-markdown}
+is a web page, where I found some hints on how to format my notebook.
+For instance I gained the ability to make block quotes from this page
+based on this example:
+
+As Kanye West said:
+
+\begin{quote}
+We're living the future so the present is our past.
+\end{quote}
+
+    \hypertarget{installation-guide}{%
+\subsubsection{Installation guide}\label{installation-guide}}
+
+The easiest way to get started would be to use the Anaconda
+distribution. Anaconda bundles multiple different tools and installs
+them i nthe operation system. Anaconda will take care of cross
+dependecies and handle the update process of the software. This is not
+the only way to get started with Jupyter Notebooks but surely an very
+fast and easy one.
+\href{media/presentations/InstallAnaconda/Anaconda-Python.pdf}{HERE} is
+additionally a presentation I use for my lectures to guide students into
+the world of Python and
+\href{media/presentations/InstallAnaconda/PythonÜbung.zip}{here one
+example} of it's usage.
+
+    \hypertarget{example-notebook---sneak-preview}{%
+\subsubsection{Example Notebook - Sneak
+preview}\label{example-notebook---sneak-preview}}
+
+Besides the first example \texttt{import\ this}, here is a very basic
+example which should prepare exited reader on whats coming next.
+
+    \hypertarget{simple-is-better-than-complex.}{%
+\paragraph{``Simple is better than
+complex.''}\label{simple-is-better-than-complex.}}
+
+The Jupyter environment is equipped with ``magic commands'', which are
+not part of the base programming language (i.e.~Python), but rather a
+helper instruction to simplify common tasks. Magic commands always start
+with \texttt{\%} and are followed with an instruction. I will
+demonstrate in this example the use of the \texttt{\%pylab} instruction.
+This modifies the current programming space to be a lab nicely equipped
+for scientific work flows. For instance a chemistry lab is equipped with
+a balance, a water tab and a fire extinguisher, and in this case a
+``pylab'' is equipped with data handing, plotting and multiple other
+tools. So let's setup a ``pylab'' and run some lines of code. (The
+plotting is handled in the background by Matplotlib \cite{Hunter2007})
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{2}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{o}{\PYZpc{}}\PY{k}{pylab} inline
+
+\PY{c+c1}{\PYZsh{}get a list of 5000 points between \PYZhy{}50 and 50}
+\PY{n}{x} \PY{o}{=} \PY{n}{linspace}\PY{p}{(}\PY{n}{start}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{50}\PY{p}{,} \PY{n}{stop}\PY{o}{=}\PY{l+m+mi}{50}\PY{p}{,} \PY{n}{num}\PY{o}{=}\PY{l+m+mi}{5000}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Python way of adding a comment is the \PYZsq{}\PYZsh{}\PYZsq{} character}
+\PY{c+c1}{\PYZsh{} Python way of writer \PYZsq{}x to the power of y\PYZsq{} is x**y}
+\PY{c+c1}{\PYZsh{} here I am calculating thethe third power of x for 5000 points between \PYZhy{}50 and 50}
+\PY{n}{y} \PY{o}{=} \PY{n}{x}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3}
+
+\PY{c+c1}{\PYZsh{}plot it}
+\PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Populating the interactive namespace from numpy and matplotlib
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{1_Introduction_files/1_Introduction_9_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    The additional ``inline'' instruction in \texttt{\%pylab} configures the
+plotting environment to represent the graphics inside this text. The
+following line generates a 5000 linear distributed points in the
+interval {[}-50,50) and y is just the third power of each point.
+\texttt{plt.} is a submodule defined by the magic command
+\texttt{\%pylab} which handels data plotting in a very simple way.
+\texttt{plt.plot(x,y,\textquotesingle{}r-\textquotesingle{})} for
+example plots x vs.~y with a red line. The thesis is done in the
+notebook to offer the reader the possibility to directly work with newly
+gained knowledge. Therefore the upper block is a good opportunity to do
+the fist steps in Python. For instance change the line format to `b'
+(blue). Or to `b-.'. Change the exponent from 3 to 3.1. To do so:
+
+\begin{itemize}
+\tightlist
+\item
+  click on the code box
+\item
+  edit the field
+\item
+  Add the following line
+  \texttt{plt.title(\textquotesingle{}The\ power\ law\textquotesingle{})}
+\item
+  go back with CTRL-Z to correct your mistakes
+\item
+  hit CTRL-ENTER to execute the code
+\end{itemize}
+
+    \hypertarget{conclusion}{%
+\section{Conclusion}\label{conclusion}}
+
+Since the motivation for this ``interactive'' thesis should be clear
+now, I would like to come in the next section now to my actual research
+topic: ``Numerical calculation of semiconducting metal oxide (SMOX)
+based gas sensors''. In the \href{2-SMOX-sensor-calculation.ipynb}{next
+chapter} I will demonstrate how theoretical numerical calculations for
+chemical sensors are used to better understand experimental results. In
+the \href{3-Applying_theorie-to-practice.ipynb}{following chapter} I
+will demonstrate how such knowledge could be used to improve the
+performance of a sensor regarding it's sensitivity and selectivity.
+
+\href{2-SMOX-sensor-calculation.ipynb}{Follow this link to come to the
+next section.}
+
+    \hypertarget{about-the-pdf-version-of-this-work}{%
+\section{About the PDF-Version of this
+work}\label{about-the-pdf-version-of-this-work}}
+
+This notebook was not intended to be used as a printed hard copy or as a
+PDF. The provided PDF servers just as an low level representation of the
+original work. It should give potentially interested readers an easy
+entry point to Python(any other programming language) supported science.
+Many of the implemented features in these notebooks like interactive
+widgets, animated data representations and live code examples will not
+work in the PDF-version. Only a static snapshot of the mutable
+representation can be represented outside the notebook. On the one side
+the reduction of printed pages and the benefits of interacting with the
+presented work in a notebook should motivate the reader to use the
+notebook. Nevertheless the integrated function to export the notebook to
+a Latex based PDF results in a very nice static publication. So please
+keep in mind, that the PDF-verison may not be able to represent all the
+features of the notebook as intended and some links might not work as
+expected. You are strongly encouraged to switch to the Jupyter
+presentation of this work and experience the full potential of such
+notebooks.
+
+\hypertarget{equations}{%
+\subsection{Equations}\label{equations}}
+
+In a typical scientific thesis and textbook, relevant equations are
+referred by numbers of identifiers. In Latex this is done, by assigning
+a label and a tag to an equation. If this equation needs to be referred
+to, the a pointer to the reference is added, and the tag is used for the
+representation of this equation. As an example, an arbitrary equation
+from this thesis is used. The (internal) reference of this equation is
+`second\_derivative', while the printed representation (tag) is ``Second
+derivative''.
+
+\begin{align}
+\frac{d²V^{*}}{dr^{*2}}=1-n^{*}(V^{*})-\frac{2}{r^{*}}\frac{dV^{*}}{dr^{*}}\label{second_derivative}\tag{Second derivative}
+\end{align}
+
+To refer not to this equation a reference can be added which will look
+like this (\ref{second_derivative}). The underlying mechanisms will link
+the reference with the equation, print the label, and add an hyperlink,
+to be able to jump to the equation. This feature works either in
+notebook or PDF representations. One drawback of the notebook
+representation is, that he equation and reference need to be in the same
+code block/cell. Otherwise the reference is not working. Instead of
+linking the equation correctly, ??? will be represented. My opinion is,
+that this will change will evolving improvements of Jupyter is is just a
+temporal flaw. Since the PDF version is processed by a Latex interpreter
+in total, the ``one code block'' limitation does not exist there. To
+demonstrate this, I will try to reference the eqaution in the next code
+block.
+
+    Here the same reference to the equation: \ref{second_derivative}
+
+    \hypertarget{tables}{%
+\subsection{Tables}\label{tables}}
+
+With the numerical calculations performed in this thesis, data will need
+to be represented also. One way of doing this is by plotting the the
+data. This is also suitable for a static PDF-Version of this thesis,
+which often is useful/necessary to have. This feature is well
+implemented and the transfer from Notebook to PDF version works well.
+Another way to display data are tables. Similar to the well known,
+omnipresent tool for working with tables, Excel, the Python universe has
+its own, but similar, tool. It's called Pandas. As a primer I will give
+here a very short introduction to Pandas. What sheets are for Excel, are
+Dataframes for Pandas. Here a simple example how to create a Dataframe
+in analogy to the previous programming example:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{3}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{o}{\PYZpc{}}\PY{k}{pylab}
+\PY{k+kn}{import} \PY{n+nn}{pandas}
+
+\PY{c+c1}{\PYZsh{}create some x values}
+\PY{n}{x} \PY{o}{=} \PY{n}{linspace}\PY{p}{(}\PY{n}{start}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{stop}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,}\PY{n}{num} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}the y values will the the square of the x values}
+\PY{n}{y} \PY{o}{=} \PY{n}{x}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+
+\PY{c+c1}{\PYZsh{}Put them in a Dataframe and reference this new Dataframe with the variable `dF`}
+\PY{n}{dF} \PY{o}{=} \PY{n}{pandas}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{n}{x}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{n}{y}\PY{p}{\PYZcb{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Using matplotlib backend: Qt5Agg
+Populating the interactive namespace from numpy and matplotlib
+    \end{Verbatim}
+
+    This simple example of a Dataframe should demonstrate the basic concept
+of Dataframes. Once data is in the \texttt{DataFrame} format, the are
+infinit ways to transform/slice/merge/\ldots{} it, to bring it into the
+desired shape. Along this thesis, some of the functionalities of
+Dataframes will be used and explained. Since the Jupyter environment is
+still ``under construction'', the transfer from Juypter to PDF for
+notebooks does not work to well until now. This does not mean, that is
+is not possible, it is just not yet implemented in the default/vanilla
+environment. This is way I want to highlight the small tweak that is at
+this point still needed to have a comparable output in Juypter notebooks
+and printed PDFs. To bypass this obstacle the default behavior of pandas
+needs to be altered ( similar to this post:
+\href{https://stackoverflow.com/a/24167756}{Latex-Tables Monkey Patch}).
+This following patch brings DataFrames in the appropriate shape to by
+nicely represented in both representations.
+
+    \hypertarget{before-the-patch}{%
+\subsubsection{Before the patch}\label{before-the-patch}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{4}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{display}\PY{p}{(}\PY{n}{dF}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    
+    \begin{verbatim}
+          x          y
+0  0.000000   0.000000
+1  0.555556   0.308642
+2  1.111111   1.234568
+3  1.666667   2.777778
+4  2.222222   4.938272
+5  2.777778   7.716049
+6  3.333333  11.111111
+7  3.888889  15.123457
+8  4.444444  19.753086
+9  5.000000  25.000000
+    \end{verbatim}
+
+    
+    \hypertarget{the-patch}{%
+\subsubsection{The patch}\label{the-patch}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{5}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import} \PY{n+nn}{pandas}
+\PY{n}{pandas}\PY{o}{.}\PY{n}{set\PYZus{}option}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{display.notebook\PYZus{}repr\PYZus{}html}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{k+kc}{True}\PY{p}{)}
+
+\PY{n}{pandas}\PY{o}{.}\PY{n}{set\PYZus{}option}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{display.notebook\PYZus{}repr\PYZus{}html}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{k+kc}{True}\PY{p}{)}
+
+\PY{k}{def} \PY{n+nf}{\PYZus{}repr\PYZus{}latex\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+    \PY{k}{return} \PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+\PY{l+s+s2}{    }\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{begin}\PY{l+s+si}{\PYZob{}center\PYZcb{}}
+\PY{l+s+s2}{    }\PY{l+s+s2}{\PYZob{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s2}{\PYZcb{}}
+\PY{l+s+s2}{    }\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{end}\PY{l+s+si}{\PYZob{}center\PYZcb{}}
+\PY{l+s+s2}{    }\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{to\PYZus{}latex}\PY{p}{(}\PY{p}{)}
+
+\PY{n}{pandas}\PY{o}{.}\PY{n}{DataFrame}\PY{o}{.}\PY{n}{\PYZus{}repr\PYZus{}latex\PYZus{}} \PY{o}{=} \PY{n}{\PYZus{}repr\PYZus{}latex\PYZus{}}  \PY{c+c1}{\PYZsh{} monkey patch pandas DataFrame}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \hypertarget{prettier-tables-after-the-patch}{%
+\subsubsection{Prettier tables after the
+patch}\label{prettier-tables-after-the-patch}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{6}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{display}\PY{p}{(}\PY{n}{dF}\PY{p}{)}
+\PY{c+c1}{\PYZsh{}\PYZdq{}Test Tabel\PYZdq{}}
+\end{Verbatim}
+\end{tcolorbox}
+
+    
+    \begin{center}
+    {\begin{tabular}{lrr}
+\toprule
+{} &         x &          y \\
+\midrule
+0 &  0.000000 &   0.000000 \\
+1 &  0.555556 &   0.308642 \\
+2 &  1.111111 &   1.234568 \\
+3 &  1.666667 &   2.777778 \\
+4 &  2.222222 &   4.938272 \\
+5 &  2.777778 &   7.716049 \\
+6 &  3.333333 &  11.111111 \\
+7 &  3.888889 &  15.123457 \\
+8 &  4.444444 &  19.753086 \\
+9 &  5.000000 &  25.000000 \\
+\bottomrule
+\end{tabular}
+}
+    \end{center}
+    
+
+    
+    In Jupyter notebooks the output will look very similar. In the PDF
+version of this thesis, those two output will differ(, unless a newer
+version of Jupyter fixed this issue.) To have this thesis in a PDF
+printable form, I will use the presented patch to unify the output. On
+the other side I suggest not to use this patch, and rather work with the
+Jupyter notebooks and its default representation, since the patch has
+also its downsides. But this would go beyond the scope of this remark
+about the patch.
+
+    \hypertarget{bibliography-section}{%
+\section{Bibliography section}\label{bibliography-section}}
+
+    \bibliographystyle{alphadin}
+\bibliography{ipython}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+\end{document}
