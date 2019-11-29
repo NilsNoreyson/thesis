@@ -1,0 +1,51 @@
+This is BibTeX, Version 0.99d (TeX Live 2019/Arch Linux)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: 2-Grain-SMOX.aux
+The style file: alphadin.bst
+Reallocated singl_function (elt_size=8) to 100 items from 50.
+Reallocated singl_function (elt_size=8) to 100 items from 50.
+Reallocated wiz_functions (elt_size=8) to 6000 items from 3000.
+Reallocated singl_function (elt_size=8) to 100 items from 50.
+Reallocated singl_function (elt_size=8) to 100 items from 50.
+Database file #1: ipython.bib
+You've used 5 entries,
+            4793 wiz_defined-function locations,
+            938 strings with 7479 characters,
+and the built_in function-call counts, 4621 in all, are:
+= -- 498
+> -- 115
+< -- 91
++ -- 111
+- -- 45
+* -- 379
+:= -- 741
+add.period$ -- 11
+call.type$ -- 5
+change.case$ -- 28
+chr.to.int$ -- 5
+cite$ -- 5
+duplicate$ -- 104
+empty$ -- 349
+format.name$ -- 70
+if$ -- 942
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 28
+newline$ -- 49
+num.names$ -- 15
+pop$ -- 35
+preamble$ -- 1
+purify$ -- 38
+quote$ -- 0
+skip$ -- 163
+stack$ -- 0
+substring$ -- 549
+swap$ -- 31
+text.length$ -- 25
+text.prefix$ -- 1
+top$ -- 0
+type$ -- 46
+warning$ -- 0
+while$ -- 41
+width$ -- 6
+write$ -- 93

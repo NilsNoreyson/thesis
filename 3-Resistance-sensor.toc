@@ -1,0 +1,7 @@
+\contentsline {section}{\numberline {1}Review}{1}{section.1}% 
+\contentsline {section}{\numberline {2}Load the results}{1}{section.2}% 
+\contentsline {section}{\numberline {3}From charge distribution to resistance}{3}{section.3}% 
+\contentsline {subsection}{\numberline {3.1}The ``numerical'' grain}{4}{subsection.3.1}% 
+\contentsline {subsection}{\numberline {3.2}Precalc the numerical grains for all conditions}{5}{subsection.3.2}% 
+\contentsline {section}{\numberline {4}Relaxation}{6}{section.4}% 
+\contentsline {section}{\numberline {5}Bibliography section}{10}{section.5}% 
