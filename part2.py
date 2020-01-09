@@ -97,9 +97,18 @@ def calc_EDCF_by_temp(T_C, ND,mass_e_eff_factor):
 
 
 
+from scipy.integrate import quad
+from scipy.interpolate import interp1d
+import scipy
+from functools import lru_cache
+import numpy as np
+import pandas as pd
+
+
+
 class Material:
-    def __init__(self,T_C,ND = 9e21,
-                 EPSILON = 9.86, mass_e_eff_factor = 0.3, DIFF_EF_EC_evolt = 0.3):
+    def __init__(self,T_C,ND,
+                  mass_e_eff_factor = 0.3, EPSILON = 9.86, DIFF_EF_EC_evolt = None):
         '''
         T_C = Temperature of the material
         ND = number of donors per m³
@@ -156,6 +165,7 @@ class Material:
         n, n_err = quad(lambda E:self.n_E(E, E_c),E_c,E_c+self.kT*100)
         return n, n_err
 
+    
     
 
 class Grain:

@@ -146,7 +146,7 @@
     \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
     % Document parameters
     % Document title
-    \title{Numerical calculations of SMOx based gas sensors with Python}
+    \title{Interative thesis combinging analyis, calcualtion and representation}
     
     
     
@@ -379,120 +379,139 @@
 \hypertarget{motivation}{%
 \subsection{Motivation}\label{motivation}}
 
-When I first started working in the field of metal-oxide semiconducting
-gas sensors, I still had the wish to finish my time at university with a
-degree of eduction in math and physics. But while having spend 4 month
-in a school and experiencing the joy of teaching, I also felt a strong
-urge to continue learning and explore the possibilities science and
-research would allow me. Long story short, I ended up starting my Phd.
-in the ``Institute of Theoretical and Physical Chemistry'' at the
-University of Tübingen. Lucky as I was I directly got the possibility of
-working on a project with an industrial partner about gas sensors. This
-allowed me to investigate the sate-of-the-art of industrialized sensor
-production. Besides the benefits of learning to give regular
-presentations and reports, working in teams and funding for interesting
-research activities, it also imposed some new problems needed to be
-solved. The biggest of challenges has been the continuous increase of
-sensor date in always shorter intervals. Luck as I was, I was not the
-only one facing problems with the increasing amount of data needed to be
-analyzed. Aside from the conventional way of wiring
-applications/programs, the need was rather on having efficient tool sets
-to reduce time consuming parts of the data analysis. Especially those
-which could theoretically be done by an algorithm. At this point my very
-basic knowledge in the area of programming and the need to solve urgent
-tasks, created the need for efficient solutions with a steep learning
-curve. Until then my, and of some others in the lab, standard procedure
-of working with our data was:
+In the beginning of my academical career I was aiming an educational
+degree i math and physics. While studying at the University of Tübingen
+I was also worked as a research assistant in the Institute of Physical
+Chemistry. In the course of my studies I was allowed to spend 4 month in
+a school to gain first experiences in teaching physics and math to
+students between 12 and 20 years. Even though it was a great experience
+and I enjoyed it a lot to bring new ideas and concepts to the students,
+I also felt a strong urge to continue learning and explore. At this time
+the possibilities I saw in focusing on scientific research and
+development seemed more attractive to me. My reasoning was, that I might
+be better for me do combine my preference for teaching and research
+rather at the university than a college. Long story short, after some
+years I ended up doing Phd. in the ``Institute of Theoretical and
+Physical Chemistry'' at the University of Tübingen. Lucky as I was I
+directly got the possibility to work in a project with an industrial
+partner. The focus was on building a new state of the art gas sensors.
+Besides the benefits of learning to regularly give presentations and
+prepare reports, working in teams and having enough financial support
+for research activities, it also imposed some new problems needed to be
+solved. One of the biggest challenges was the continuous increase of
+sensor date in always shorter intervals. With the increasing
+industrialization and automatisation of sensor production and testing,
+the quantity high quality data increased dramatically. Luck as I was, I
+was not the only one facing problems with the increasing amount of data
+needed to be analyzed. In the beginning of each analysis, the specific
+task was not fully defined. It was rather an exploratory research to
+gain an idea about possible goals. In this case the the traditional way
+of creating software algorithms for well defined tasks, to take over the
+heavy lifting, did not fit too well. I rather had the need for efficient
+tools to reduce time consuming parts of the data analysis and a platform
+to combine these tools efficiently. So at this point of my career with
+my very basic knowledge in the area of programming and the need to solve
+urgent tasks, I was looking for an efficient solutions with a steep
+learning curve.
 
-\begin{itemize}
-\tightlist
-\item
-  first to extract relevant features at well defined time-points to
-  reduce the initial amount to a reasonable quantity of data points
-\item
-  in a second step a unified representation of the extracted features
-  had to be created
-\item
-  analysis of the data and taking further steps
-\end{itemize}
-
-When Working with a limited amount of samples, manually doing these
-steps was acceptable. With the industrial cooperation gaining speed, the
-number of samples increased also rapidly. Soon we reached the point
-where the pre-processing of the data would easily consume a large amount
-of time. And that without even having started with the analysis. Luckily
-I was not the only one facing such problems and a project from the
-Python community gained more and more interest. Articles like
-\cite{Unpingco2014} pointed me to a new way of dealing with data and
-using the Python programming language. Regarding the fact, that Python
-was already a well estblished programming language, the introduction of
-the ``IPtyhon notebook ecosystem'' was making the use of Python for in
-an scientific workflow very attractive. As mentioned in this article:
-\cite{Osipov2016}
+Until then my, and of some others in the lab, standard procedure of
+working with our data was mainly based on manual feature extraction and
+analysis. When Working with a limited amount of samples, manually doing
+these steps was acceptable and efficient. With the industrial
+cooperation gaining speed, the number of samples increased also rapidly.
+Soon we reached the point where the pre-processing of the data would
+easily consume a large amount of time. And that without even having
+started with the analysis. Luckily I was not the only one facing such
+problems and a project from the Python community gained more and more
+interest. Articles like \cite{Unpingco2014} pointed me to a new way of
+dealing with data and using the Python programming language. Regarding
+the fact, that Python was already a well established programming
+language, the introduction of the ``IPtyhon notebook ecosystem'' was
+making the use of Python for in an scientific work flow very attractive.
+As mentioned in this article: \cite{Osipov2016}
 
 \begin{quote}
 ``\ldots{} what they do offer is an environment for exploration,
 collaboration, and visualization.''
 \end{quote}
 
-I also realized the large potential for my research field. Not only that
-I got efficient tools for calculations, analysis and representations,
-but the new tools have been build with the focus of easy reporting
-results. Such an environment around the so called notebooks was the
-ideal piece, which I experienced as a missing block in the scientific
-work I was after. Besides my work for our industrial partner I also did
-fundamental research about semiconducting metaloxide gas sensors. On the
-basis of the great works on gas sensors, my focus was on one the
-numerically calculation of the gas sensors semiconducting properties.
-Typically a model of a gas sensor is developed and compared with
-experimental results. The pees review system assures, that the
-publications published in the journals are well written, documented the
-on a solid and proven basis. Unfortunately the transfer from the
-presented model in the publication to other model and a direct
-comparison of the results experimental data aired on other sensors is
-often not done. One of the main obstacles for the average experimental
-oriented researcher is the lack of the programming knowledge to
-implement algorithm based on the presented work.
+I also realized the large potential for my working field. By learning
+Python I got efficient tools for calculations, analysis and
+representations. Additionally the new tools have been build specially
+with the focus on the goal to easy report result including the way they
+have been gained. The environment around the so called ``Juypter
+notebooks'' was the ideal piece, which I experienced as a missing block
+in the scientific work I was doing.
 
-With the results I gained while my Phd. thesis I had the experience,
-that others understood the value of my work but could not transfer it to
-their particular problem. At this point I decided to orient myself back
-to my educational roots and use the powerful ecosystem around the
-IPython notebooks and write my thesis with the large focus on suppling a
-introduction to this excellent toolbox.
+Besides my work for our industrial partner I also did fundamental
+research about semiconducting metaloxide gas sensors. Based on great
+research done before my time on gas sensors, my focus was now on
+numerical calculations of the gas sensors. Typically a theoretical model
+of a gas sensor is developed and the predictions are compared with
+experimental results. When publishing the results the peer review system
+assures, that the publications are well written, documented the on a
+solid and proven basis. But when reading such papers, I had the
+experience, that unfortunately many of them presented good results, but
+practical instructions on how to implement the presented models were
+often not given. The work of rebuilding the model and recalculating the
+results was therefore often not possible in a reasonable amount of time.
+This limitation can be a reason why a direct comparison model with
+experimental data from other sensors is often not done. It is also worth
+to mention, that in my experience the average experimental oriented
+researcher does not have the required programming knowledge to easily
+implement algorithm based on the presented work. But I am confident,
+that if an algorithm was given in an appropriate way, most research
+would benefit from the presented code.
 
-The presented results will allow more people to gain insides in the
-semiconductors influence on the sensing properties. More than this I
-hope this thesis will also be a useful introduction into Python,
-specially IPython notebooks, for scientific work.
+Also with the results I gained while my Phd. thesis I was facing the
+same problem. Others understood the value of my work but could not
+transfer it to their particular problem. At this point my graphical
+representation in the form of presentations, my detailed description and
+the corresponding algorithms of my work had been three separated parts.
+Facing this problem more and more, I decided not to ignore it anymore. I
+made the choice to try to combine representation, description and
+algorithm in one unified way. I decided to orient myself back to my
+``educational roots'' and use the powerful ecosystem around the
+``Jupyter notebooks'' to calculate, represent and describe the results
+for my thesis for this task. This is why my thesis is written with the
+large focus on suppling a introduction to this excellent toolbox.
 
-These hopes are not unfunded.In my time working at the ``Eberhard Karls
+On the one side this presented work will allow more people to gain
+insides in the sensing properties of semiconducting metal oxide sensors
+(SMOX). I hope that on the other side, this his thesis will also be a
+useful introduction into Python, specially IPython notebooks, for
+scientific work.
+
+These hopes are not unfunded. In my time working at the ``Eberhard Karls
 University of Tübingen'' i was also assigned to give multiple lectures.
 One lecture branch has been the introduction to data mining. Often the
-lack of programming knowledge and the limited amount of time did not
-allow a usage of Python as a supporting programming language. In these
-cases classical tools like Excel of Origin have been used to mine data
-examples for hidden facts. Most attendees have been very fast and
-understood the general concept of data mining. Just the lack of a the
-minimal requirement to translate the concept into machine understandable
+lack of programming knowledge and the limited amount of lecture time did
+not allow a usage of Python as a supporting programming language. In
+these cases classical tools like Excel of Origin have been used to
+analyze example datasets for hidden facts. Most attendees have been very
+fast and understood the general concept of data mining. Just not being
+able to translate the general concept into machine understandable
 instructions stopped them from using them. When enough time was
 available, a short introduction into programming with Python gained a
-lot of interest and was generally seen as a positive experience. This
-thesis is therefore structured in such a way, that one the one side I
-will present my research results from the past years in a condensed form
-and on the other side uses this the opportunity to introduce and explain
-the importance of applying programming tools in the common work flow of
-scientific work. Since the potential of ``outsourcing'' repetitive tasks
-to machine executed scripts and invest more time in our ceativity and
-intelligence is huge. My hope is to bring with this thesis not only a
-deeper insight in the understanding of SMOX based gas sensors, but also
-help others to start a interesting journey into the wide area of data
-mining and machine learning with python.
+lot of interest and was generally seen as a positive experience. With
+just a short introduction already many advanced tasks can be performed,
+which would often even not possible with the ``traditional'' tools.
+
+This thesis is therefore structured in such a way, that I will present
+my research results from the past years in a condensed form and
+additionally uses this opportunity to introduce and explain the
+importance of applying programming tools in the common work flow of
+scientific work. The potential of ``outsourcing'' repetitive tasks to
+machine executable scripts lies in the gain in investing more time in
+creativity and intelligence solutions. My hope is to bring with this
+thesis not only a deeper insight in the understanding of SMOX based gas
+sensors, but also help others to start a interesting journey into the
+wide area of data mining and machine learning with python.
 
 I typically finish my introductions to Python by letting the students
 run their first commands. Typically for other introductions found around
-the globe, this is a program which outputs ``Hello World''. For Python I
-prefer to execute some other commands with boils almost down to the
+the globe, this is a program which outputs ``Hello World.''. For Python
+I prefer to execute some other commands with boils almost down to the
 philosophical essence on how ``instructions'' should be.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
@@ -529,15 +548,14 @@ Namespaces are one honking great idea -- let's do more of those!
     \hypertarget{smox-based-gas-sensors}{%
 \subsection{SMOX based gas sensors}\label{smox-based-gas-sensors}}
 
-This section list a collection of high quality publications which will
-broadcast all relevant information about semiconductor based gas sensors
-directly into your brain! In the course of this thesis many of those
-aspects will be explained, analyzed in discussed in required detail at
-the relevant places. So reading these publications now is not necessary
-to follow this thesis. This section is therefore a good point to come
-back if a more detailed view on the subject is desired. Especially when
-this thesis is used to apply the presented concepts to individual
-research topics.
+This section list a collection of high quality publications which cover
+all relevant information about semiconductor based gas sensors. This
+thesis is structured this way, that I will try to provide the required
+background in detail at the relevant places. So reading these
+publications now is not necessary to follow this thesis. This section is
+therefore a good point to come back if a more detailed view on the
+subject is desired. Especially when this thesis is used to apply the
+presented concepts to individual research topics.
 
 When solving numerical problems it typical to introduction some
 assumptions, which are only valid under specific boundary conditions.
@@ -550,19 +568,11 @@ the assumption and it's implications. With my presented work I do not
 claim to calculate all aspects of SMOX gas sensors, but present a tool
 which helps to understand specific aspects. The way of presenting this
 knowledge should lead/motivate others to adapt the presented work to
-individual other cases with completely different boundary conditions. A
-general understanding of gas sensors will only be gained to a certain
-level, but with time, work and data this understanding will definitely
-grow.
+individual other cases with completely different boundary conditions.
 
-    \begin{figure}
-\centering
-\includegraphics{media/icons/jupyter.png}
-\caption{Juypter}
-\end{figure}
-
-    \hypertarget{notebooks}{%
-\subsection{Notebooks}\label{notebooks}}
+    \hypertarget{jupyter-notebooks-juypter}{%
+\subsection[Jupyter Notebooks ]{\texorpdfstring{Jupyter Notebooks
+\protect\includegraphics{media/icons/jupyter.png}}{Jupyter Notebooks Juypter}}\label{jupyter-notebooks-juypter}}
 
 ``The Zen of Python'' might not always be the primary directive of each
 developer, but the Python community consists most probably of many
@@ -588,16 +598,16 @@ is gained.
 
 It is worth mentioning, that the intention of such notebooks is to merge
 the essential tools of scientific work flows together. Data acquisition,
-preparation, analysis, representation and documentation should available
-in one place. The strength of not just sharing final conclusions in a
+preparation, analysis, representation and documentation all available in
+one place. The strength of not just sharing final conclusions in a
 nicely formatted way, but also being able to share the full stack of
 steps necessary to reach the final conclusion is essentially the
 strength of the Jupyter notebooks. This feature is already changing the
 way how scientific results are shared/published and was intentionally
 designed this way \cite{Randles2017}.
 
-The formatting used in this notebook is based on Markdown. Wikipedia
-summarizes Markdown like this:
+The default format of representing anything in a notebook in based on
+``Markdown''. Wikipedia summarizes Markdown like this:
 
 \begin{quote}
 Markdown is a lightweight markup language with plain text formatting
@@ -631,15 +641,18 @@ As Kanye West said:
 We're living the future so the present is our past.
 \end{quote}
 
+To learn how to use notebooks it is best to use them in an interactive
+environment. The next section will explain how to obtain one for free!
+
     \hypertarget{installation-guide}{%
 \subsubsection{Installation guide}\label{installation-guide}}
 
 The easiest way to get started would be to use the Anaconda
 distribution. Anaconda bundles multiple different tools and installs
-them i nthe operation system. Anaconda will take care of cross
-dependecies and handle the update process of the software. This is not
-the only way to get started with Jupyter Notebooks but surely an very
-fast and easy one.
+them in the operation system. Anaconda will take care of cross
+dependencies and handle the update process of the software. This is not
+the only way to get started with ``Jupyter Notebooks'' but surely an
+very fast and easy one.
 \href{media/presentations/InstallAnaconda/Anaconda-Python.pdf}{HERE} is
 additionally a presentation I use for my lectures to guide students into
 the world of Python and
@@ -661,26 +674,29 @@ The Jupyter environment is equipped with ``magic commands'', which are
 not part of the base programming language (i.e.~Python), but rather a
 helper instruction to simplify common tasks. Magic commands always start
 with \texttt{\%} and are followed with an instruction. I will
-demonstrate in this example the use of the \texttt{\%pylab} instruction.
-This modifies the current programming space to be a lab nicely equipped
-for scientific work flows. For instance a chemistry lab is equipped with
-a balance, a water tab and a fire extinguisher, and in this case a
-``pylab'' is equipped with data handing, plotting and multiple other
-tools. So let's setup a ``pylab'' and run some lines of code. (The
-plotting is handled in the background by Matplotlib \cite{Hunter2007})
+demonstrate in this example the use of the \texttt{\%pylab\ inline}
+instruction. This modifies the current programming space to become a lab
+nicely equipped for scientific work tasks. For instance a chemistry lab
+is commonly equipped with a balance, a water tab and a fire
+extinguisher, and in this case a ``pylab'' is (besindes many others)
+equipped with a data handing, a plotting and a calculation tool. The
+additional parameter \texttt{inline} makes sure, that the figures will
+be along with this document. So let's setup a ``pylab'' and run some
+lines of code. (The plotting is handled in the background by Matplotlib
+\cite{Hunter2007})
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{2}{\boxspacing}
+\prompt{In}{incolor}{5}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{o}{\PYZpc{}}\PY{k}{pylab} inline
 
 \PY{c+c1}{\PYZsh{}get a list of 5000 points between \PYZhy{}50 and 50}
-\PY{n}{x} \PY{o}{=} \PY{n}{linspace}\PY{p}{(}\PY{n}{start}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{50}\PY{p}{,} \PY{n}{stop}\PY{o}{=}\PY{l+m+mi}{50}\PY{p}{,} \PY{n}{num}\PY{o}{=}\PY{l+m+mi}{5000}\PY{p}{)}
+\PY{n}{xs} \PY{o}{=} \PY{n}{linspace}\PY{p}{(}\PY{n}{start}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{50}\PY{p}{,} \PY{n}{stop}\PY{o}{=}\PY{l+m+mi}{50}\PY{p}{,} \PY{n}{num}\PY{o}{=}\PY{l+m+mi}{5000}\PY{p}{)}
 
 \PY{c+c1}{\PYZsh{} Python way of adding a comment is the \PYZsq{}\PYZsh{}\PYZsq{} character}
 \PY{c+c1}{\PYZsh{} Python way of writer \PYZsq{}x to the power of y\PYZsq{} is x**y}
 \PY{c+c1}{\PYZsh{} here I am calculating thethe third power of x for 5000 points between \PYZhy{}50 and 50}
-\PY{n}{y} \PY{o}{=} \PY{n}{x}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3}
+\PY{n}{ys} \PY{o}{=} \PY{n}{xs}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3}
 
 \PY{c+c1}{\PYZsh{}plot it}
 \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
@@ -692,16 +708,15 @@ Populating the interactive namespace from numpy and matplotlib
     \end{Verbatim}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{1_Introduction_files/1_Introduction_9_1.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{1_Introduction_files/1_Introduction_8_1.png}
     \end{center}
     { \hspace*{\fill} \\}
     
-    The additional ``inline'' instruction in \texttt{\%pylab} configures the
-plotting environment to represent the graphics inside this text. The
-following line generates a 5000 linear distributed points in the
-interval {[}-50,50) and y is just the third power of each point.
-\texttt{plt.} is a submodule defined by the magic command
-\texttt{\%pylab} which handels data plotting in a very simple way.
+    The \texttt{linspace} function generates a 5000 linear distributed
+points in the interval {[}-50,50) and saves those points in the xs
+variable. y is just the third power of each point. \texttt{plt.} is a
+submodule defined by the magic command \texttt{\%pylab} which handels
+data plotting in a very simple way.
 \texttt{plt.plot(x,y,\textquotesingle{}r-\textquotesingle{})} for
 example plots x vs.~y with a red line. The thesis is done in the
 notebook to offer the reader the possibility to directly work with newly
@@ -730,15 +745,14 @@ the fist steps in Python. For instance change the line format to `b'
 Since the motivation for this ``interactive'' thesis should be clear
 now, I would like to come in the next section now to my actual research
 topic: ``Numerical calculation of semiconducting metal oxide (SMOX)
-based gas sensors''. In the \href{2-SMOX-sensor-calculation.ipynb}{next
-chapter} I will demonstrate how theoretical numerical calculations for
+based gas sensors''. In the \href{2-Grain-SMOX.ipynb}{next chapter} I
+will demonstrate how theoretical numerical calculations are used to for
 chemical sensors are used to better understand experimental results. In
 the \href{3-Applying_theorie-to-practice.ipynb}{following chapter} I
 will demonstrate how such knowledge could be used to improve the
 performance of a sensor regarding it's sensitivity and selectivity.
 
-\href{2-SMOX-sensor-calculation.ipynb}{Follow this link to come to the
-next section.}
+\href{2-Grain-SMOX.ipynb}{Follow this link to come to the next section.}
 
     \hypertarget{about-the-pdf-version-of-this-work}{%
 \section{About the PDF-Version of this
@@ -747,20 +761,21 @@ work}\label{about-the-pdf-version-of-this-work}}
 This notebook was not intended to be used as a printed hard copy or as a
 PDF. The provided PDF servers just as an low level representation of the
 original work. It should give potentially interested readers an easy
-entry point to Python(any other programming language) supported science.
-Many of the implemented features in these notebooks like interactive
-widgets, animated data representations and live code examples will not
-work in the PDF-version. Only a static snapshot of the mutable
-representation can be represented outside the notebook. On the one side
-the reduction of printed pages and the benefits of interacting with the
-presented work in a notebook should motivate the reader to use the
-notebook. Nevertheless the integrated function to export the notebook to
-a Latex based PDF results in a very nice static publication. So please
-keep in mind, that the PDF-verison may not be able to represent all the
-features of the notebook as intended and some links might not work as
-expected. You are strongly encouraged to switch to the Jupyter
-presentation of this work and experience the full potential of such
-notebooks.
+entry point to Python (or any other programming language) supported
+science. Many of the implemented features in these notebooks like
+interactive widgets, animated data representations and live code
+examples will not work in the PDF-version. Only a static snapshot of the
+mutable representation can be represented outside the notebook, at best.
+The benefits of interacting with the presented work in a notebook should
+motivate the reader to use the notebook.
+
+Nevertheless the integrated function to export a notebook to a latex
+based version offers a very nice way to publish results in a printable
+way. So please keep in mind, that the PDF-verison may not be able to
+represent all the features of the notebook as intended and some links
+might not work as expected. You are strongly encouraged to switch to the
+Jupyter presentation of this work and experience the full potential of
+such notebooks.
 
 \hypertarget{equations}{%
 \subsection{Equations}\label{equations}}
@@ -768,7 +783,7 @@ notebooks.
 In a typical scientific thesis and textbook, relevant equations are
 referred by numbers of identifiers. In Latex this is done, by assigning
 a label and a tag to an equation. If this equation needs to be referred
-to, the a pointer to the reference is added, and the tag is used for the
+to, a pointer to the reference is added, and the tag is used for the
 representation of this equation. As an example, an arbitrary equation
 from this thesis is used. The (internal) reference of this equation is
 `second\_derivative', while the printed representation (tag) is ``Second
@@ -778,21 +793,22 @@ derivative''.
 \frac{d²V^{*}}{dr^{*2}}=1-n^{*}(V^{*})-\frac{2}{r^{*}}\frac{dV^{*}}{dr^{*}}\label{second_derivative}\tag{Second derivative}
 \end{align}
 
-To refer not to this equation a reference can be added which will look
-like this (\ref{second_derivative}). The underlying mechanisms will link
-the reference with the equation, print the label, and add an hyperlink,
-to be able to jump to the equation. This feature works either in
-notebook or PDF representations. One drawback of the notebook
-representation is, that he equation and reference need to be in the same
-code block/cell. Otherwise the reference is not working. Instead of
-linking the equation correctly, ??? will be represented. My opinion is,
-that this will change will evolving improvements of Jupyter is is just a
-temporal flaw. Since the PDF version is processed by a Latex interpreter
-in total, the ``one code block'' limitation does not exist there. To
-demonstrate this, I will try to reference the eqaution in the next code
-block.
+To refer to this equation a reference can be added which will look like
+this (\ref{second_derivative}). The underlying mechanisms will link the
+reference with the equation, print the label, and add an hyperlink, to
+be able to jump to the equation. This feature works either in notebook
+or PDF representations. One drawback of the notebook representation is,
+that the equation and reference need to be in the same code block/cell.
+Otherwise the reference is not working. Instead of linking the equation
+correctly, ??? will be represented. My opinion is, that this will change
+will evolving improvements of Jupyter is is just a temporal flaw. Since
+the PDF version is processed by a Latex interpreter in total, the ``one
+code block'' limitation does not exist there. To demonstrate this, I
+will try to reference the eqaution in the next code block.
 
-    Here the same reference to the equation: \ref{second_derivative}
+    Here the same reference to the equation: \ref{second_derivative}. In the
+PDF-Version this will work correctly and in the Notebook-Version only
+??? should be visible (until now).
 
     \hypertarget{tables}{%
 \subsection{Tables}\label{tables}}
@@ -810,7 +826,7 @@ Dataframes for Pandas. Here a simple example how to create a Dataframe
 in analogy to the previous programming example:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{3}{\boxspacing}
+\prompt{In}{incolor}{6}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{o}{\PYZpc{}}\PY{k}{pylab}
 \PY{k+kn}{import} \PY{n+nn}{pandas}
@@ -851,7 +867,7 @@ nicely represented in both representations.
 \subsubsection{Before the patch}\label{before-the-patch}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{4}{\boxspacing}
+\prompt{In}{incolor}{7}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{display}\PY{p}{(}\PY{n}{dF}\PY{p}{)}
 \end{Verbatim}
@@ -877,7 +893,7 @@ nicely represented in both representations.
 \subsubsection{The patch}\label{the-patch}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{5}{\boxspacing}
+\prompt{In}{incolor}{8}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{import} \PY{n+nn}{pandas}
 \PY{n}{pandas}\PY{o}{.}\PY{n}{set\PYZus{}option}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{display.notebook\PYZus{}repr\PYZus{}html}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{k+kc}{True}\PY{p}{)}
@@ -900,7 +916,7 @@ nicely represented in both representations.
 patch}\label{prettier-tables-after-the-patch}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{6}{\boxspacing}
+\prompt{In}{incolor}{9}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{display}\PY{p}{(}\PY{n}{dF}\PY{p}{)}
 \PY{c+c1}{\PYZsh{}\PYZdq{}Test Tabel\PYZdq{}}

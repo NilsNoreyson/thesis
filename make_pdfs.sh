@@ -1,5 +1,5 @@
 #! /bin/bash
-files=(1_Introduction.ipynb 2-Grain-SMOX.ipynb 3-Resistance-sensor.ipynb 4-Temperature-Sensor.ipynb)
+files=(1_Introduction.ipynb 2-Grain-SMOX.ipynb 3-Resistance-sensor.ipynb 4-Exp-data.ipynb 5-Empirical-Studies.ipynb)
 outdir=latex
 
 

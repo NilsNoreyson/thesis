@@ -3,5 +3,9 @@
 \BOOKMARK [1][-]{section.3}{From charge distribution to resistance}{}% 3
 \BOOKMARK [2][-]{subsection.3.1}{The ``numerical'' grain}{section.3}% 4
 \BOOKMARK [2][-]{subsection.3.2}{Precalc the numerical grains for all conditions}{section.3}% 5
-\BOOKMARK [1][-]{section.4}{Relaxation}{}% 6
-\BOOKMARK [1][-]{section.5}{Bibliography section}{}% 7
+\BOOKMARK [2][-]{subsection.3.3}{Relaxation}{section.3}% 6
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Concolute2d:}{subsection.3.3}% 7
+\BOOKMARK [3][-]{subsubsection.3.3.2}{Precalcualtion of all conditions}{subsection.3.3}% 8
+\BOOKMARK [3][-]{subsubsection.3.3.3}{Comparing with experimental data}{subsection.3.3}% 9
+\BOOKMARK [3][-]{subsubsection.3.3.4}{The `m' factor}{subsection.3.3}% 10
+\BOOKMARK [1][-]{section.4}{Bibliography section}{}% 11
