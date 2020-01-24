@@ -38,4 +38,3 @@ do
 	cp "$(basename "$f" .ipynb).pdf" "../PDFs"
 done
 
-

@@ -20,10 +20,10 @@
 \contentsline {paragraph}{Hint:}{18}{section*.22}% 
 \contentsline {paragraph}{Free charge carrier conc. using the Boltzmann approximation}{19}{section*.23}% 
 \contentsline {paragraph}{Compare the numerical solution with the approximations}{19}{section*.24}% 
-\contentsline {subsubsection}{\numberline {3.8.3}Numerical description of the semiconductor grains}{20}{subsubsection.3.8.3}% 
+\contentsline {subsubsection}{\numberline {3.8.3}Numerical description of the semiconductor grains}{21}{subsubsection.3.8.3}% 
 \contentsline {paragraph}{Example usage of \texttt {np.trapz}}{24}{section*.27}% 
 \contentsline {subsubsection}{\numberline {3.8.4}Putting the pieces together}{27}{subsubsection.3.8.4}% 
-\contentsline {paragraph}{Export/Import data}{29}{section*.28}% 
-\contentsline {subsubsection}{\numberline {3.8.5}Represent the results}{29}{subsubsection.3.8.5}% 
-\contentsline {section}{\numberline {4}Summary}{32}{section.4}% 
-\contentsline {section}{\numberline {5}Bibliography section}{33}{section.5}% 
+\contentsline {paragraph}{Export/Import data}{30}{section*.28}% 
+\contentsline {subsubsection}{\numberline {3.8.5}Represent the results}{31}{subsubsection.3.8.5}% 
+\contentsline {section}{\numberline {4}Summary}{33}{section.4}% 
+\contentsline {section}{\numberline {5}Bibliography section}{34}{section.5}% 
