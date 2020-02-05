@@ -5,7 +5,7 @@
 \contentsline {subsection}{\numberline {3.2}Semiconductor properties of the SMOX grains}{4}{subsection.3.2}% 
 \contentsline {subsection}{\numberline {3.3}Choice of geometric model}{4}{subsection.3.3}% 
 \contentsline {subsection}{\numberline {3.4}Poisson's equation}{5}{subsection.3.4}% 
-\contentsline {subsection}{\numberline {3.5}Charge density}{5}{subsection.3.5}% 
+\contentsline {subsection}{\numberline {3.5}Charge density}{6}{subsection.3.5}% 
 \contentsline {subsection}{\numberline {3.6}Poisson equation as system of ODEs}{9}{subsection.3.6}% 
 \contentsline {subsection}{\numberline {3.7}Constants}{10}{subsection.3.7}% 
 \contentsline {subsection}{\numberline {3.8}Materials}{11}{subsection.3.8}% 
@@ -21,9 +21,13 @@
 \contentsline {paragraph}{Free charge carrier conc. using the Boltzmann approximation}{19}{section*.23}% 
 \contentsline {paragraph}{Compare the numerical solution with the approximations}{19}{section*.24}% 
 \contentsline {subsubsection}{\numberline {3.8.3}Numerical description of the semiconductor grains}{21}{subsubsection.3.8.3}% 
-\contentsline {paragraph}{Example usage of \texttt {np.trapz}}{24}{section*.27}% 
-\contentsline {subsubsection}{\numberline {3.8.4}Putting the pieces together}{27}{subsubsection.3.8.4}% 
-\contentsline {paragraph}{Export/Import data}{30}{section*.28}% 
-\contentsline {subsubsection}{\numberline {3.8.5}Represent the results}{31}{subsubsection.3.8.5}% 
-\contentsline {section}{\numberline {4}Summary}{33}{section.4}% 
-\contentsline {section}{\numberline {5}Bibliography section}{34}{section.5}% 
+\contentsline {section}{\numberline {4}Example}{24}{section.4}% 
+\contentsline {paragraph}{Example usage of \texttt {np.trapz}}{29}{section*.27}% 
+\contentsline {subsubsection}{\numberline {4.0.1}Putting the pieces together}{33}{subsubsection.4.0.1}% 
+\contentsline {paragraph}{Export/Import data}{37}{section*.28}% 
+\contentsline {subsubsection}{\numberline {4.0.2}Estimate correct solutions of incorrectly found minima}{38}{subsubsection.4.0.2}% 
+\contentsline {subsubsection}{\numberline {4.0.3}Recalculating the failed solutions with a little help \ldots {}}{40}{subsubsection.4.0.3}% 
+\contentsline {subsubsection}{\numberline {4.0.4}Checking the solutions}{41}{subsubsection.4.0.4}% 
+\contentsline {subsection}{\numberline {4.1}Shape of the potential drop inside the grain}{42}{subsection.4.1}% 
+\contentsline {section}{\numberline {5}Summary}{45}{section.5}% 
+\contentsline {section}{\numberline {6}Bibliography section}{45}{section.6}% 

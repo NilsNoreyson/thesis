@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2020.1.21)  24 JAN 2020 17:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2020.1.21)  3 FEB 2020 15:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1094,7 +1094,7 @@ Package rerunfilecheck Info: File `5-Empirical-Studies.out' has not changed.
 Here is how much of TeX's memory you used:
  21270 strings out of 492167
  379861 string characters out of 6131558
- 463011 words of memory out of 5000000
+ 462011 words of memory out of 5000000
  25207 multiletter control sequences out of 15000+600000
  20852 words of font info for 52 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1102,7 +1102,7 @@ Here is how much of TeX's memory you used:
 {/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-dist/fon
 ts/type1/urw/palatino/uplb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/palatin
 o/uplr8a.pfb>
-Output written on 5-Empirical-Studies.pdf (1 page, 28309 bytes).
+Output written on 5-Empirical-Studies.pdf (1 page, 28818 bytes).
 PDF statistics:
  34 PDF objects out of 1000 (max. 8388607)
  28 compressed objects within 1 object stream

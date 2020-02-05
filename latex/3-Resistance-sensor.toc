@@ -2,11 +2,12 @@
 \contentsline {section}{\numberline {2}Load the results}{2}{section.2}% 
 \contentsline {section}{\numberline {3}From charge distribution to resistance}{5}{section.3}% 
 \contentsline {subsection}{\numberline {3.1}The ``numerical'' grain}{5}{subsection.3.1}% 
-\contentsline {subsection}{\numberline {3.2}Precalc the numerical grains for all conditions}{9}{subsection.3.2}% 
-\contentsline {subsection}{\numberline {3.3}Relaxation}{11}{subsection.3.3}% 
-\contentsline {subsubsection}{\numberline {3.3.1}Concolute2d:}{11}{subsubsection.3.3.1}% 
-\contentsline {section}{\numberline {4}See how a single solution evolves}{14}{section.4}% 
-\contentsline {subsubsection}{\numberline {4.0.1}Precalcualtion of all conditions}{17}{subsubsection.4.0.1}% 
-\contentsline {subsubsection}{\numberline {4.0.2}Comparing with experimental data}{20}{subsubsection.4.0.2}% 
-\contentsline {subsubsection}{\numberline {4.0.3}The `m' factor}{25}{subsubsection.4.0.3}% 
-\contentsline {section}{\numberline {5}Bibliography section}{29}{section.5}% 
+\contentsline {subsection}{\numberline {3.2}Precalc the numerical grains for all conditions}{10}{subsection.3.2}% 
+\contentsline {subsection}{\numberline {3.3}Relaxation}{13}{subsection.3.3}% 
+\contentsline {subsubsection}{\numberline {3.3.1}Concolute2d:}{13}{subsubsection.3.3.1}% 
+\contentsline {section}{\numberline {4}See how a single solution evolves}{16}{section.4}% 
+\contentsline {subsubsection}{\numberline {4.0.1}Precalcualtion of all conditions}{18}{subsubsection.4.0.1}% 
+\contentsline {section}{\numberline {5}check the integral for the charges}{20}{section.5}% 
+\contentsline {subsubsection}{\numberline {5.0.1}Comparing with experimental data}{22}{subsubsection.5.0.1}% 
+\contentsline {subsubsection}{\numberline {5.0.2}The `m' factor}{29}{subsubsection.5.0.2}% 
+\contentsline {section}{\numberline {6}Bibliography section}{32}{section.6}% 

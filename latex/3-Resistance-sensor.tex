@@ -390,7 +390,7 @@ file and add them to the main namespace. By this the classes
 evaluations.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{1}{\boxspacing}
+\prompt{In}{incolor}{117}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{o}{\PYZpc{}}\PY{k}{pylab} inline
 \end{Verbatim}
@@ -400,8 +400,15 @@ evaluations.
 Populating the interactive namespace from numpy and matplotlib
     \end{Verbatim}
 
+    \begin{Verbatim}[commandchars=\\\{\}]
+/usr/lib/python3.8/site-packages/IPython/core/magics/pylab.py:159: UserWarning:
+pylab import has clobbered these variables: ['f', 'axes', 'vdot', 'interactive']
+`\%matplotlib` prevents importing * from pylab and numpy
+  warn("pylab import has clobbered these variables: \%s"  \% clobbered +
+    \end{Verbatim}
+
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{2}{\boxspacing}
+\prompt{In}{incolor}{118}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{from} \PY{n+nn}{part2} \PY{k+kn}{import} \PY{o}{*}
 \end{Verbatim}
@@ -411,9 +418,9 @@ Populating the interactive namespace from numpy and matplotlib
 \section{Load the results}\label{load-the-results}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{3}{\boxspacing}
+\prompt{In}{incolor}{188}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{calc\PYZus{}dF} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}hdf}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{results.h5}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{raw}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{calc\PYZus{}dF} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}hdf}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{results.h5}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{corr}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \PY{n}{calc\PYZus{}dF}\PY{o}{.}\PY{n}{index} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{calc\PYZus{}dF}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
@@ -425,7 +432,7 @@ function will initialize the \texttt{grain} with the corresponding
 \texttt{material} and return it.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{4}{\boxspacing}
+\prompt{In}{incolor}{189}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k}{def} \PY{n+nf}{create\PYZus{}grain\PYZus{}from\PYZus{}data}\PY{p}{(}\PY{n}{dF}\PY{p}{)}\PY{p}{:}
     \PY{k}{if} \PY{n+nb}{type}\PY{p}{(}\PY{n}{dF}\PY{p}{)}\PY{o}{==}\PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{:}
@@ -467,7 +474,7 @@ representation will be helpful for a better understanding of the needed
 steps to calculate the total resistance of a grain.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{5}{\boxspacing}
+\prompt{In}{incolor}{190}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k}{for} \PY{n}{ND}\PY{p}{,} \PY{n}{calc\PYZus{}dF\PYZus{}ND} \PY{o+ow}{in} \PY{n}{calc\PYZus{}dF}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ND}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
     \PY{n}{fig}\PY{p}{,} \PY{n}{axes}\PY{o}{=} \PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{16}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{)}\PY{p}{)}
@@ -612,7 +619,7 @@ specific points in the Dataframe, the following function is used to
 create the appropriate function for continuous values of r.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{6}{\boxspacing}
+\prompt{In}{incolor}{191}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{from} \PY{n+nn}{scipy} \PY{k+kn}{import} \PY{n}{interpolate}
 
@@ -645,7 +652,7 @@ data structure of the grain for further simulations. The \(N\times N\)
 cubes will be represented by a \texttt{numpy} array.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{7}{\boxspacing}
+\prompt{In}{incolor}{192}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k}{def} \PY{n+nf}{pos\PYZus{}to\PYZus{}r\PYZus{}o}\PY{p}{(}\PY{n}{xi}\PY{p}{,}\PY{n}{yi}\PY{p}{,}\PY{n}{grain}\PY{p}{,} \PY{n}{d}\PY{p}{)}\PY{p}{:}
     \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
@@ -746,7 +753,7 @@ common pictures, the function \texttt{imshow} is very handy to represent
 the data.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{9}{\boxspacing}
+\prompt{In}{incolor}{193}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{d\PYZus{}cond\PYZus{}plots} \PY{o}{=} \PY{p}{[}\PY{p}{]}
 \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{ser} \PY{o+ow}{in} \PY{n}{calc\PYZus{}dF}\PY{o}{.}\PY{n}{iterrows}\PY{p}{(}\PY{p}{)}\PY{p}{:}
@@ -761,11 +768,61 @@ the data.
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-Initalized 108 of 108.
+Initalized 84 of 252.
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        ---------------------------------------------------------------------------
+
+        KeyboardInterrupt                         Traceback (most recent call last)
+
+        <ipython-input-193-b21451ab0705> in <module>
+          3     print(f'Initalized \{i+1\} of \{len(calc\_dF)\}.', end='\textbackslash{}r', flush=True)
+          4     grain = create\_grain\_from\_data(ser)
+    ----> 5     d\_v, d\_cond,d\_mask = create\_numerical\_grain\_matrix( grain, ser,cube\_size=5e-9)
+          6     d\_cond\_plot = d\_cond.copy()
+          7     d\_cond\_plot[np.where(d\_mask==0)]=None
+
+
+        <ipython-input-192-0ddeaec12b0d> in create\_numerical\_grain\_matrix(grain, ser, cube\_size)
+         71                 \# otherwise the conductivity will be saved in units of nb
+         72 
+    ---> 73                 condu = n\_int(r)/grain.material.nb
+         74 
+         75                 d\_cond[xi, yi] = condu
+
+
+        /usr/lib/python3.8/site-packages/scipy/interpolate/polyint.py in \_\_call\_\_(self, x)
+         77         """
+         78         x, x\_shape = self.\_prepare\_x(x)
+    ---> 79         y = self.\_evaluate(x)
+         80         return self.\_finish\_y(y, x\_shape)
+         81 
+
+
+        /usr/lib/python3.8/site-packages/scipy/interpolate/interpolate.py in \_evaluate(self, x\_new)
+        661         y\_new = self.\_call(self, x\_new)
+        662         if not self.\_extrapolate:
+    --> 663             below\_bounds, above\_bounds = self.\_check\_bounds(x\_new)
+        664             if len(y\_new) > 0:
+        665                 \# Note fill\_value must be broadcast up to the proper size
+
+
+        /usr/lib/python3.8/site-packages/scipy/interpolate/interpolate.py in \_check\_bounds(self, x\_new)
+        685         \# fall outside the range of x.  Otherwise, we return an array indicating
+        686         \# which values are outside the boundary region.
+    --> 687         below\_bounds = x\_new < self.x[0]
+        688         above\_bounds = x\_new > self.x[-1]
+        689 
+
+
+        KeyboardInterrupt: 
+
     \end{Verbatim}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{17}{\boxspacing}
+\prompt{In}{incolor}{127}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{calc\PYZus{}dF}\PY{o}{.}\PY{n}{to\PYZus{}hdf}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{precalc\PYZus{}dF.h5}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{raw}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{mode}\PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{w}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \end{Verbatim}
@@ -782,21 +839,21 @@ map directly to c-types [inferred\_type->mixed,key->block1\_values] [items->['n'
     \end{Verbatim}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{10}{\boxspacing}
+\prompt{In}{incolor}{128}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{calc\PYZus{}dF} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}hdf}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{precalc\PYZus{}dF.h5}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{raw}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{11}{\boxspacing}
+\prompt{In}{incolor}{194}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{12}{\boxspacing}
+\prompt{In}{incolor}{195}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k}{def} \PY{n+nf}{plot\PYZus{}grain\PYZus{}states}\PY{p}{(}\PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{,} \PY{n}{vmax}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{vmin}\PY{o}{=}\PY{k+kc}{None}\PY{p}{)}\PY{p}{:}
     \PY{n}{fig}\PY{p}{,} \PY{n}{axes} \PY{o}{=} \PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,} \PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{16}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{)}\PY{p}{)}
@@ -851,10 +908,11 @@ map directly to c-types [inferred\_type->mixed,key->block1\_values] [items->['n'
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{3-Resistance-sensor_files/3-Resistance-sensor_23_0.png}
-    \end{center}
-    { \hspace*{\fill} \\}
+    
+    \begin{verbatim}
+interactive(children=(Dropdown(description='GrainRadius', options=(50.0, 100.0, 200.0, 400.0), value=50.0), Dr…
+    \end{verbatim}
+
     
     \hypertarget{relaxation}{%
 \subsection{Relaxation}\label{relaxation}}
@@ -891,7 +949,7 @@ convolutions, but this working a bit with the following example should
 reveal the main concept.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{13}{\boxspacing}
+\prompt{In}{incolor}{196}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{from} \PY{n+nn}{scipy} \PY{k+kn}{import} \PY{n}{signal}
 
@@ -943,7 +1001,7 @@ Conv
     \end{Verbatim}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{13}{\boxspacing}
+\prompt{Out}{outcolor}{196}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 array([[ 12,  24,  32],
        [121, 242, 323],
@@ -961,7 +1019,7 @@ grain setting the bias again. If the potential down not change anymore,
 the iterations can be stopped.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{14}{\boxspacing}
+\prompt{In}{incolor}{197}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{from} \PY{n+nn}{scipy} \PY{k+kn}{import} \PY{n}{signal}
 
@@ -1020,7 +1078,7 @@ I_A = \sigma*V*d
 \end{align} which will be the current going through one cube
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{15}{\boxspacing}
+\prompt{In}{incolor}{198}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k}{def} \PY{n+nf}{calc\PYZus{}current\PYZus{}center}\PY{p}{(}\PY{n}{d\PYZus{}v}\PY{p}{,} \PY{n}{d\PYZus{}cond}\PY{p}{,} \PY{n}{d\PYZus{}mask}\PY{p}{,} \PY{n}{cube\PYZus{}size}\PY{p}{,} \PY{n}{grain}\PY{p}{)}\PY{p}{:}
     \PY{c+c1}{\PYZsh{}center\PYZus{}pos = d\PYZus{}v.shape[0]//2}
@@ -1036,7 +1094,7 @@ I_A = \sigma*V*d
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{16}{\boxspacing}
+\prompt{In}{incolor}{199}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{calc\PYZus{}dF}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{current}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{k+kc}{None}
 \end{Verbatim}
@@ -1051,14 +1109,14 @@ following command activates it. (For some unknown reasons, you might
 need to execute this command 2-3 times to get activated)
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{17}{\boxspacing}
+\prompt{In}{incolor}{200}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{o}{\PYZpc{}}\PY{k}{matplotlib} qt5
+\PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{20}{\boxspacing}
+\prompt{In}{incolor}{18}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{animation} \PY{k}{as} \PY{n+nn}{animation}
 
@@ -1134,7 +1192,7 @@ need to execute this command 2-3 times to get activated)
     The video can then be loaded again and played back in the notebook.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{454}{\boxspacing}
+\prompt{In}{incolor}{19}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{from} \PY{n+nn}{IPython}\PY{n+nn}{.}\PY{n+nn}{display} \PY{k+kn}{import} \PY{n}{Video}
 \PY{n}{display}\PY{p}{(}\PY{n}{Video}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./im.mp4}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
@@ -1152,7 +1210,7 @@ need to execute this command 2-3 times to get activated)
 conditions}\label{precalcualtion-of-all-conditions}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{19}{\boxspacing}
+\prompt{In}{incolor}{201}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k}{def} \PY{n+nf}{calc\PYZus{}conv\PYZus{}by\PYZus{}ser}\PY{p}{(}\PY{n}{ser}\PY{p}{)}\PY{p}{:}
     \PY{n}{cube\PYZus{}size} \PY{o}{=} \PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cube\PYZus{}size}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
@@ -1160,7 +1218,7 @@ conditions}\label{precalcualtion-of-all-conditions}}
 
     \PY{n}{grain} \PY{o}{=} \PY{n}{create\PYZus{}grain\PYZus{}from\PYZus{}data}\PY{p}{(}\PY{n}{ser}\PY{p}{)}
     \PY{k}{if} \PY{n}{cube\PYZus{}size}\PY{o}{==}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LD}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
-        \PY{n}{cube\PYZus{}size\PYZus{}value} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{LD}\PY{o}{/}\PY{l+m+mi}{5}
+        \PY{n}{cube\PYZus{}size\PYZus{}value} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{LD}\PY{o}{/}\PY{l+m+mi}{10}
     \PY{k}{else}\PY{p}{:}
         \PY{n}{cube\PYZus{}size\PYZus{}value} \PY{o}{=} \PY{n}{cube\PYZus{}size}
 
@@ -1184,7 +1242,7 @@ conditions}\label{precalcualtion-of-all-conditions}}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{47}{\boxspacing}
+\prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{from} \PY{n+nn}{multiprocessing} \PY{k+kn}{import} \PY{n}{Pool}
 \PY{c+c1}{\PYZsh{}for vinit, ser in calc\PYZus{}dF.iterrows():}
@@ -1209,7 +1267,7 @@ conditions}\label{precalcualtion-of-all-conditions}}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{49}{\boxspacing}
+\prompt{In}{incolor}{165}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{import} \PY{n+nn}{pickle}
 \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{originaks\PYZus{}7.pk}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{wb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
@@ -1218,7 +1276,7 @@ conditions}\label{precalcualtion-of-all-conditions}}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{21}{\boxspacing}
+\prompt{In}{incolor}{166}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{import} \PY{n+nn}{pickle}
 \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{originaks\PYZus{}7.pk}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
@@ -1227,63 +1285,82 @@ conditions}\label{precalcualtion-of-all-conditions}}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{59}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-
-\end{Verbatim}
-\end{tcolorbox}
-
-            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{59}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-[<matplotlib.lines.Line2D at 0x7fb5d22510a0>]
-\end{Verbatim}
-\end{tcolorbox}
-        
-    \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{3-Resistance-sensor_files/3-Resistance-sensor_42_1.png}
-    \end{center}
-    { \hspace*{\fill} \\}
-    
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{69}{\boxspacing}
+\prompt{In}{incolor}{141}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{nb}\PY{o}{\PYZhy{}}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{69}{\boxspacing}
+\prompt{Out}{outcolor}{141}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 0.0
 \end{Verbatim}
 \end{tcolorbox}
         
+    \hypertarget{check-the-integral-for-the-charges}{%
+\section{check the integral for the
+charges}\label{check-the-integral-for-the-charges}}
+
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{100}{\boxspacing}
+\prompt{In}{incolor}{187}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}
+\PY{n}{ser} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}sol}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{6}\PY{p}{]}
+\PY{n}{ser} \PY{o}{=} \PY{n}{cd2}\PY{p}{[}\PY{p}{(}\PY{n}{calc\PYZus{}dF\PYZus{}sol}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{R}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{==}\PY{l+m+mf}{100e\PYZhy{}9}\PY{p}{)} \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{calc\PYZus{}dF\PYZus{}sol}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ND}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{==}\PY{l+m+mf}{1.8e+22}\PY{p}{)} \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{calc\PYZus{}dF\PYZus{}sol}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{==}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{]}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{grain} \PY{o}{=} \PY{n}{create\PYZus{}grain\PYZus{}from\PYZus{}data}\PY{p}{(}\PY{n}{ser}\PY{p}{)}
+\PY{n}{all\PYZus{}c} \PY{o}{=} \PY{l+m+mf}{4.0}\PY{o}{/}\PY{l+m+mf}{3.0}\PY{o}{*}\PY{n}{pi}\PY{o}{*}\PY{p}{(}\PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{R}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3}\PY{p}{)}\PY{o}{*}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{all\PYZus{}c}\PY{p}{)}
+\PY{n}{grain}\PY{o}{.}\PY{n}{R}\PY{o}{/}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{LD}
+\PY{p}{[}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{n}{v}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{k}{for} \PY{n}{v} \PY{o+ow}{in} \PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{v}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{trapz}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{o}{*}\PY{l+m+mi}{4}\PY{o}{*}\PY{n}{pi}\PY{o}{*}\PY{p}{(}\PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{*}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{LD}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{*}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{LD}\PY{p}{)}\PY{p}{)}
+\PY{n}{calc\PYZus{}sum\PYZus{}of\PYZus{}charges}\PY{p}{(}\PY{n}{ser}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
+    \begin{Verbatim}[commandchars=\\\{\}]
+150.59124497328185
+7.3483143326277895
+    \end{Verbatim}
+
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{100}{\boxspacing}
+\prompt{Out}{outcolor}{187}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-(8.996934268797279e+21, 20090645905408.0)
+EPSILON                                                         9.86
+E\_dor\_init\_kT                                                1.15878
+Einit\_kT                                                           4
+ND                                                           1.8e+22
+R                                                              1e-07
+mass\_eff                                                 2.73282e-31
+n                  [4.999649026176434e+21, 4.999649026176434e+21,{\ldots}
+nb                                                        3.5951e+22
+r                  [0.0, 0.007309830966079894, 0.0109647464491198{\ldots}
+res                                                         0.110439
+temp                                                             300
+v                  [1.9737944396706197, 1.9737944396706197, 1.973{\ldots}
+v\_dot              [0.0031040075297971573, 0.0031040075297971573,{\ldots}
+d\_cond             [[nan, nan, nan, nan, nan, nan, nan, nan, nan,{\ldots}
+current                                                  4.64944e-06
+cube\_size                                                         LD
+d\_v                [[-0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0{\ldots}
+d\_mask             [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,{\ldots}
+cube\_size\_value                                          2.73604e-09
+all\_charges                                                  150.591
+surf\_charges                                                 7.35794
+Name: 88, dtype: object
 \end{Verbatim}
 \end{tcolorbox}
         
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{224}{\boxspacing}
+\prompt{In}{incolor}{168}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k}{def} \PY{n+nf}{calc\PYZus{}sum\PYZus{}of\PYZus{}charges}\PY{p}{(}\PY{n}{ser}\PY{p}{)}\PY{p}{:}
     \PY{n}{ser} \PY{o}{=} \PY{n}{ser}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
     \PY{n}{grain} \PY{o}{=} \PY{n}{create\PYZus{}grain\PYZus{}from\PYZus{}data}\PY{p}{(}\PY{n}{ser}\PY{p}{)}
     \PY{n}{cs} \PY{o}{=} \PY{p}{[}\PY{p}{]}
     \PY{k}{for} \PY{n}{r\PYZus{}i}\PY{p}{,} \PY{n}{r} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{:}
-        \PY{n}{uV} \PY{o}{=} \PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{r\PYZus{}i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{p}{(}\PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{r\PYZus{}i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{LD}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3}\PY{o}{*}\PY{l+m+mi}{4}\PY{o}{/}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{pi}
-        \PY{n}{lV} \PY{o}{=} \PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{r\PYZus{}i}\PY{p}{]}\PY{o}{*}\PY{p}{(}\PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{r\PYZus{}i}\PY{p}{]}\PY{o}{*}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{LD}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3}\PY{o}{*}\PY{l+m+mi}{4}\PY{o}{/}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{pi}
-        \PY{n}{cs}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{uV}\PY{o}{\PYZhy{}}\PY{n}{lV}\PY{p}{)}
+        \PY{n}{uV} \PY{o}{=} \PY{p}{(}\PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{r\PYZus{}i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{LD}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3}\PY{o}{*}\PY{l+m+mi}{4}\PY{o}{/}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{pi}
+        \PY{n}{lV} \PY{o}{=} \PY{p}{(}\PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{r\PYZus{}i}\PY{p}{]}\PY{o}{*}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{LD}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3}\PY{o}{*}\PY{l+m+mi}{4}\PY{o}{/}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{pi}
+        \PY{n}{cs}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{(}\PY{n}{uV}\PY{o}{\PYZhy{}}\PY{n}{lV}\PY{p}{)}\PY{o}{*}\PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{r\PYZus{}i}\PY{p}{]}\PY{p}{)}
     \PY{n}{surf\PYZus{}c} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{cs}\PY{p}{)}
     
     \PY{n}{all\PYZus{}c} \PY{o}{=} \PY{l+m+mf}{4.0}\PY{o}{/}\PY{l+m+mf}{3.0}\PY{o}{*}\PY{n}{pi}\PY{o}{*}\PY{p}{(}\PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{R}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3}\PY{p}{)}\PY{o}{*}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
@@ -1295,21 +1372,21 @@ conditions}\label{precalcualtion-of-all-conditions}}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{228}{\boxspacing}
+\prompt{In}{incolor}{169}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{cd2} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}sol}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{n}{calc\PYZus{}sum\PYZus{}of\PYZus{}charges}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{230}{\boxspacing}
+\prompt{In}{incolor}{145}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{index} \PY{o}{=} \PY{l+m+mi}{7}
 \PY{n}{ser} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}sol}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{n}{index}\PY{p}{]}
 \PY{n}{grain} \PY{o}{=} \PY{n}{create\PYZus{}grain\PYZus{}from\PYZus{}data}\PY{p}{(}\PY{n}{ser}\PY{p}{)}
 
 
-\PY{n+nb}{print}\PY{p}{(}\PY{n}{alle}\PY{p}{,}\PY{n}{surf}\PY{p}{,} \PY{n+nb}{round}\PY{p}{(}\PY{p}{(}\PY{n}{surf}\PY{o}{\PYZhy{}}\PY{n}{alle}\PY{p}{)}\PY{o}{/}\PY{n}{alle}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+\PY{c+c1}{\PYZsh{}print(alle,surf, round((surf\PYZhy{}alle)/alle*100,2))}
 \PY{n}{fig}\PY{p}{,} \PY{n}{axes} \PY{o}{=} \PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
 \PY{n}{axe} \PY{o}{=} \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
 \PY{n}{axe}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{*}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{LD}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.7}\PY{p}{)}
@@ -1323,30 +1400,26 @@ conditions}\label{precalcualtion-of-all-conditions}}
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-4.710783767280631 0.08630576105042018 -98.17
-    \end{Verbatim}
-
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{230}{\boxspacing}
+\prompt{Out}{outcolor}{145}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 EPSILON                                                         9.86
-E\_dor\_init\_kT                                               0.298831
+E\_dor\_init\_kT                                               0.298819
 Einit\_kT                                                           4
 ND                                                           4.5e+21
 R                                                              5e-08
 mass\_eff                                                 2.73282e-31
-n                  [1.8892679838247682e+20, 1.8892679838247682e+2{\ldots}
+n                  [1.8866584062437255e+20, 1.8866584062437255e+2{\ldots}
 nb                                                       8.99693e+21
-r                  [0.0, 0.009993891068997417, 0.0100561500461960{\ldots}
-res                                                      7.27308e-06
+r                  [0.0, 0.0018283909174877382, 0.002742586376231{\ldots}
+res                                                        0.0304032
 temp                                                             300
-v                  [3.863565523079072, 3.863565523079072, 3.86356{\ldots}
-v\_dot              [0.0, 8.470329472543003e-19, 6.060321891732004{\ldots}
+v                  [3.8649477502329597, 3.8649477502329597, 3.864{\ldots}
+v\_dot              [0.0009064784917071269, 0.0009064784917071269,{\ldots}
 d\_cond             [[nan, nan, nan, nan, nan, nan, nan, nan, nan,{\ldots}
-current                                                  8.16341e-06
+current                                                  8.16041e-06
 cube\_size                                                         LD
-d\_v                [[-0.0, -0.0, 0.0, -0.0, -0.0, 0.0, 0.0, 0.0, {\ldots}
+d\_v                [[-0.0, -0.0, 0.0, -0.0, -0.0, -0.0, 0.0, 0.0,{\ldots}
 d\_mask             [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,{\ldots}
 cube\_size\_value                                          1.09386e-08
 Name: 7, dtype: object
@@ -1354,7 +1427,7 @@ Name: 7, dtype: object
 \end{tcolorbox}
         
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{3-Resistance-sensor_files/3-Resistance-sensor_47_2.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{3-Resistance-sensor_files/3-Resistance-sensor_47_1.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -1363,9 +1436,10 @@ Name: 7, dtype: object
 data}\label{comparing-with-experimental-data}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{241}{\boxspacing}
+\prompt{In}{incolor}{170}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{calc\PYZus{}dF\PYZus{}size} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}sol}
+\PY{n}{calc\PYZus{}dF\PYZus{}size} \PY{o}{=} \PY{n}{cd2}
 \PY{n}{fig}\PY{p}{,} \PY{n}{axes} \PY{o}{=} \PY{n}{subplots}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{calc\PYZus{}dF\PYZus{}size}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ND}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{16}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{)}\PY{p}{,} \PY{n}{sharey}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{sharex}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
 \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{fig}\PY{o}{.}\PY{n}{axes}\PY{p}{)}\PY{o}{==}\PY{l+m+mi}{1}\PY{p}{:}
     \PY{n}{axes} \PY{o}{=} \PY{p}{[}\PY{n}{axes}\PY{p}{]}
@@ -1413,7 +1487,123 @@ data}\label{comparing-with-experimental-data}}
     { \hspace*{\fill} \\}
     
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{271}{\boxspacing}
+\prompt{In}{incolor}{171}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{dd} \PY{o}{=} \PY{n}{cd2}\PY{p}{[}\PY{p}{(}\PY{n}{cd2}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{R}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{==}\PY{l+m+mf}{50e\PYZhy{}9}\PY{p}{)} \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{cd2}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ND}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{==}\PY{l+m+mf}{1.8e+22}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{172}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{v0} \PY{o}{=} \PY{n}{dd}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{v}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{d}\PY{p}{:}\PY{n}{d}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{173}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{dd}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{173}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+    EPSILON  E\_dor\_init\_kT  Einit\_kT            ND             R  \textbackslash{}
+72     9.86     -52.640207      -8.0  1.800000e+22  5.000000e-08
+73     9.86      -8.289932      -4.0  1.800000e+22  5.000000e-08
+74     9.86      -2.069628      -2.0  1.800000e+22  5.000000e-08
+75     9.86      -0.724848      -1.0  1.800000e+22  5.000000e-08
+76     9.86       0.000000       0.0  1.800000e+22  5.000000e-08
+
+        mass\_eff                                                  n  \textbackslash{}
+72  2.732815e-31  [1.3610148528568318e+23, 1.3610148528568318e+2{\ldots}
+73  2.732815e-31  [1.145219243063144e+23, 1.145219243063144e+23,{\ldots}
+74  2.732815e-31  [8.282115526313226e+22, 8.282115526313226e+22,{\ldots}
+75  2.732815e-31  [5.956717906569985e+22, 5.956717906569985e+22,{\ldots}
+76  2.732815e-31  [3.595101153579052e+22, 3.595101153579052e+22,{\ldots}
+
+              nb                                                  r       res  \textbackslash{}
+72  3.595101e+22  [0.0, 0.003654915483039947, 0.0054823732245599{\ldots}  0.125535
+73  3.595101e+22  [0.0, 0.003654915483039947, 0.0054823732245599{\ldots}  0.067375
+74  3.595101e+22  [0.0, 0.003654915483039947, 0.0054823732245599{\ldots}  0.043166
+75  3.595101e+22  [0.0, 0.003654915483039947, 0.0054823732245599{\ldots}  0.009126
+76  3.595101e+22  [0.0, 0.003654915483039947, 0.0054823732245599{\ldots}  0.000000
+
+    {\ldots}                                                  v  \textbackslash{}
+72  {\ldots}  [-1.33449475547498, -1.33449475547498, -1.3344{\ldots}
+73  {\ldots}  [-1.1611597561477955, -1.1611597561477955, -1{\ldots}
+74  {\ldots}  [-0.8360479411570629, -0.8360479411570629, -0{\ldots}
+75  {\ldots}  [-0.5057142342353801, -0.5057142342353801, -0{\ldots}
+76  {\ldots}  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, {\ldots}
+
+                                                v\_dot  \textbackslash{}
+72  [-0.002518559055864565, -0.002518559055864565,{\ldots}
+73  [-0.0030362913823071495, -0.003036291382307149{\ldots}
+74  [-0.002245241161992485, -0.002245241161992485,{\ldots}
+75  [-0.0009573207240391115, -0.000957320724039111{\ldots}
+76  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, {\ldots}
+
+                                               d\_cond   current  cube\_size  \textbackslash{}
+72  [[nan, nan, nan, nan, nan, nan, nan, nan, nan,{\ldots}  0.008338         LD
+73  [[nan, nan, nan, nan, nan, nan, nan, nan, nan,{\ldots}  0.004993         LD
+74  [[nan, nan, nan, nan, nan, nan, nan, nan, nan,{\ldots}  0.001904         LD
+75  [[nan, nan, nan, nan, nan, nan, nan, nan, nan,{\ldots}  0.000900         LD
+76  [[nan, nan, nan, nan, nan, nan, nan, nan, nan,{\ldots}  0.000367         LD
+
+                                                  d\_v  \textbackslash{}
+72  [[-0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0{\ldots}
+73  [[-0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0{\ldots}
+74  [[-0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0{\ldots}
+75  [[-0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0{\ldots}
+76  [[-0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0{\ldots}
+
+                                               d\_mask cube\_size\_value  \textbackslash{}
+72  [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,{\ldots}    2.736041e-09
+73  [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,{\ldots}    2.736041e-09
+74  [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,{\ldots}    2.736041e-09
+75  [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,{\ldots}    2.736041e-09
+76  [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,{\ldots}    2.736041e-09
+
+    all\_charges  surf\_charges
+72    18.823906   1620.210528
+73    18.823906    274.342578
+74    18.823906     82.762453
+75    18.823906     41.224019
+76    18.823906     18.823906
+
+[5 rows x 21 columns]
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{174}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{fig}\PY{p}{,} \PY{n}{axe} \PY{o}{=} \PY{n}{subplots}\PY{p}{(}\PY{p}{)}
+\PY{n}{a} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{all\PYZus{}charges}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{/}\PY{n}{surf}
+\PY{c+c1}{\PYZsh{}sc = abs(dd[\PYZsq{}all\PYZus{}charges\PYZsq{}]\PYZhy{}dd[\PYZsq{}surf\PYZus{}charges\PYZsq{}])}
+\PY{n}{sc} \PY{o}{=} \PY{n+nb}{abs}\PY{p}{(}\PY{n}{dd}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{surf\PYZus{}charges}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\PY{n}{axe}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{sc}\PY{p}{,}\PY{n}{v0}\PY{p}{)}
+\PY{c+c1}{\PYZsh{}axe.set\PYZus{}yscale(\PYZsq{}log\PYZsq{})}
+\PY{c+c1}{\PYZsh{}axe.set\PYZus{}xscale(\PYZsq{}log\PYZsq{})}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{174}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+[<matplotlib.lines.Line2D at 0x7f43e8866580>]
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{3-Resistance-sensor_files/3-Resistance-sensor_53_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{177}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{calc\PYZus{}dF\PYZus{}size} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}sol}
 \PY{n}{calc\PYZus{}dF\PYZus{}size} \PY{o}{=} \PY{n}{cd2}
@@ -1436,27 +1626,29 @@ data}\label{comparing-with-experimental-data}}
         
         \PY{n}{flat\PYZus{}band} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{==}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{current}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
         \PY{n}{res} \PY{o}{=} \PY{n}{flat\PYZus{}band}\PY{o}{/}\PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{current}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-        \PY{n}{res} \PY{o}{=} \PY{l+m+mi}{2000}\PY{o}{/}\PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{current}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-        \PY{n}{sc} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{surf\PYZus{}charges}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        \PY{c+c1}{\PYZsh{}res = 2000/calc\PYZus{}dF\PYZus{}grainsize[\PYZsq{}current\PYZsq{}]}
+        \PY{n}{sc} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{all\PYZus{}charges}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{surf\PYZus{}charges}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
         \PY{c+c1}{\PYZsh{}print(sc,(grain.material.LD**(2/3)*surf))}
         \PY{n}{surf} \PY{o}{=} \PY{n}{R}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{o}{*}\PY{l+m+mi}{4}\PY{o}{*}\PY{n}{pi}
         \PY{c+c1}{\PYZsh{}surf\PYZus{}ratio = (grain.material.nb**(2/3)*surf)/sc}
-        \PY{n}{surf\PYZus{}ratio} \PY{o}{=} \PY{n}{sc}\PY{o}{/}\PY{n}{surf}
+        \PY{n}{surf\PYZus{}ratio} \PY{o}{=} \PY{n+nb}{abs}\PY{p}{(}\PY{n}{sc}\PY{o}{/}\PY{n}{surf}\PY{p}{)}
         
         \PY{n}{sc} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{all\PYZus{}charges}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
         
         \PY{c+c1}{\PYZsh{}res = 1/calc\PYZus{}dF\PYZus{}grainsize[\PYZsq{}current\PYZsq{}]}
         \PY{n}{v} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
         \PY{n}{rel\PYZus{}size} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{R}\PY{o}{/}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{LD}
-        \PY{n}{axe}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{v}\PY{p}{,} \PY{n}{res}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{o\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label} \PY{o}{=} \PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Grainsize = }\PY{l+s+s1}{\PYZob{}}\PY{l+s+s1}{R*1e9:.0f\PYZcb{}nm }\PY{l+s+si}{\PYZob{}s\PYZcb{}}\PY{l+s+s1}{ }\PY{l+s+si}{\PYZob{}calc\PYZus{}dF\PYZus{}grainsize.iloc[0].name\PYZcb{}}\PY{l+s+s1}{ }\PY{l+s+si}{\PYZob{}rel\PYZus{}size:.2f\PYZcb{}}\PY{l+s+s1}{LD}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{}axe.plot(v, res, \PYZsq{}o\PYZhy{}\PYZsq{}, label = f\PYZsq{}Grainsize = \PYZob{}R*1e9:.0f\PYZcb{}nm \PYZob{}s\PYZcb{} \PYZob{}calc\PYZus{}dF\PYZus{}grainsize.iloc[0].name\PYZcb{} \PYZob{}rel\PYZus{}size:.2f\PYZcb{}LD\PYZsq{}, linewidth=5)}
+        \PY{n}{axe}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{surf\PYZus{}ratio}\PY{p}{,} \PY{n}{res}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{o\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label} \PY{o}{=} \PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Grainsize = }\PY{l+s+s1}{\PYZob{}}\PY{l+s+s1}{R*1e9:.0f\PYZcb{}nm }\PY{l+s+si}{\PYZob{}s\PYZcb{}}\PY{l+s+s1}{ }\PY{l+s+si}{\PYZob{}calc\PYZus{}dF\PYZus{}grainsize.iloc[0].name\PYZcb{}}\PY{l+s+s1}{ }\PY{l+s+si}{\PYZob{}rel\PYZus{}size:.2f\PYZcb{}}\PY{l+s+s1}{LD}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
+
         
-        \PY{n}{axe2}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{v}\PY{p}{,}\PY{n}{surf\PYZus{}ratio}\PY{p}{,}  \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{o\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{label} \PY{o}{=} \PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Grainsize = }\PY{l+s+s1}{\PYZob{}}\PY{l+s+s1}{R*1e9:.0f\PYZcb{}nm }\PY{l+s+si}{\PYZob{}s\PYZcb{}}\PY{l+s+s1}{ }\PY{l+s+si}{\PYZob{}calc\PYZus{}dF\PYZus{}grainsize.iloc[0].name\PYZcb{}}\PY{l+s+s1}{ }\PY{l+s+si}{\PYZob{}rel\PYZus{}size:.2f\PYZcb{}}\PY{l+s+s1}{LD}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{}axe2.plot(v,surf\PYZus{}ratio,  \PYZsq{}o\PYZhy{}\PYZsq{}, linewidth=1,label = f\PYZsq{}Grainsize = \PYZob{}R*1e9:.0f\PYZcb{}nm \PYZob{}s\PYZcb{} \PYZob{}calc\PYZus{}dF\PYZus{}grainsize.iloc[0].name\PYZcb{} \PYZob{}rel\PYZus{}size:.2f\PYZcb{}LD\PYZsq{})}
         
         
         \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}yscale}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{log}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
         \PY{n}{axe2}\PY{o}{.}\PY{n}{set\PYZus{}yscale}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{log}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-        \PY{c+c1}{\PYZsh{}axe.set\PYZus{}xscale(\PYZsq{}log\PYZsq{})}
-        
+        \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}xscale}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{log}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mf}{1e14}\PY{p}{,}\PY{l+m+mf}{1e17}\PY{p}{)}
         \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{frac}\PY{l+s+si}{\PYZob{}R\PYZcb{}}\PY{l+s+s1}{\PYZob{}}\PY{l+s+s1}{R\PYZus{}}\PY{l+s+si}{\PYZob{}Flatband\PYZcb{}}\PY{l+s+s1}{\PYZcb{}\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{22}\PY{p}{)}
         \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}E\PYZus{}C(r)\PYZdl{} [\PYZdl{}k\PYZus{}BT\PYZdl{}]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{22}\PY{p}{)}
         
@@ -1470,21 +1662,37 @@ data}\label{comparing-with-experimental-data}}
 
 
     
+    
 \end{Verbatim}
 \end{tcolorbox}
 
+    \begin{Verbatim}[commandchars=\\\{\}]
+No handles with labels found to put in legend.
+No handles with labels found to put in legend.
+No handles with labels found to put in legend.
+No handles with labels found to put in legend.
+No handles with labels found to put in legend.
+No handles with labels found to put in legend.
+No handles with labels found to put in legend.
+No handles with labels found to put in legend.
+No handles with labels found to put in legend.
+No handles with labels found to put in legend.
+No handles with labels found to put in legend.
+No handles with labels found to put in legend.
+    \end{Verbatim}
+
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{3-Resistance-sensor_files/3-Resistance-sensor_50_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{3-Resistance-sensor_files/3-Resistance-sensor_54_1.png}
     \end{center}
     { \hspace*{\fill} \\}
     
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{3-Resistance-sensor_files/3-Resistance-sensor_50_1.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{3-Resistance-sensor_files/3-Resistance-sensor_54_2.png}
     \end{center}
     { \hspace*{\fill} \\}
     
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{3-Resistance-sensor_files/3-Resistance-sensor_50_2.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{3-Resistance-sensor_files/3-Resistance-sensor_54_3.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -1492,10 +1700,10 @@ data}\label{comparing-with-experimental-data}}
 \subsubsection{The `m' factor}\label{the-m-factor}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{23}{\boxspacing}
+\prompt{In}{incolor}{153}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{size\PYZus{}n} \PY{o}{=} \PY{l+m+mf}{1e\PYZhy{}8}
-\PY{n}{calc\PYZus{}dF\PYZus{}n\PYZus{}all\PYZus{}ND} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}sol}
+\PY{n}{calc\PYZus{}dF\PYZus{}n\PYZus{}all\PYZus{}ND} \PY{o}{=} \PY{n}{cd2}
     
 \PY{k}{for} \PY{n}{ND}\PY{p}{,}\PY{n}{calc\PYZus{}dF\PYZus{}n} \PY{o+ow}{in} \PY{n}{calc\PYZus{}dF\PYZus{}n\PYZus{}all\PYZus{}ND}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ND}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
 
@@ -1532,17 +1740,17 @@ data}\label{comparing-with-experimental-data}}
 \end{tcolorbox}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{3-Resistance-sensor_files/3-Resistance-sensor_52_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{3-Resistance-sensor_files/3-Resistance-sensor_56_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{3-Resistance-sensor_files/3-Resistance-sensor_52_1.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{3-Resistance-sensor_files/3-Resistance-sensor_56_1.png}
     \end{center}
     { \hspace*{\fill} \\}
     
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{3-Resistance-sensor_files/3-Resistance-sensor_52_2.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{3-Resistance-sensor_files/3-Resistance-sensor_56_2.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -1595,21 +1803,11 @@ data}\label{comparing-with-experimental-data}}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{150}{\boxspacing}
+\prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{calc\PYZus{}dF}\PY{o}{.}\PY{n}{to\PYZus{}hdf}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{res.h5}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{raw}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-/usr/lib/python3.8/site-packages/pandas/core/generic.py:2530:
-PerformanceWarning:
-your performance may suffer as PyTables will pickle object types that it cannot
-map directly to c-types [inferred\_type->mixed,key->block1\_values] [items->['n',
-'r', 'v', 'v\_dot', 'd\_cond', 'current']]
-
-  pytables.to\_hdf(path\_or\_buf, key, self, **kwargs)
-    \end{Verbatim}
 
     \hypertarget{bibliography-section}{%
 \section{Bibliography section}\label{bibliography-section}}
