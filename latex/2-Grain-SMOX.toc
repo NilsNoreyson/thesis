@@ -1,33 +1,34 @@
 \contentsline {section}{\numberline {1}Abstract}{1}{section.1}% 
 \contentsline {section}{\numberline {2}Motivation}{2}{section.2}% 
-\contentsline {section}{\numberline {3}Numerical calculation of semiconductors gas sensors}{3}{section.3}% 
-\contentsline {subsection}{\numberline {3.1}Introduction}{3}{subsection.3.1}% 
+\contentsline {section}{\numberline {3}Numerical calculation of semiconductors gas sensors}{4}{section.3}% 
+\contentsline {subsection}{\numberline {3.1}Introduction}{4}{subsection.3.1}% 
 \contentsline {subsection}{\numberline {3.2}Semiconductor properties of the SMOX grains}{4}{subsection.3.2}% 
-\contentsline {subsection}{\numberline {3.3}Choice of geometric model}{4}{subsection.3.3}% 
+\contentsline {subsection}{\numberline {3.3}Choice of geometric model}{5}{subsection.3.3}% 
 \contentsline {subsection}{\numberline {3.4}Poisson's equation}{5}{subsection.3.4}% 
 \contentsline {subsection}{\numberline {3.5}Charge density}{6}{subsection.3.5}% 
-\contentsline {subsection}{\numberline {3.6}Poisson equation as system of ODEs}{9}{subsection.3.6}% 
+\contentsline {subsection}{\numberline {3.6}Poisson equation as system of ODEs}{10}{subsection.3.6}% 
 \contentsline {subsection}{\numberline {3.7}Constants}{10}{subsection.3.7}% 
-\contentsline {subsection}{\numberline {3.8}Materials}{11}{subsection.3.8}% 
-\contentsline {subsubsection}{\numberline {3.8.1}Solving integrals numerically}{11}{subsubsection.3.8.1}% 
-\contentsline {paragraph}{Introduction}{11}{section*.15}% 
+\contentsline {subsection}{\numberline {3.8}Materials}{12}{subsection.3.8}% 
+\contentsline {subsubsection}{\numberline {3.8.1}Solving integrals numerically}{12}{subsubsection.3.8.1}% 
+\contentsline {paragraph}{Introduction}{12}{section*.15}% 
 \contentsline {paragraph}{The \texttt {quad} function}{12}{section*.16}% 
 \contentsline {paragraph}{Side-Note:}{13}{section*.17}% 
-\contentsline {subsubsection}{\numberline {3.8.2}Numerical description of the semiconductor}{13}{subsubsection.3.8.2}% 
-\contentsline {paragraph}{Helper functions for semiconductor calculations}{13}{section*.18}% 
-\contentsline {paragraph}{Define the smox-material class}{15}{section*.19}% 
-\contentsline {paragraph}{How to derive the charge density (PDF copy, source unknown, sorry)}{16}{figure.caption.21}% 
-\contentsline {paragraph}{Hint:}{18}{section*.22}% 
-\contentsline {paragraph}{Free charge carrier conc. using the Boltzmann approximation}{19}{section*.23}% 
-\contentsline {paragraph}{Compare the numerical solution with the approximations}{19}{section*.24}% 
-\contentsline {subsubsection}{\numberline {3.8.3}Numerical description of the semiconductor grains}{21}{subsubsection.3.8.3}% 
-\contentsline {section}{\numberline {4}Example}{24}{section.4}% 
-\contentsline {paragraph}{Example usage of \texttt {np.trapz}}{29}{section*.27}% 
-\contentsline {subsubsection}{\numberline {4.0.1}Putting the pieces together}{33}{subsubsection.4.0.1}% 
-\contentsline {paragraph}{Export/Import data}{37}{section*.28}% 
-\contentsline {subsubsection}{\numberline {4.0.2}Estimate correct solutions of incorrectly found minima}{38}{subsubsection.4.0.2}% 
-\contentsline {subsubsection}{\numberline {4.0.3}Recalculating the failed solutions with a little help \ldots {}}{40}{subsubsection.4.0.3}% 
-\contentsline {subsubsection}{\numberline {4.0.4}Checking the solutions}{41}{subsubsection.4.0.4}% 
-\contentsline {subsection}{\numberline {4.1}Shape of the potential drop inside the grain}{42}{subsection.4.1}% 
-\contentsline {section}{\numberline {5}Summary}{45}{section.5}% 
-\contentsline {section}{\numberline {6}Bibliography section}{45}{section.6}% 
+\contentsline {subsubsection}{\numberline {3.8.2}Numerical description of the semiconductor}{14}{subsubsection.3.8.2}% 
+\contentsline {paragraph}{Helper functions for semiconductor calculations}{14}{section*.18}% 
+\contentsline {paragraph}{Define the smox-material class}{16}{section*.19}% 
+\contentsline {paragraph}{How to derive the charge density (PDF copy, source unknown, sorry)}{17}{figure.caption.21}% 
+\contentsline {paragraph}{Hint:}{19}{section*.22}% 
+\contentsline {paragraph}{Relation between \(n_b\) and \(N_D\)}{20}{section*.23}% 
+\contentsline {paragraph}{Free charge carrier conc. using the Boltzmann approximation}{21}{section*.24}% 
+\contentsline {paragraph}{Compare the numerical solution with the approximations}{22}{section*.25}% 
+\contentsline {subsubsection}{\numberline {3.8.3}Numerical description of the semiconductor grains}{23}{subsubsection.3.8.3}% 
+\contentsline {paragraph}{Example usage of \texttt {np.trapz}}{27}{section*.28}% 
+\contentsline {subsubsection}{\numberline {3.8.4}Additional relevant paramters}{31}{subsubsection.3.8.4}% 
+\contentsline {subsubsection}{\numberline {3.8.5}Putting the pieces together}{32}{subsubsection.3.8.5}% 
+\contentsline {paragraph}{Export/Import data}{34}{section*.29}% 
+\contentsline {subsubsection}{\numberline {3.8.6}Estimate correct solutions of incorrectly found minima}{35}{subsubsection.3.8.6}% 
+\contentsline {subsubsection}{\numberline {3.8.7}Recalculating the failed solutions with a little help \ldots {}}{38}{subsubsection.3.8.7}% 
+\contentsline {subsubsection}{\numberline {3.8.8}Checking the solutions}{39}{subsubsection.3.8.8}% 
+\contentsline {subsection}{\numberline {3.9}Shape of the potential drop inside the grain}{40}{subsection.3.9}% 
+\contentsline {section}{\numberline {4}Summary}{43}{section.4}% 
+\contentsline {section}{\numberline {5}Bibliography section}{44}{section.5}% 

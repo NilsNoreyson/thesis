@@ -8,6 +8,6 @@
 \contentsline {section}{\numberline {4}See how a single solution evolves}{16}{section.4}% 
 \contentsline {subsubsection}{\numberline {4.0.1}Precalcualtion of all conditions}{18}{subsubsection.4.0.1}% 
 \contentsline {section}{\numberline {5}check the integral for the charges}{20}{section.5}% 
-\contentsline {subsubsection}{\numberline {5.0.1}Comparing with experimental data}{22}{subsubsection.5.0.1}% 
-\contentsline {subsubsection}{\numberline {5.0.2}The `m' factor}{29}{subsubsection.5.0.2}% 
-\contentsline {section}{\numberline {6}Bibliography section}{32}{section.6}% 
+\contentsline {subsubsection}{\numberline {5.0.1}Comparing with experimental data}{24}{subsubsection.5.0.1}% 
+\contentsline {subsubsection}{\numberline {5.0.2}The `m' factor}{27}{subsubsection.5.0.2}% 
+\contentsline {section}{\numberline {6}Bibliography section}{30}{section.6}% 

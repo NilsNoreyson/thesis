@@ -412,7 +412,16 @@ atmospheric conditions which are common in real live, the dominant
 impact of oxygen may be gone. It could be shown, that under conditions
 of 50\% r.h. and low concentrations of CO (\textgreater1 ppm) in
 synthetic air, the depletion layer was gone and a accumulation layer
-manifested. The results are shown in Figure
+manifested. The following figure shows the experimental results from
+such a measurement. In the beginning of the experiment a \(SnO_2\) based
+gas sensor was exposed to pure nitrogen. For this sensor it can be
+assumed, that under this condition no band bending is present. This
+means, that the resistance under nitrogen corresponds to the flat band
+situation. An increase of the resistance indicates the presence of a
+depletion layer, where a decrease of the resistance would indicate the
+presence of an accumulation layer. In the following figure we clearly
+see, that a conduction band switch is present. A detailed description of
+the finding can be found here \cite{Barsan2015}
 
 \begin{figure}
 \centering
@@ -1288,7 +1297,7 @@ sorry)}\label{how-to-derive-the-charge-density-pdf-copy-source-unknown-sorry}}
 \end{figure}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{7}{\boxspacing}
+\prompt{In}{incolor}{1211}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{integrate} \PY{k+kn}{import} \PY{n}{quad}
 \PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{interpolate} \PY{k+kn}{import} \PY{n}{interp1d}
@@ -1364,7 +1373,7 @@ sorry)}\label{how-to-derive-the-charge-density-pdf-copy-source-unknown-sorry}}
 
     
 \PY{n}{T\PYZus{}C} \PY{o}{=} \PY{l+m+mi}{300}
-\PY{n}{ND} \PY{o}{=} \PY{l+m+mf}{9e21}
+\PY{n}{ND} \PY{o}{=} \PY{l+m+mf}{2.14e24}
 \PY{n}{mass\PYZus{}e\PYZus{}eff\PYZus{}factor} \PY{o}{=}\PY{l+m+mf}{0.3}
 
 \PY{n}{EDCF\PYZus{}eV} \PY{o}{=} \PY{n}{calc\PYZus{}EDCF\PYZus{}by\PYZus{}temp}\PY{p}{(}\PY{n}{T\PYZus{}C}\PY{p}{,} \PY{n}{ND}\PY{p}{,} \PY{n}{mass\PYZus{}e\PYZus{}eff\PYZus{}factor}\PY{p}{)}
@@ -1375,8 +1384,8 @@ sorry)}\label{how-to-derive-the-charge-density-pdf-copy-source-unknown-sorry}}
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-For SnO2 at 300°C with a defect concentration of 9e+21 1/m³, the value of
-EDCF\_eV is 0.31635452989085217 eV
+For SnO2 at 300°C with a defect concentration of 2.14e+24 1/m³, the value of
+EDCF\_eV is 0.04739832440692029 eV
     \end{Verbatim}
 
     \hypertarget{hint}{%
@@ -1405,6 +1414,53 @@ density the \texttt{@lru\_cache} is of great use here. The maxsize
 argument in the brackets defines the maximal size of the cache in the
 memory of the computer.
 
+    \hypertarget{relation-between-n_b-and-n_d}{%
+\paragraph{\texorpdfstring{Relation between \(n_b\) and
+\(N_D\)}{Relation between n\_b and N\_D}}\label{relation-between-n_b-and-n_d}}
+
+In the thesis of Julia Rebolz (page 106) some values for \(n_b\) and
+\(L_D\) and the distance of the conduction band to the Fermi-Level
+(\(E_{C,Flatband} - E_F\))in units of {[}eV{]}. The numerical
+calculation with the providex Material class are in good agreement with
+the presented results. The code cell below can be used to check check
+values found in literature with the presented model. As
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{1212}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{T\PYZus{}C} \PY{o}{=} \PY{l+m+mi}{300}
+\PY{n}{a} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{(}\PY{n}{Material}\PY{p}{(}\PY{n}{T\PYZus{}C}\PY{p}{,} \PY{n}{ND\PYZus{}temp}\PY{p}{)}\PY{o}{.}\PY{n}{nb}\PY{p}{,} \PY{n}{ND\PYZus{}temp}\PY{p}{)} \PY{k}{for} \PY{n}{ND\PYZus{}temp} \PY{o+ow}{in} \PY{n}{np}\PY{o}{.}\PY{n}{logspace}\PY{p}{(}\PY{l+m+mi}{21}\PY{p}{,} \PY{l+m+mi}{25}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+\PY{n}{fig}\PY{p}{,} \PY{n}{axe} \PY{o}{=} \PY{n}{subplots}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{+}\PY{l+m+mi}{5}\PY{o}{*}\PY{o}{*}\PY{l+m+mf}{0.5}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{l+m+mi}{9}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{)}\PY{p}{)}
+\PY{n}{x} \PY{o}{=} \PY{n}{a}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{y} \PY{o}{=} \PY{n}{a}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}
+\PY{n}{axe}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{)}
+\PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}yscale}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{log}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}xscale}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{log}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}N\PYZus{}D\PYZdl{} \PYZdl{}[m\PYZca{}}\PY{l+s+s1}{\PYZob{}}\PY{l+s+s1}{\PYZhy{}3\PYZcb{}]\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{22}\PY{p}{)}
+\PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}n\PYZus{}b\PYZdl{} \PYZdl{}[m\PYZca{}}\PY{l+s+s1}{\PYZob{}}\PY{l+s+s1}{\PYZhy{}3\PYZcb{}]\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{22}\PY{p}{)}
+\PY{n}{axe}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{p}{)}
+\PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}N\PYZus{}D\PYZdl{} as a function of \PYZdl{}n\PYZus{}b\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize} \PY{o}{=} \PY{l+m+mi}{22}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} To calcaulte the ND from nb, the numiercal data is interpolated. }
+\PY{c+c1}{\PYZsh{} Generally this way is much simpler than deriving the inverse function to calculate ND from a given nb}
+\PY{n}{ND\PYZus{}from\PYZus{}nb} \PY{o}{=} \PY{n}{scipy}\PY{o}{.}\PY{n}{interpolate}\PY{o}{.}\PY{n}{interp1d}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{,} \PY{n}{kind}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cubic}\PY{l+s+s1}{\PYZsq{}} \PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}Chekcing one value from the Thesis of Julia Rebholz}
+\PY{n}{nb\PYZus{}check} \PY{o}{=} \PY{l+m+mf}{2.14e24}
+\PY{n}{ND\PYZus{}check} \PY{o}{=} \PY{n}{ND\PYZus{}from\PYZus{}nb}\PY{p}{(}\PY{n}{nb\PYZus{}check}\PY{p}{)}
+\PY{n}{mat\PYZus{}check} \PY{o}{=} \PY{n}{Material}\PY{p}{(}\PY{n}{T\PYZus{}C}\PY{p}{,} \PY{n}{ND\PYZus{}check}\PY{p}{)}
+\PY{n}{LD\PYZus{}check} \PY{o}{=} \PY{n}{mat\PYZus{}check}\PY{o}{.}\PY{n}{LD}
+\PY{n}{Ec\PYZus{}Ef\PYZus{}eV\PYZus{}check} \PY{o}{=} \PY{n}{mat\PYZus{}check}\PY{o}{.}\PY{n}{Diff\PYZus{}EF\PYZus{}EC\PYZus{}evolt}
+\PY{n}{axe}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{nb\PYZus{}check}\PY{p}{,} \PY{n}{ND\PYZus{}check}\PY{p}{)}
+\PY{n}{axe}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{n}{nb\PYZus{}check}\PY{p}{,}\PY{n}{ND\PYZus{}check}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}n\PYZus{}b\PYZdl{}=}\PY{l+s+si}{\PYZob{}nb\PYZus{}check:.2e\PYZcb{}}\PY{l+s+s1}{ \PYZdl{}1/m\PYZca{}3\PYZdl{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZdl{}N\PYZus{}D\PYZdl{}=}\PY{l+s+si}{\PYZob{}ND\PYZus{}check:.2e\PYZcb{}}\PY{l+s+s1}{ \PYZdl{}1/m\PYZca{}3\PYZdl{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZdl{}L\PYZus{}D\PYZdl{}=}\PY{l+s+s1}{\PYZob{}}\PY{l+s+s1}{LD\PYZus{}check*1e9:.2f\PYZcb{} nm}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZdl{}E\PYZus{}C\PYZhy{}E\PYZus{}F\PYZdl{}=}\PY{l+s+s1}{\PYZob{}}\PY{l+s+s1}{Ec\PYZus{}Ef\PYZus{}eV\PYZus{}check*1000:.2f\PYZcb{}meV}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{verticalalignment}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{top}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{horizontalalignment}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{2-Grain-SMOX_files/2-Grain-SMOX_29_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
     \hypertarget{free-charge-carrier-conc.-using-the-boltzmann-approximation}{%
 \paragraph{Free charge carrier conc. using the Boltzmann
 approximation}\label{free-charge-carrier-conc.-using-the-boltzmann-approximation}}
@@ -1414,7 +1470,7 @@ Boltzmann approximations need to be defined. As described in
 {[}REFERENCE{]} this breaks down to the following functions:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{8}{\boxspacing}
+\prompt{In}{incolor}{1213}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k}{def} \PY{n+nf}{boltzmann\PYZus{}acc}\PY{p}{(}\PY{n}{material}\PY{p}{,} \PY{n}{E\PYZus{}c}\PY{p}{)}\PY{p}{:}
     \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{p}{(}\PY{n}{E\PYZus{}c}\PY{o}{+}\PY{n}{material}\PY{o}{.}\PY{n}{Diff\PYZus{}EF\PYZus{}EC}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{n}{material}\PY{o}{.}\PY{n}{kT}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
@@ -1446,7 +1502,7 @@ concentration \(n\) for the different solutions for multiple positions
 of the conduction band \(E_C\) in units of \(kT\).
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{9}{\boxspacing}
+\prompt{In}{incolor}{1214}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k}{def} \PY{n+nf}{plot\PYZus{}material\PYZus{}char}\PY{p}{(}\PY{n}{mat}\PY{p}{)}\PY{p}{:}
     \PY{n}{ns} \PY{o}{=} \PY{p}{[}\PY{p}{]}
@@ -1483,7 +1539,7 @@ of the conduction band \(E_C\) in units of \(kT\).
 \end{tcolorbox}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{2-Grain-SMOX_files/2-Grain-SMOX_31_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{2-Grain-SMOX_files/2-Grain-SMOX_33_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -1525,7 +1581,7 @@ step new values based on the previous iteration.
 This ``inital value problem'' is solved with the scipy tool solve\_ivp.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{644}{\boxspacing}
+\prompt{In}{incolor}{1232}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{integrate} \PY{k+kn}{import} \PY{n}{solve\PYZus{}ivp}
 \PY{k}{class} \PY{n+nc}{Grain}\PY{p}{:}
@@ -1592,201 +1648,11 @@ This ``inital value problem'' is solved with the scipy tool solve\_ivp.
         \PY{n}{n} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{n}{E}\PY{p}{)}
         \PY{n}{U\PYZus{}dot\PYZus{}dot} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{n}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{/}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{nb} \PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{o}{/}\PY{n}{r\PYZus{}}\PY{o}{*}\PY{n}{U\PYZus{}dot}
         \PY{k}{return} \PY{p}{[}\PY{n}{U\PYZus{}dot}\PY{p}{,} \PY{n}{U\PYZus{}dot\PYZus{}dot}\PY{p}{]}
-
-\PY{n}{grain} \PY{o}{=} \PY{n}{Grain}\PY{p}{(}\PY{l+m+mf}{100e\PYZhy{}9}\PY{p}{,}\PY{n}{material}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{765}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-\PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{optimize} \PY{k+kn}{import} \PY{n}{minimize\PYZus{}scalar}\PY{p}{,}\PY{n}{bracket}
-
-
-\PY{k}{def} \PY{n+nf}{min\PYZus{}vdot}\PY{p}{(}\PY{n}{vdot\PYZus{}init}\PY{p}{,} \PY{n}{grain}\PY{p}{,} \PY{n}{vinit}\PY{p}{,} \PY{n}{debug} \PY{o}{=} \PY{k+kc}{False}\PY{p}{)}\PY{p}{:}
-    \PY{n}{r}\PY{p}{,}\PY{n}{v}\PY{p}{,}\PY{n}{vdot}\PY{p}{,} \PY{n}{data} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{solve\PYZus{}with\PYZus{}values}\PY{p}{(}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{kT\PYZus{}to\PYZus{}J}\PY{p}{(}\PY{n}{vinit}\PY{p}{)}\PY{p}{,}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{kT\PYZus{}to\PYZus{}J}\PY{p}{(}\PY{n}{vdot\PYZus{}init}\PY{p}{)}\PY{p}{)}
-    \PY{c+c1}{\PYZsh{}the integration stops when the slope is zero. This might not be in the center (r*=0) of the grain. So we will expand the datapoints appropriatly}
-    \PY{c+c1}{\PYZsh{}for numerical reasons, we will not choose r*=0, but rather a very small r*.}
-    
-    \PY{c+c1}{\PYZsh{}kick this out, we dont need it anymore}
-    
-    \PY{c+c1}{\PYZsh{}r = np.concatenate([[0.01],r], axis=0)}
-    \PY{c+c1}{\PYZsh{}\PYZsh{}If the slope is zero, the slope should stay zero until the center}
-    \PY{c+c1}{\PYZsh{}vdot = np.concatenate([[0],vdot], axis=0)}
-    
-    \PY{c+c1}{\PYZsh{}\PYZsh{}and since the slope is zero, also the value should not change anymore}
-    \PY{c+c1}{\PYZsh{}v = np.concatenate([[v[0]],v], axis=0)}
-    
-    
-    
-    \PY{c+c1}{\PYZsh{}for each point of the solution the element in the integral is calculated}
-    \PY{n}{integrand} \PY{o}{=} \PY{p}{[}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{kT\PYZus{}to\PYZus{}J}\PY{p}{(}\PY{n}{v\PYZus{}i}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{/}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{nb}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{o}{/}\PY{n}{r\PYZus{}i}\PY{o}{*}\PY{n}{vdot\PYZus{}i} \PY{k}{for} \PY{n}{r\PYZus{}i}\PY{p}{,} \PY{n}{v\PYZus{}i}\PY{p}{,} \PY{n}{vdot\PYZus{}i} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{r}\PY{p}{,} \PY{n}{v}\PY{p}{,} \PY{n}{vdot}\PY{p}{)}\PY{p}{]}
-    
-    \PY{c+c1}{\PYZsh{}the integral is numerically calculated}
-    \PY{n}{dV} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{trapz}\PY{p}{(}\PY{n}{y}\PY{o}{=}\PY{n}{integrand}\PY{p}{,}\PY{n}{x}\PY{o}{=}\PY{n}{r}\PY{p}{)}
-    
-    \PY{c+c1}{\PYZsh{}The integral should be the same as the slope at the surface, the differenc is the error to be minimized}
-    \PY{n}{res} \PY{o}{=} \PY{n+nb}{abs}\PY{p}{(}\PY{p}{(}\PY{n}{dV}\PY{o}{\PYZhy{}}\PY{n}{vdot}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}
-    
-    \PY{c+c1}{\PYZsh{}Debug output}
-    \PY{c+c1}{\PYZsh{}print(res, vdot[\PYZhy{}1])}
-    \PY{c+c1}{\PYZsh{}print(res,vdot\PYZus{}init )}
-    \PY{c+c1}{\PYZsh{}return the \PYZsq{}error\PYZsq{} to be minimized}
-    \PY{n}{percent\PYZus{}error} \PY{o}{=} \PY{n}{res}\PY{o}{/}\PY{n}{vdot\PYZus{}init}\PY{o}{*}\PY{l+m+mi}{100}
-    \PY{k}{if} \PY{n}{debug}\PY{p}{:}
-        \PY{n+nb}{print}\PY{p}{(}\PY{n}{vdot\PYZus{}init}\PY{p}{,} \PY{n}{dV}\PY{p}{,} \PY{n}{vinit}\PY{p}{,} \PY{n}{res}\PY{p}{,} \PY{n+nb}{round}\PY{p}{(}\PY{n}{percent\PYZus{}error}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
-    \PY{c+c1}{\PYZsh{}print(percent\PYZus{}error)}
-    \PY{k}{return} \PY{n}{res}
-
-\PY{k}{def} \PY{n+nf}{find\PYZus{}best\PYZus{}v\PYZus{}dot\PYZus{}init}\PY{p}{(}\PY{n}{E\PYZus{}init\PYZus{}kT}\PY{p}{,} \PY{n}{grain}\PY{p}{,}\PY{n}{debug} \PY{o}{=} \PY{k+kc}{False}\PY{p}{,} \PY{n}{bounds} \PY{o}{=} \PY{k+kc}{None}\PY{p}{)}\PY{p}{:}
-    \PY{c+c1}{\PYZsh{}find for a given inital value E\PYZus{}init\PYZus{}kT, the correspoding E\PYZus{}init\PYZus{}dot\PYZus{}kT}
-    \PY{c+c1}{\PYZsh{}if E\PYZus{}init\PYZus{}kT\PYZgt{}0:}
-    \PY{c+c1}{\PYZsh{}    bounds = sorted([E\PYZus{}init\PYZus{}kT/50,0])}
-    \PY{c+c1}{\PYZsh{}else:}
-    \PY{c+c1}{\PYZsh{}    bounds = sorted([E\PYZus{}init\PYZus{}kT*10,E\PYZus{}init\PYZus{}kT])}
-    \PY{c+c1}{\PYZsh{}res = minimize\PYZus{}scalar(min\PYZus{}vdot,  bounds=bounds, tol=abs(E\PYZus{}init\PYZus{}kT/10000), method=\PYZsq{}Bounded\PYZsq{}, args=(grain, E\PYZus{}init\PYZus{}kT))}
-    \PY{c+c1}{\PYZsh{}min\PYZus{}vdot return the relative error in percent to the optimal sollution, we will stop at 1\PYZpc{} error}
-    \PY{c+c1}{\PYZsh{}print(\PYZsq{}bounds\PYZsq{}, bounds)}
-    \PY{c+c1}{\PYZsh{}res = scipy.optimize.basinhopping(min\PYZus{}vdot,minimizer\PYZus{}kwargs=\PYZob{}\PYZsq{}args\PYZsq{}:(grain, E\PYZus{}init\PYZus{}kT)\PYZcb{},x0 = E\PYZus{}init\PYZus{}kT)}
-    \PY{c+c1}{\PYZsh{}res = minimize\PYZus{}scalar(min\PYZus{}vdot, bounds=bounds, method=\PYZsq{}Golden\PYZsq{},args=(grain, E\PYZus{}init\PYZus{}kT), xtol=0.01)}
-    \PY{k}{if} \PY{n}{bounds}\PY{p}{:}
-        \PY{n}{res} \PY{o}{=} \PY{n}{minimize\PYZus{}scalar}\PY{p}{(}\PY{n}{min\PYZus{}vdot}\PY{p}{,}\PY{n}{args}\PY{o}{=}\PY{p}{(}\PY{n}{grain}\PY{p}{,} \PY{n}{E\PYZus{}init\PYZus{}kT}\PY{p}{,} \PY{n}{debug}\PY{p}{)}\PY{p}{,} \PY{n}{method} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Bounded}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bounds} \PY{o}{=} \PY{n}{bounds}\PY{p}{)}
-    \PY{k}{else}\PY{p}{:}
-        \PY{n}{res} \PY{o}{=} \PY{n}{minimize\PYZus{}scalar}\PY{p}{(}\PY{n}{min\PYZus{}vdot}\PY{p}{,}\PY{n}{args}\PY{o}{=}\PY{p}{(}\PY{n}{grain}\PY{p}{,} \PY{n}{E\PYZus{}init\PYZus{}kT}\PY{p}{,} \PY{n}{debug}\PY{p}{)}\PY{p}{)}
-    \PY{c+c1}{\PYZsh{}res = bracket(min\PYZus{}vdot,xa=bounds[1], xb=bounds[0],args=(grain, E\PYZus{}init\PYZus{}kT, debug))}
-    \PY{k}{return} \PY{n}{res}
-\end{Verbatim}
-\end{tcolorbox}
-
-    \hypertarget{example}{%
-\section{Example}\label{example}}
-
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{822}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-\PY{c+c1}{\PYZsh{}material = Material(300,4.5e21)}
-\PY{c+c1}{\PYZsh{}grain = Grain(50e\PYZhy{}9,material, rPoints=1000)}
-
-
-\PY{n}{ser} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}all}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{n}{subset}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{E\PYZus{}dot\PYZus{}init\PYZus{}kT\PYZus{}estimation}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
-
-\PY{n}{grain} \PY{o}{=} \PY{n}{create\PYZus{}grain\PYZus{}from\PYZus{}data}\PY{p}{(}\PY{n}{ser}\PY{p}{)}
-
-
-\PY{n}{fig}\PY{p}{,} \PY{n}{axes} \PY{o}{=} \PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{16}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{)}\PY{p}{)}
-\PY{n}{axe} \PY{o}{=} \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
-\PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{8}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{)}
-\PY{n}{E\PYZus{}init\PYZus{}kT} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{6}
-\PY{n}{E\PYZus{}init\PYZus{}kT} \PY{o}{=} \PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-\PY{n}{E\PYZus{}init} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{kT\PYZus{}to\PYZus{}J}\PY{p}{(}\PY{n}{E\PYZus{}init\PYZus{}kT}\PY{p}{)}
-\PY{n}{estim} \PY{o}{=} \PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{E\PYZus{}dot\PYZus{}init\PYZus{}kT\PYZus{}estimation}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-\PY{n}{bounds} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{p}{(}\PY{n}{estim}\PY{o}{*}\PY{l+m+mf}{0.9}\PY{p}{,} \PY{n}{estim}\PY{o}{*}\PY{l+m+mf}{1.1}\PY{p}{)}\PY{p}{)}
-\PY{n+nb}{print}\PY{p}{(}\PY{n}{bounds}\PY{p}{,} \PY{n}{estim}\PY{p}{)}
-\PY{n}{res} \PY{o}{=} \PY{n}{find\PYZus{}best\PYZus{}v\PYZus{}dot\PYZus{}init}\PY{p}{(}\PY{n}{E\PYZus{}init\PYZus{}kT}\PY{p}{,} \PY{n}{grain}\PY{p}{,}\PY{n}{debug}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{bounds}\PY{o}{=}\PY{n}{bounds}\PY{p}{)}
-\PY{c+c1}{\PYZsh{}E\PYZus{}dot\PYZus{}init\PYZus{}kT = \PYZhy{}3.532822819868218*5\PYZsh{}*16.9345}
-\PY{n+nb}{print}\PY{p}{(}\PY{n}{res}\PY{p}{)}
-\PY{n}{E\PYZus{}dot\PYZus{}init\PYZus{}kT} \PY{o}{=} \PY{n}{res}\PY{o}{.}\PY{n}{x}
-\PY{n+nb}{print}\PY{p}{(}\PY{n}{E\PYZus{}dot\PYZus{}init\PYZus{}kT}\PY{p}{)}
-\PY{n}{E\PYZus{}dot\PYZus{}init} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{kT\PYZus{}to\PYZus{}J}\PY{p}{(}\PY{n}{E\PYZus{}dot\PYZus{}init\PYZus{}kT}\PY{p}{)}
-\PY{n}{r}\PY{p}{,}\PY{n}{v}\PY{p}{,} \PY{n}{v\PYZus{}dot}\PY{p}{,} \PY{n}{data} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{solve\PYZus{}with\PYZus{}values}\PY{p}{(}\PY{n}{E\PYZus{}init}\PY{p}{,} \PY{n}{E\PYZus{}dot\PYZus{}init}\PY{p}{)}
-
-\PY{n+nb}{print}\PY{p}{(}\PY{n}{min\PYZus{}vdot}\PY{p}{(}\PY{n}{E\PYZus{}dot\PYZus{}init\PYZus{}kT}\PY{p}{,} \PY{n}{grain}\PY{p}{,} \PY{n}{E\PYZus{}init\PYZus{}kT}\PY{p}{)}\PY{p}{)}
-
-\PY{n}{axe}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{r}\PY{p}{,}\PY{n}{v}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}*}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}E\PYZus{}dot\PYZus{}init\PYZus{}kT:.2f\PYZcb{}}\PY{l+s+s1}{ minimized}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-
-
-
-\PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}E\PYZus{}C(r\PYZca{}*)\PYZdl{} [\PYZdl{}k\PYZus{}BT\PYZdl{}]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{22}\PY{p}{)}
-\PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}\PY{l+s+s2}{Position in grain [\PYZdl{}L\PYZus{}D\PYZdl{} = }\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{grain.material.LD*1e9:.2f\PYZcb{}nm],}\PY{l+s+se}{\PYZbs{}n}
-\PY{l+s+s2}{                    R=}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{grain.R*1e9:.2f\PYZcb{}nm}\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}\PY{p}{,} \PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{22}\PY{p}{)}
-
-
-\PY{n}{r}\PY{p}{,}\PY{n}{v}\PY{p}{,} \PY{n}{v\PYZus{}dot}\PY{p}{,} \PY{n}{data} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{solve\PYZus{}with\PYZus{}values}\PY{p}{(}\PY{n}{E\PYZus{}init}\PY{p}{,} \PY{n}{estim}\PY{p}{)}
-\PY{n}{axe}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{r}\PY{p}{,}\PY{n}{v}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}*}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}estim:.2f\PYZcb{}}\PY{l+s+s1}{ estim}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-
-
-
-
-\PY{n}{axe}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}\PY{p}{;}
-
-\PY{n}{axe} \PY{o}{=} \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
-
-\PY{n}{axe}\PY{o}{.}\PY{n}{axvline}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{J\PYZus{}to\PYZus{}kT}\PY{p}{(}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{Diff\PYZus{}EF\PYZus{}EC}\PY{p}{)}\PY{p}{)}
-
-\PY{n}{g} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}all}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ND}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{R}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{get\PYZus{}group}\PY{p}{(}\PY{p}{(}\PY{n}{ND}\PY{p}{,} \PY{n}{R}\PY{p}{)}\PY{p}{)}
-\PY{n}{g\PYZus{}good} \PY{o}{=} \PY{n}{g}\PY{p}{[}\PY{n}{g}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{res}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{\PYZlt{}}\PY{l+m+mi}{2}\PY{p}{]}
-\PY{n}{g\PYZus{}bad} \PY{o}{=} \PY{n}{g}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{n}{g\PYZus{}good}\PY{o}{.}\PY{n}{index}\PY{p}{)}
-\PY{n}{axe}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{g\PYZus{}good}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{g\PYZus{}good}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{E\PYZus{}dor\PYZus{}init\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{o\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\PY{n}{axe}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{g\PYZus{}bad}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{g\PYZus{}bad}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{E\PYZus{}dor\PYZus{}init\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{*\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\PY{c+c1}{\PYZsh{}axe.set\PYZus{}yscale(\PYZsq{}symlog\PYZsq{})}
-
-\PY{n}{x} \PY{o}{=} \PY{n}{g\PYZus{}good}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-\PY{n}{y} \PY{o}{=} \PY{n}{g\PYZus{}good}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{E\PYZus{}dor\PYZus{}init\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-\PY{n}{g\PYZus{}fit\PYZus{}params} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{polyfit}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}
-\PY{n}{fit\PYZus{}func} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{poly1d}\PY{p}{(}\PY{n}{g\PYZus{}fit\PYZus{}params}\PY{p}{)}
-\PY{n}{g\PYZus{}bad\PYZus{}correct\PYZus{}y}  \PY{o}{=} \PY{n}{fit\PYZus{}func}\PY{p}{(}\PY{n}{g\PYZus{}bad}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
-\PY{n}{axe}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{g\PYZus{}bad}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{g\PYZus{}bad\PYZus{}correct\PYZus{}y}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{*}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\PY{n}{axe}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{g\PYZus{}bad}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{g\PYZus{}bad}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{E\PYZus{}dor\PYZus{}init\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{o}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\PY{c+c1}{\PYZsh{}calc\PYZus{}dF\PYZus{}all.loc[g\PYZus{}bad.index, \PYZsq{}E\PYZus{}dot\PYZus{}init\PYZus{}kT\PYZus{}estimation\PYZsq{}] = g\PYZus{}bad\PYZus{}correct\PYZus{}y}
-\PY{n}{axe}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{n}{res}\PY{o}{.}\PY{n}{x}\PY{p}{]}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sk}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\end{Verbatim}
-\end{tcolorbox}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-[-44.38907932659787, -36.3183376308528] -40.35370847872534
--41.30633031324422 302.13363055459274 -7.0 343.43996086783693 -831.45
--39.40108664420646 -72.91172499958748 -7.0 33.51063835538102 -85.05
--38.22358129989057 -133.46105303828375 -7.0 95.23747173839318 -249.16
--39.18799149811457 -85.75360457153246 -7.0 46.56561307341789 -118.83
--40.12882496892833 233.69682087378717 -7.0 273.8256458427155 -682.37
--39.67905794933431 -51.661664139179265 -7.0 11.982606189844958 -30.2
--39.850853663800486 217.79648537336854 -7.0 257.64733903716905 -646.53
--39.572882358672636 -61.307568012060905 -7.0 21.73468565338827 -54.92
--39.744678073138815 743.0728596993908 -7.0 782.8175377725297 -1969.62
--39.63850248247714 -55.58020457208415 -7.0 15.941702089607006 -40.22
--39.70412260628165 -48.76758603669991 -7.0 9.06346343041826 -22.83
--39.719613416191464 -46.72923054118849 -7.0 7.009617124997028 -17.65
--39.729187263228994 -44.97427061867904 -7.0 5.245083355450049 -13.2
--39.735104226101285 -43.45298551664229 -7.0 3.7178812905410084 -9.36
--39.73876111026653 -41.967745454725666 -7.0 2.2289843444591355 -5.61
--39.74102118897357 1806.571476529677 -7.0 1846.3124977186505 -4645.86
--39.73736430480833 -42.68037389634958 -7.0 2.943009591541248 -7.41
--39.73962438351537 -41.349110320900394 -7.0 1.609485937385024 -4.05
--39.74015791572473 -40.16753917319686 -7.0 0.42738125747212763 -1.08
--39.74048765676421 2510.0837152598288 -7.0 2549.824202916593 -6416.19
--39.73995412455485 -40.937006971267515 -7.0 1.1970528467126655 -3.01
--39.74028386559433 3466.0921896352834 -7.0 3505.8324735008778 -8821.86
--39.74008007442444 -40.57420843482378 -7.0 0.8341283603993404 -2.1
--39.74020602429404 1126.001356907539 -7.0 1165.7415629318332 -2933.41
--39.74012818299375 -40.41676615850405 -7.0 0.6766379755103031 -1.7
--39.74017629156305 157.14852428368027 -7.0 196.88870057524332 -495.44
--39.74014655883207 -40.28671064879005 -7.0 0.5465640899579753 -1.38
--39.740164934670396 -40.07292623821971 -7.0 0.33276130354931155 -0.84
--39.740169272617386 -39.95815150682751 -7.0 0.21798223421012608 -0.55
-     fun: 0.21798223421012608
- message: 'Solution found.'
-    nfev: 29
-  status: 0
- success: True
-       x: -39.740169272617386
--39.740169272617386
-0.21798223421012608
-    \end{Verbatim}
-
-            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{822}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-[<matplotlib.lines.Line2D at 0x7f4ca6b4fd30>]
-\end{Verbatim}
-\end{tcolorbox}
-        
-    \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{2-Grain-SMOX_files/2-Grain-SMOX_37_2.png}
-    \end{center}
-    { \hspace*{\fill} \\}
-    
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{517}{\boxspacing}
+\prompt{In}{incolor}{1233}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{}define a grain with a specific material}
 \PY{k}{def} \PY{n+nf}{create\PYZus{}grain}\PY{p}{(}\PY{n}{grainsize}\PY{p}{,} \PY{n}{T\PYZus{}C}\PY{p}{,} \PY{n}{ND}\PY{p}{)}\PY{p}{:}
@@ -1802,14 +1668,14 @@ This ``inital value problem'' is solved with the scipy tool solve\_ivp.
 \PY{n+nb}{print}\PY{p}{(}\PY{n}{g}\PY{o}{.}\PY{n}{R}\PY{o}{/}\PY{n}{g}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{LD}\PY{p}{)}
 
 
-\PY{n}{g} \PY{o}{=} \PY{n}{create\PYZus{}grain}\PY{p}{(}\PY{l+m+mf}{50e\PYZhy{}9}\PY{p}{,} \PY{n}{T\PYZus{}C}\PY{o}{=}\PY{l+m+mi}{300}\PY{p}{,} \PY{n}{ND}\PY{o}{=}\PY{l+m+mf}{9e21}\PY{o}{*}\PY{l+m+mi}{4}\PY{p}{)}
+\PY{n}{g} \PY{o}{=} \PY{n}{create\PYZus{}grain}\PY{p}{(}\PY{l+m+mf}{50e\PYZhy{}9}\PY{p}{,} \PY{n}{T\PYZus{}C}\PY{o}{=}\PY{l+m+mi}{300}\PY{p}{,} \PY{n}{ND}\PY{o}{=}\PY{l+m+mf}{9e24}\PY{o}{*}\PY{l+m+mi}{4}\PY{p}{)}
 \PY{n+nb}{print}\PY{p}{(}\PY{n}{g}\PY{o}{.}\PY{n}{R}\PY{o}{/}\PY{n}{g}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{LD}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
 2.5852950260293164
-2.5826601447764097
+45.47592892276805
     \end{Verbatim}
 
     In the following graph an example is given, where the initial value of
@@ -1822,14 +1688,20 @@ the grain with a material and calculate the solutions of the Poisson
 equation for multiple start parameters.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{525}{\boxspacing}
+\prompt{In}{incolor}{1234}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{T\PYZus{}C} \PY{o}{=} \PY{l+m+mi}{300}
+\PY{n}{ND} \PY{o}{=} \PY{l+m+mf}{2.14e24}
+\PY{n}{grain} \PY{o}{=} \PY{n}{create\PYZus{}grain}\PY{p}{(}\PY{l+m+mf}{110e\PYZhy{}9}\PY{p}{,} \PY{n}{T\PYZus{}C}\PY{p}{,} \PY{n}{ND}\PY{p}{)}
+
 \PY{n}{fig}\PY{p}{,} \PY{n}{axe} \PY{o}{=} \PY{n}{subplots}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{16}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{)}\PY{p}{)}
 \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}
 
-\PY{n}{E\PYZus{}init} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{kT\PYZus{}to\PYZus{}J}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{)}
-\PY{k}{for} \PY{n}{E\PYZus{}dot\PYZus{}init\PYZus{}kt} \PY{o+ow}{in} \PY{p}{[}\PY{l+m+mf}{0.8}\PY{p}{,}\PY{l+m+mf}{0.9}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{:}
-    \PY{n}{E\PYZus{}dot\PYZus{}init} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{kT\PYZus{}to\PYZus{}J}\PY{p}{(}\PY{n}{E\PYZus{}dot\PYZus{}init\PYZus{}kt}\PY{p}{)}
+\PY{n}{E\PYZus{}init\PYZus{}kT} \PY{o}{=} \PY{l+m+mi}{8}
+\PY{n}{E\PYZus{}init} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{kT\PYZus{}to\PYZus{}J}\PY{p}{(}\PY{n}{E\PYZus{}init\PYZus{}kT}\PY{p}{)}
+
+\PY{k}{for} \PY{n}{E\PYZus{}dot\PYZus{}init\PYZus{}kT} \PY{o+ow}{in} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{:}
+    \PY{n}{E\PYZus{}dot\PYZus{}init} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{kT\PYZus{}to\PYZus{}J}\PY{p}{(}\PY{n}{E\PYZus{}dot\PYZus{}init\PYZus{}kT}\PY{p}{)}
     \PY{n}{r}\PY{p}{,}\PY{n}{v}\PY{p}{,} \PY{n}{v\PYZus{}dot}\PY{p}{,} \PY{n}{data} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{solve\PYZus{}with\PYZus{}values}\PY{p}{(}\PY{n}{E\PYZus{}init}\PY{p}{,} \PY{n}{E\PYZus{}dot\PYZus{}init}\PY{p}{)}
 
 
@@ -1844,7 +1716,7 @@ equation for multiple start parameters.
 \end{tcolorbox}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{2-Grain-SMOX_files/2-Grain-SMOX_40_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{2-Grain-SMOX_files/2-Grain-SMOX_39_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -1890,7 +1762,7 @@ Integrate along the given axis using the composite trapezoidal rule.
 \texttt{np.trapz}}{Example usage of np.trapz}}\label{example-usage-of-np.trapz}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{441}{\boxspacing}
+\prompt{In}{incolor}{1235}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{x} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{]}
 \PY{n}{y} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}
@@ -1904,14 +1776,14 @@ Integrate along the given axis using the composite trapezoidal rule.
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{441}{\boxspacing}
+\prompt{Out}{outcolor}{1235}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 Text(3, 0.5, 'Integral: 4.0')
 \end{Verbatim}
 \end{tcolorbox}
         
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{2-Grain-SMOX_files/2-Grain-SMOX_43_1.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{2-Grain-SMOX_files/2-Grain-SMOX_42_1.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -1941,26 +1813,15 @@ previous equation. The algorithm should then find the best initial slope
 parameter to have a valid solution.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{339}{\boxspacing}
+\prompt{In}{incolor}{1342}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{optimize} \PY{k+kn}{import} \PY{n}{minimize\PYZus{}scalar}
+\PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{optimize} \PY{k+kn}{import} \PY{n}{minimize\PYZus{}scalar}\PY{p}{,}\PY{n}{bracket}
 
 
-\PY{k}{def} \PY{n+nf}{min\PYZus{}vdot}\PY{p}{(}\PY{n}{vdot\PYZus{}init}\PY{p}{,} \PY{n}{grain}\PY{p}{,} \PY{n}{vinit}\PY{p}{)}\PY{p}{:}
+\PY{k}{def} \PY{n+nf}{min\PYZus{}vdot}\PY{p}{(}\PY{n}{vdot\PYZus{}init}\PY{p}{,} \PY{n}{grain}\PY{p}{,} \PY{n}{vinit}\PY{p}{,} \PY{n}{debug} \PY{o}{=} \PY{k+kc}{False}\PY{p}{)}\PY{p}{:}
+    \PY{c+c1}{\PYZsh{}solve the ivp with the given values}
     \PY{n}{r}\PY{p}{,}\PY{n}{v}\PY{p}{,}\PY{n}{vdot}\PY{p}{,} \PY{n}{data} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{solve\PYZus{}with\PYZus{}values}\PY{p}{(}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{kT\PYZus{}to\PYZus{}J}\PY{p}{(}\PY{n}{vinit}\PY{p}{)}\PY{p}{,}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{kT\PYZus{}to\PYZus{}J}\PY{p}{(}\PY{n}{vdot\PYZus{}init}\PY{p}{)}\PY{p}{)}
-    \PY{c+c1}{\PYZsh{}the integration stops when the slope is zero. This might not be in the center (r*=0) of the grain. So we will expand the datapoints appropriatly}
-    \PY{c+c1}{\PYZsh{}for numerical reasons, we will not choose r*=0, but rather a very small r*.}
-    
-    \PY{c+c1}{\PYZsh{}kick this out, we dont need it anymore}
-    
-    \PY{c+c1}{\PYZsh{}r = np.concatenate([[0.01],r], axis=0)}
-    \PY{c+c1}{\PYZsh{}\PYZsh{}If the slope is zero, the slope should stay zero until the center}
-    \PY{c+c1}{\PYZsh{}vdot = np.concatenate([[0],vdot], axis=0)}
-    
-    \PY{c+c1}{\PYZsh{}\PYZsh{}and since the slope is zero, also the value should not change anymore}
-    \PY{c+c1}{\PYZsh{}v = np.concatenate([[v[0]],v], axis=0)}
-    
-    
+
     
     \PY{c+c1}{\PYZsh{}for each point of the solution the element in the integral is calculated}
     \PY{n}{integrand} \PY{o}{=} \PY{p}{[}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{kT\PYZus{}to\PYZus{}J}\PY{p}{(}\PY{n}{v\PYZus{}i}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{/}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{nb}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{o}{/}\PY{n}{r\PYZus{}i}\PY{o}{*}\PY{n}{vdot\PYZus{}i} \PY{k}{for} \PY{n}{r\PYZus{}i}\PY{p}{,} \PY{n}{v\PYZus{}i}\PY{p}{,} \PY{n}{vdot\PYZus{}i} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{r}\PY{p}{,} \PY{n}{v}\PY{p}{,} \PY{n}{vdot}\PY{p}{)}\PY{p}{]}
@@ -1969,25 +1830,20 @@ parameter to have a valid solution.
     \PY{n}{dV} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{trapz}\PY{p}{(}\PY{n}{y}\PY{o}{=}\PY{n}{integrand}\PY{p}{,}\PY{n}{x}\PY{o}{=}\PY{n}{r}\PY{p}{)}
     
     \PY{c+c1}{\PYZsh{}The integral should be the same as the slope at the surface, the differenc is the error to be minimized}
-    \PY{n}{res} \PY{o}{=} \PY{n+nb}{abs}\PY{p}{(}\PY{n}{dV}\PY{o}{\PYZhy{}}\PY{n}{vdot}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+    \PY{n}{res} \PY{o}{=} \PY{n+nb}{abs}\PY{p}{(}\PY{p}{(}\PY{n}{dV}\PY{o}{\PYZhy{}}\PY{n}{vdot}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}
     
-    \PY{c+c1}{\PYZsh{}Debug output}
-    \PY{c+c1}{\PYZsh{}print(res, vdot[\PYZhy{}1])}
-    
-    \PY{c+c1}{\PYZsh{}return the \PYZsq{}error\PYZsq{} to be minimized}
-    \PY{n}{percent\PYZus{}error} \PY{o}{=} \PY{n+nb}{abs}\PY{p}{(}\PY{n}{res}\PY{o}{/}\PY{n}{vdot\PYZus{}init}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{)}
-    
-    \PY{n+nb}{print}\PY{p}{(}\PY{n}{vdot\PYZus{}init}\PY{p}{,} \PY{n}{dV}\PY{p}{,} \PY{n}{vinit}\PY{p}{,} \PY{n}{res}\PY{p}{,} \PY{n+nb}{round}\PY{p}{(}\PY{n}{percent\PYZus{}error}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
-    
-    \PY{k}{return} \PY{n}{percent\PYZus{}error}
+    \PY{k}{if} \PY{n}{debug}\PY{p}{:}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{vdot\PYZus{}init}\PY{p}{,} \PY{n}{dV}\PY{p}{,} \PY{n}{vinit}\PY{p}{,} \PY{n}{res}\PY{p}{)}
+    \PY{k}{return} \PY{n}{res}
 
-\PY{k}{def} \PY{n+nf}{find\PYZus{}best\PYZus{}v\PYZus{}dot\PYZus{}init}\PY{p}{(}\PY{n}{E\PYZus{}init\PYZus{}kT}\PY{p}{,} \PY{n}{grain}\PY{p}{)}\PY{p}{:}
-    \PY{c+c1}{\PYZsh{}find for a given inital value E\PYZus{}init\PYZus{}kT, the correspoding E\PYZus{}init\PYZus{}dot\PYZus{}kT}
-    \PY{n}{bounds} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{p}{[}\PY{n}{E\PYZus{}init\PYZus{}kT}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
-    \PY{c+c1}{\PYZsh{}res = minimize\PYZus{}scalar(min\PYZus{}vdot,  bounds=bounds, tol=abs(E\PYZus{}init\PYZus{}kT/10000), method=\PYZsq{}Bounded\PYZsq{}, args=(grain, E\PYZus{}init\PYZus{}kT))}
-    \PY{c+c1}{\PYZsh{}min\PYZus{}vdot return the relative error in percent to the optimal sollution, we will stop at 1\PYZpc{} error}
-    
-    \PY{n}{res} \PY{o}{=} \PY{n}{minimize\PYZus{}scalar}\PY{p}{(}\PY{n}{min\PYZus{}vdot}\PY{p}{,} \PY{n}{bounds}\PY{o}{=}\PY{n}{bounds}\PY{p}{,} \PY{n}{method}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Bounded}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{args}\PY{o}{=}\PY{p}{(}\PY{n}{grain}\PY{p}{,} \PY{n}{E\PYZus{}init\PYZus{}kT}\PY{p}{)}\PY{p}{,} \PY{n}{tol}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{k}{def} \PY{n+nf}{find\PYZus{}best\PYZus{}E\PYZus{}dot\PYZus{}init}\PY{p}{(}\PY{n}{E\PYZus{}init\PYZus{}kT}\PY{p}{,} \PY{n}{grain}\PY{p}{,}\PY{n}{debug} \PY{o}{=} \PY{k+kc}{False}\PY{p}{,} \PY{n}{bounds} \PY{o}{=} \PY{k+kc}{None}\PY{p}{)}\PY{p}{:}
+    \PY{c+c1}{\PYZsh{}if bounds are given as a hint for the minimize algorithm, then the method=\PYZsq{}Bounded\PYZsq{} can be used}
+    \PY{c+c1}{\PYZsh{}In this case the algorithm will search in the biven interval}
+    \PY{k}{if} \PY{n}{bounds}\PY{p}{:}
+        \PY{n}{res} \PY{o}{=} \PY{n}{minimize\PYZus{}scalar}\PY{p}{(}\PY{n}{min\PYZus{}vdot}\PY{p}{,}\PY{n}{args}\PY{o}{=}\PY{p}{(}\PY{n}{grain}\PY{p}{,} \PY{n}{E\PYZus{}init\PYZus{}kT}\PY{p}{,} \PY{n}{debug}\PY{p}{)}\PY{p}{,} \PY{n}{method} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Bounded}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bounds} \PY{o}{=} \PY{n}{bounds}\PY{p}{)}
+    \PY{k}{else}\PY{p}{:}
+        \PY{n}{res} \PY{o}{=} \PY{n}{minimize\PYZus{}scalar}\PY{p}{(}\PY{n}{min\PYZus{}vdot}\PY{p}{,}\PY{n}{args}\PY{o}{=}\PY{p}{(}\PY{n}{grain}\PY{p}{,} \PY{n}{E\PYZus{}init\PYZus{}kT}\PY{p}{,} \PY{n}{debug}\PY{p}{)}\PY{p}{)}
+    \PY{c+c1}{\PYZsh{}res = bracket(min\PYZus{}vdot,xa=bounds[1], xb=bounds[0],args=(grain, E\PYZus{}init\PYZus{}kT, debug))}
     \PY{k}{return} \PY{n}{res}
 \end{Verbatim}
 \end{tcolorbox}
@@ -1996,27 +1852,34 @@ parameter to have a valid solution.
 extended with a better guess.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{526}{\boxspacing}
+\prompt{In}{incolor}{1345}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{grain} \PY{o}{=} \PY{n}{Grain}\PY{p}{(}\PY{l+m+mf}{100e\PYZhy{}9}\PY{p}{,}\PY{n}{material}\PY{p}{)}
+\PY{c+c1}{\PYZsh{}grain = Grain(100e\PYZhy{}9,material)}
+
+
+\PY{n}{T\PYZus{}C} \PY{o}{=} \PY{l+m+mi}{300}
+\PY{n}{ND} \PY{o}{=} \PY{l+m+mf}{2.14e24}
+\PY{n}{grain} \PY{o}{=} \PY{n}{create\PYZus{}grain}\PY{p}{(}\PY{l+m+mf}{110e\PYZhy{}9}\PY{p}{,} \PY{n}{T\PYZus{}C}\PY{p}{,} \PY{n}{ND}\PY{p}{)}
 
 \PY{n}{fig}\PY{p}{,} \PY{n}{axe} \PY{o}{=} \PY{n}{subplots}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{16}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{)}\PY{p}{)}
-\PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{8}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{)}
+\PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}
+
 \PY{n}{E\PYZus{}init\PYZus{}kT} \PY{o}{=} \PY{l+m+mi}{8}
 \PY{n}{E\PYZus{}init} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{kT\PYZus{}to\PYZus{}J}\PY{p}{(}\PY{n}{E\PYZus{}init\PYZus{}kT}\PY{p}{)}
-\PY{k}{for} \PY{n}{E\PYZus{}dot\PYZus{}init\PYZus{}kT} \PY{o+ow}{in} \PY{p}{[}\PY{l+m+mf}{0.8}\PY{p}{,}\PY{l+m+mf}{0.9}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{:}
+
+\PY{k}{for} \PY{n}{E\PYZus{}dot\PYZus{}init\PYZus{}kT} \PY{o+ow}{in} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{:}
     \PY{n}{E\PYZus{}dot\PYZus{}init} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{kT\PYZus{}to\PYZus{}J}\PY{p}{(}\PY{n}{E\PYZus{}dot\PYZus{}init\PYZus{}kT}\PY{p}{)}
     \PY{n}{r}\PY{p}{,}\PY{n}{v}\PY{p}{,} \PY{n}{v\PYZus{}dot}\PY{p}{,} \PY{n}{data} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{solve\PYZus{}with\PYZus{}values}\PY{p}{(}\PY{n}{E\PYZus{}init}\PY{p}{,} \PY{n}{E\PYZus{}dot\PYZus{}init}\PY{p}{)}
+    \PY{n}{axe}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{r}\PY{p}{,}\PY{n}{v}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{dotE\PYZus{}}\PY{l+s+si}{\PYZob{}Surface\PYZcb{}}\PY{l+s+s1}{\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{+} \PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{= }\PY{l+s+si}{\PYZob{}E\PYZus{}dot\PYZus{}init\PYZus{}kT:.2f\PYZcb{}}\PY{l+s+s1}{[\PYZdl{}k\PYZus{}BT\PYZdl{}/\PYZdl{}L\PYZus{}D\PYZdl{}]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 
-
-    \PY{n}{axe}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{r}\PY{p}{,}\PY{n}{v}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{n}{E\PYZus{}dot\PYZus{}init\PYZus{}kT}\PY{p}{)}
     
-\PY{n}{res} \PY{o}{=} \PY{n}{find\PYZus{}best\PYZus{}v\PYZus{}dot\PYZus{}init}\PY{p}{(}\PY{n}{E\PYZus{}init\PYZus{}kT}\PY{p}{,} \PY{n}{grain}\PY{p}{)}
+\PY{c+c1}{\PYZsh{}Now we will try to find the best inital slope to solve the equation}
+\PY{n}{res} \PY{o}{=} \PY{n}{find\PYZus{}best\PYZus{}E\PYZus{}dot\PYZus{}init}\PY{p}{(}\PY{n}{E\PYZus{}init\PYZus{}kT}\PY{p}{,} \PY{n}{grain}\PY{p}{)}
+\PY{n}{res}
 \PY{n}{E\PYZus{}dot\PYZus{}init\PYZus{}kT} \PY{o}{=} \PY{n}{res}\PY{o}{.}\PY{n}{x}
 \PY{n}{E\PYZus{}dot\PYZus{}init} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{kT\PYZus{}to\PYZus{}J}\PY{p}{(}\PY{n}{E\PYZus{}dot\PYZus{}init\PYZus{}kT}\PY{p}{)}
 \PY{n}{r}\PY{p}{,}\PY{n}{v}\PY{p}{,} \PY{n}{v\PYZus{}dot}\PY{p}{,} \PY{n}{data} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{solve\PYZus{}with\PYZus{}values}\PY{p}{(}\PY{n}{E\PYZus{}init}\PY{p}{,} \PY{n}{E\PYZus{}dot\PYZus{}init}\PY{p}{)}
-
-\PY{n}{axe}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{r}\PY{p}{,}\PY{n}{v}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}*}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}E\PYZus{}dot\PYZus{}init\PYZus{}kT:.2f\PYZcb{}}\PY{l+s+s1}{ minimized}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{axe}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{r}\PY{p}{,}\PY{n}{v}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}*}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{dotE\PYZus{}}\PY{l+s+si}{\PYZob{}Surface\PYZcb{}}\PY{l+s+s1}{\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{+} \PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{= }\PY{l+s+si}{\PYZob{}E\PYZus{}dot\PYZus{}init\PYZus{}kT:.2f\PYZcb{}}\PY{l+s+s1}{[\PYZdl{}k\PYZus{}BT\PYZdl{}/\PYZdl{}L\PYZus{}D\PYZdl{}] minimized}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
     
 \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}E\PYZus{}C(r\PYZca{}*)\PYZdl{} [\PYZdl{}k\PYZus{}BT\PYZdl{}]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{22}\PY{p}{)}
 \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}\PY{l+s+s2}{Position in grain [\PYZdl{}L\PYZus{}D\PYZdl{} = }\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{grain.material.LD*1e9:.2f\PYZcb{}nm],}\PY{l+s+se}{\PYZbs{}n}
@@ -2025,17 +1888,100 @@ extended with a better guess.
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-<ipython-input-515-3b454f08259c>:33: RuntimeWarning: divide by zero encountered
-in double\_scalars
-  percent\_error = res/vdot\_init*100
-    \end{Verbatim}
-
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{2-Grain-SMOX_files/2-Grain-SMOX_47_1.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{2-Grain-SMOX_files/2-Grain-SMOX_46_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
+    \hypertarget{additional-relevant-paramters}{%
+\subsubsection{Additional relevant
+paramters}\label{additional-relevant-paramters}}
+
+From the above solution some additional results may be calcuated with
+too much of computational effort. For instance the total number of free
+charge carries inside the grain. From the shape charge distribution
+inside the grain, a simple integral of the values over the volume of the
+sphere will reveal this value. The difference of this value to the value
+in the flat band situation should then be the number of charges
+(electrons) trapped at the surface \(N^-_{Surface}\). The projection of
+the concentration of donors \(N_D\) inside the grain onto the surface
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{1353}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{calc\PYZus{}sum\PYZus{}of\PYZus{}charges}\PY{p}{(}\PY{n}{grain}\PY{p}{,} \PY{n}{r}\PY{p}{,} \PY{n}{v}\PY{p}{)}\PY{p}{:}
+    \PY{n}{ser} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+    \PY{c+c1}{\PYZsh{}Geometric properties}
+    \PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{R}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{R}
+    \PY{n}{grain\PYZus{}volume} \PY{o}{=} \PY{l+m+mf}{4.0}\PY{o}{/}\PY{l+m+mf}{3.0}\PY{o}{*}\PY{n}{pi}\PY{o}{*}\PY{p}{(}\PY{n}{grain}\PY{o}{.}\PY{n}{R}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3}\PY{p}{)}
+    \PY{n}{grain\PYZus{}surface} \PY{o}{=} \PY{l+m+mf}{4.0}\PY{o}{*}\PY{n}{pi}\PY{o}{*}\PY{p}{(}\PY{n}{grain}\PY{o}{.}\PY{n}{R}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+    \PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{grain\PYZus{}vol}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{grain\PYZus{}volume}
+    \PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{grain\PYZus{}surface}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{grain\PYZus{}surface}
+    
+    \PY{c+c1}{\PYZsh{} calcualte the acctual free charge carrier conc. from the position inside the grain}
+    \PY{n}{n} \PY{o}{=} \PY{p}{[}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{n}{v\PYZus{}J}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{k}{for} \PY{n}{v\PYZus{}J} \PY{o+ow}{in} \PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{kT\PYZus{}to\PYZus{}J}\PY{p}{(}\PY{n}{v}\PY{p}{)}\PY{p}{]}
+    \PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{n}
+    
+    \PY{c+c1}{\PYZsh{} charges in grain and at the surface}
+    \PY{n}{all\PYZus{}c\PYZus{}at\PYZus{}flatband} \PY{o}{=} \PY{l+m+mf}{4.0}\PY{o}{/}\PY{l+m+mf}{3.0}\PY{o}{*}\PY{n}{pi}\PY{o}{*}\PY{p}{(}\PY{n}{grain}\PY{o}{.}\PY{n}{R}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3}\PY{p}{)}\PY{o}{*}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+    \PY{n}{charges\PYZus{}at\PYZus{}surface} \PY{o}{=} \PY{n}{all\PYZus{}c\PYZus{}at\PYZus{}flatband}\PY{o}{\PYZhy{}}\PY{n}{np}\PY{o}{.}\PY{n}{trapz}\PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{p}{(}\PY{n}{r}\PY{o}{*}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{LD}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3}\PY{o}{*}\PY{l+m+mi}{4}\PY{o}{/}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{pi}\PY{p}{)}
+    
+    \PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{all\PYZus{}c\PYZus{}at\PYZus{}flatband}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{all\PYZus{}c\PYZus{}at\PYZus{}flatband}
+    \PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{charges\PYZus{}trapped\PYZus{}at\PYZus{}surface}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{charges\PYZus{}at\PYZus{}surface}
+    \PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{surface\PYZus{}vacancies\PYZus{}projection}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{ND}\PY{o}{*}\PY{p}{(}\PY{p}{(}\PY{n}{grain}\PY{o}{.}\PY{n}{R}\PY{o}{+}\PY{l+m+mf}{0.1}\PY{o}{*}\PY{l+m+mf}{1e\PYZhy{}9}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3} \PY{o}{\PYZhy{}} \PY{n}{grain}\PY{o}{.}\PY{n}{R}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3}\PY{p}{)}\PY{o}{*}\PY{l+m+mi}{4}\PY{o}{/}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{pi}
+
+    
+
+    
+    
+    \PY{c+c1}{\PYZsh{}additional paramters}
+    \PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{temp}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{T\PYZus{}C}
+    \PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mass\PYZus{}eff}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{MASS\PYZus{}E\PYZus{}EFF}
+    \PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ND}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{ND}
+    \PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{EPSILON}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{EPSILON}
+    \PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{nb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{nb}
+    \PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{E\PYZus{}Fermi}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{J\PYZus{}to\PYZus{}kT}\PY{p}{(}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{Diff\PYZus{}EF\PYZus{}EC}\PY{p}{)}
+
+    \PY{k}{return} \PY{n}{ser}
+
+\PY{n}{calc\PYZus{}charges} \PY{o}{=} \PY{n}{calc\PYZus{}sum\PYZus{}of\PYZus{}charges}\PY{p}{(}\PY{n}{grain}\PY{p}{,} \PY{n}{r}\PY{p}{,} \PY{n}{v}\PY{p}{)}
+\PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{calc\PYZus{}charges}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{1353}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+R
+1.1e-07
+grain\_vol
+5.57528e-21
+grain\_surface
+1.52053e-13
+n                               [3.696182155339544e+24,
+3.696182155339544e+24,{\ldots}
+all\_c\_at\_flatband
+20631.2
+charges\_trapped\_at\_surface
+5093.45
+surface\_vacancies\_projection
+32.569
+temp
+300
+mass\_eff
+2.73282e-31
+ND
+2.14e+24
+EPSILON
+9.86
+nb
+3.70048e+24
+E\_Fermi
+-0.95967
+dtype: object
+\end{Verbatim}
+\end{tcolorbox}
+        
     \hypertarget{putting-the-pieces-together}{%
 \subsubsection{Putting the pieces
 together}\label{putting-the-pieces-together}}
@@ -2063,7 +2009,7 @@ The following code part import \texttt{pandas} and creates a
 \texttt{Dataframe}, where all our results will be stored.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{908}{\boxspacing}
+\prompt{In}{incolor}{1354}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
 \PY{c+c1}{\PYZsh{}The results will be saved in a DataFrame}
@@ -2074,59 +2020,35 @@ The following code part import \texttt{pandas} and creates a
     Next, we need to create the numerical representation of the material.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{684}{\boxspacing}
+\prompt{In}{incolor}{1438}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{solve\PYZus{}grain\PYZus{}for\PYZus{}E\PYZus{}init\PYZus{}kT}\PY{p}{(}\PY{n}{E\PYZus{}init\PYZus{}kT}\PY{p}{,}\PY{n}{grain}\PY{p}{,} \PY{n}{debug} \PY{o}{=} \PY{k+kc}{False}\PY{p}{,} \PY{n}{bounds} \PY{o}{=} \PY{k+kc}{None}\PY{p}{)}\PY{p}{:}
+    \PY{n}{res} \PY{o}{=} \PY{n}{find\PYZus{}best\PYZus{}E\PYZus{}dot\PYZus{}init}\PY{p}{(}\PY{n}{E\PYZus{}init\PYZus{}kT}\PY{p}{,} \PY{n}{grain}\PY{p}{,}\PY{n}{debug} \PY{o}{=} \PY{n}{debug}\PY{p}{,} \PY{n}{bounds} \PY{o}{=} \PY{n}{bounds}\PY{p}{)}
+
+    \PY{n}{ser\PYZus{}temp} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{p}{)}
+    \PY{n}{ser\PYZus{}temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{E\PYZus{}init\PYZus{}kT}
+    \PY{n}{ser\PYZus{}temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{E\PYZus{}dot\PYZus{}init\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{res}\PY{o}{.}\PY{n}{x}
+    \PY{n}{ser\PYZus{}temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{res}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{res}\PY{o}{.}\PY{n}{fun}
+
+
+    \PY{n}{r}\PY{p}{,}\PY{n}{v}\PY{p}{,}\PY{n}{vdot}\PY{p}{,} \PY{n}{data} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{solve\PYZus{}with\PYZus{}values}\PY{p}{(}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{kT\PYZus{}to\PYZus{}J}\PY{p}{(}\PY{n}{E\PYZus{}init\PYZus{}kT}\PY{p}{)}\PY{p}{,}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{kT\PYZus{}to\PYZus{}J}\PY{p}{(}\PY{n}{res}\PY{o}{.}\PY{n}{x}\PY{p}{)}\PY{p}{,} \PY{p}{)}
+
+    \PY{n}{ser\PYZus{}temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{v}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{v}
+    \PY{n}{ser\PYZus{}temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{v\PYZus{}dot}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{vdot}
+    \PY{n}{ser\PYZus{}temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{r}
+
+    \PY{n}{derived\PYZus{}values\PYZus{}dict} \PY{o}{=} \PY{n}{calc\PYZus{}sum\PYZus{}of\PYZus{}charges}\PY{p}{(}\PY{n}{grain}\PY{p}{,} \PY{n}{r}\PY{p}{,} \PY{n}{v}\PY{p}{)}
+    \PY{n}{ser\PYZus{}temp} \PY{o}{=} \PY{n}{ser\PYZus{}temp}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{derived\PYZus{}values\PYZus{}dict}\PY{p}{)}\PY{p}{)}
+    \PY{k}{return} \PY{n}{ser\PYZus{}temp}
+
+
 \PY{k}{def} \PY{n+nf}{calcualte\PYZus{}conduction\PYZus{}band}\PY{p}{(}\PY{n}{grain}\PY{p}{)}\PY{p}{:}
     \PY{n}{dF\PYZus{}calc\PYZus{}temp} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{)}
-    \PY{c+c1}{\PYZsh{}for vinit in [\PYZhy{}8,\PYZhy{}4,\PYZhy{}2,\PYZhy{}1,0,1,2,4,8]:}
-    \PY{k}{for} \PY{n}{vinit} \PY{o+ow}{in} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{11}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{:}
-    \PY{c+c1}{\PYZsh{}for vinit in [\PYZhy{}8,8]:}
-        \PY{c+c1}{\PYZsh{}print(f\PYZsq{}Solving for \PYZob{}vinit\PYZcb{}\PYZsq{})}
-        \PY{k}{if} \PY{n}{vinit} \PY{o+ow}{in} \PY{n}{dF\PYZus{}calc}\PY{o}{.}\PY{n}{index}\PY{p}{:}
-            \PY{k}{pass}
-        \PY{n}{bounds} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{p}{[}\PY{n}{vinit}\PY{o}{*}\PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
-        \PY{n}{res} \PY{o}{=} \PY{n}{find\PYZus{}best\PYZus{}v\PYZus{}dot\PYZus{}init}\PY{p}{(}\PY{n}{vinit}\PY{p}{,} \PY{n}{grain}\PY{p}{)}
-        \PY{c+c1}{\PYZsh{}res = minimize\PYZus{}scalar(min\PYZus{}vdot,  bounds=bounds, tol=abs(vinit/10000), method=\PYZsq{}Bounded\PYZsq{})}
-        \PY{n}{ser\PYZus{}temp} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{p}{)}
-        \PY{n}{ser\PYZus{}temp}\PY{o}{.}\PY{n}{name} \PY{o}{=} \PY{n}{vinit}
-        \PY{n}{ser\PYZus{}temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{vinit}
-        \PY{n}{ser\PYZus{}temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{E\PYZus{}dor\PYZus{}init\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{res}\PY{o}{.}\PY{n}{x}
-        \PY{n}{ser\PYZus{}temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{res}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{res}\PY{o}{.}\PY{n}{fun}
-
-
-
-        \PY{n}{r}\PY{p}{,}\PY{n}{v}\PY{p}{,}\PY{n}{vdot}\PY{p}{,} \PY{n}{data} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{solve\PYZus{}with\PYZus{}values}\PY{p}{(}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{kT\PYZus{}to\PYZus{}J}\PY{p}{(}\PY{n}{vinit}\PY{p}{)}\PY{p}{,}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{kT\PYZus{}to\PYZus{}J}\PY{p}{(}\PY{n}{res}\PY{o}{.}\PY{n}{x}\PY{p}{)}\PY{p}{,} \PY{p}{)}
-        
-        \PY{n}{ser\PYZus{}temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{v}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{v}
-        \PY{n}{ser\PYZus{}temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{v\PYZus{}dot}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{vdot}
-        \PY{n}{ser\PYZus{}temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{r}
-        
-        \PY{n}{n} \PY{o}{=} \PY{p}{[}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{n}{v\PYZus{}J}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{k}{for} \PY{n}{v\PYZus{}J} \PY{o+ow}{in} \PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{kT\PYZus{}to\PYZus{}J}\PY{p}{(}\PY{n}{v}\PY{p}{)}\PY{p}{]}
-        \PY{n}{ser\PYZus{}temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{n}
-        
-        \PY{c+c1}{\PYZsh{}dont need it anymore}
-        \PY{c+c1}{\PYZsh{}r = np.concatenate([[0.01],r], axis=0)}
-        \PY{c+c1}{\PYZsh{}v = np.concatenate([[v[0]],v], axis=0)}
-        \PY{c+c1}{\PYZsh{}vdot = np.concatenate([[0],vdot], axis=0)}
-        
-        \PY{n}{ser\PYZus{}temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{R}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{R}
-        \PY{n}{ser\PYZus{}temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{temp}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{T\PYZus{}C}
-
-        \PY{n}{ser\PYZus{}temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mass\PYZus{}eff}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{MASS\PYZus{}E\PYZus{}EFF}
-        \PY{n}{ser\PYZus{}temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ND}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{ND}
-        \PY{n}{ser\PYZus{}temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{EPSILON}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{EPSILON}
-        \PY{n}{ser\PYZus{}temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{nb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{nb}
-        
-
-        
-
-        
-        \PY{c+c1}{\PYZsh{}surf\PYZus{}charges = np.trapz((np.array(4*pi*ser\PYZus{}temp[\PYZsq{}n\PYZsq{}]))*(ser\PYZus{}temp[\PYZsq{}r\PYZsq{}]*grain.material.LD)**2, ser\PYZus{}temp[\PYZsq{}r\PYZsq{}]*grain.material.LD)}
-        \PY{c+c1}{\PYZsh{}all\PYZus{}charges = 4/3*pi*(ser[\PYZsq{}R\PYZsq{}]**3)*grain.material.nb}
-        \PY{c+c1}{\PYZsh{}ser\PYZus{}temp[\PYZsq{}trapped\PYZus{}charges\PYZsq{}] = surf\PYZus{}charges}
-        \PY{c+c1}{\PYZsh{}ser\PYZus{}temp[\PYZsq{}all\PYZus{}\PYZus{}charges\PYZsq{}] = all\PYZus{}charges}
-        
-        \PY{n}{dF\PYZus{}calc\PYZus{}temp} \PY{o}{=} \PY{n}{dF\PYZus{}calc\PYZus{}temp}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{ser\PYZus{}temp}\PY{p}{)}
+    \PY{c+c1}{\PYZsh{}for E\PYZus{}init\PYZus{}kT in [\PYZhy{}8,0,8]:}
+    \PY{c+c1}{\PYZsh{}for E\PYZus{}init\PYZus{}kT in [\PYZhy{}8,\PYZhy{}4,\PYZhy{}2,\PYZhy{}1,0,1,2,4,8]:}
+    \PY{k}{for} \PY{n}{E\PYZus{}init\PYZus{}kT} \PY{o+ow}{in} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{11}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{:}      
+        \PY{n}{ser\PYZus{}temp} \PY{o}{=} \PY{n}{solve\PYZus{}grain\PYZus{}for\PYZus{}E\PYZus{}init\PYZus{}kT}\PY{p}{(}\PY{n}{E\PYZus{}init\PYZus{}kT}\PY{p}{,}\PY{n}{grain}\PY{p}{)}    
+        \PY{n}{dF\PYZus{}calc\PYZus{}temp} \PY{o}{=} \PY{n}{dF\PYZus{}calc\PYZus{}temp}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{ser\PYZus{}temp}\PY{p}{,} \PY{n}{ignore\PYZus{}index}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
     \PY{k}{return} \PY{n}{dF\PYZus{}calc\PYZus{}temp}
 
 
@@ -2134,18 +2056,18 @@ The following code part import \texttt{pandas} and creates a
     \PY{n}{grain} \PY{o}{=} \PY{n}{create\PYZus{}grain}\PY{p}{(}\PY{n}{grainsize}\PY{p}{,} \PY{n}{ND}\PY{o}{=}\PY{n}{ND}\PY{p}{,} \PY{n}{T\PYZus{}C}\PY{o}{=}\PY{n}{T\PYZus{}C}\PY{p}{)}
     \PY{n}{dF\PYZus{}calc\PYZus{}temp} \PY{o}{=} \PY{n}{calcualte\PYZus{}conduction\PYZus{}band}\PY{p}{(}\PY{n}{grain}\PY{p}{)}
     \PY{k}{return} \PY{n}{dF\PYZus{}calc\PYZus{}temp}
+\end{Verbatim}
+\end{tcolorbox}
 
-
-
-
-
-
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{1418}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} create a list of the tuples with (T\PYZus{}C, ND, Grainradius) to be alter caluculated in parallel}
 \PY{n}{params} \PY{o}{=} \PY{p}{[}\PY{p}{]}
 \PY{n}{T\PYZus{}C} \PY{o}{=} \PY{l+m+mi}{300}
-\PY{n}{ND\PYZus{}ref} \PY{o}{=} \PY{l+m+mf}{9e21}
-\PY{k}{for} \PY{n}{ND} \PY{o+ow}{in} \PY{p}{[}\PY{n}{ND\PYZus{}ref}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{ND\PYZus{}ref}\PY{p}{,} \PY{n}{ND\PYZus{}ref}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{:}
-    \PY{k}{for} \PY{n}{grainsize} \PY{o+ow}{in} \PY{p}{[} \PY{l+m+mf}{50e\PYZhy{}9}\PY{p}{,} \PY{l+m+mf}{100e\PYZhy{}9}\PY{p}{,} \PY{l+m+mf}{200e\PYZhy{}9}\PY{p}{,} \PY{l+m+mf}{400e\PYZhy{}9}\PY{p}{]}\PY{p}{:}
+\PY{n}{ND\PYZus{}ref} \PY{o}{=} \PY{l+m+mf}{1e21}
+\PY{k}{for} \PY{n}{ND} \PY{o+ow}{in} \PY{p}{[}\PY{n}{ND\PYZus{}ref}\PY{p}{,} \PY{n}{ND\PYZus{}ref}\PY{o}{*}\PY{l+m+mf}{1e1}\PY{p}{,} \PY{n}{ND\PYZus{}ref}\PY{o}{*}\PY{l+m+mf}{1e2}\PY{p}{,} \PY{n}{ND\PYZus{}ref}\PY{o}{*}\PY{l+m+mf}{1e3}\PY{p}{]}\PY{p}{:}
+    \PY{k}{for} \PY{n}{grainsize} \PY{o+ow}{in} \PY{p}{[} \PY{l+m+mf}{6.25e\PYZhy{}9}\PY{p}{,} \PY{l+m+mf}{12.5e\PYZhy{}9}\PY{p}{,} \PY{l+m+mf}{25e\PYZhy{}9}\PY{p}{,}\PY{l+m+mf}{50e\PYZhy{}9}\PY{p}{,}\PY{l+m+mf}{100e\PYZhy{}9}\PY{p}{]}\PY{p}{:}
         \PY{n}{params}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{(}\PY{n}{T\PYZus{}C}\PY{p}{,} \PY{n}{ND}\PY{p}{,} \PY{n}{grainsize}\PY{p}{)}\PY{p}{)}
 
 \PY{n+nb}{print}\PY{p}{(}\PY{n}{params}\PY{p}{)}
@@ -2155,88 +2077,38 @@ The following code part import \texttt{pandas} and creates a
 \PY{k+kn}{from} \PY{n+nn}{multiprocessing} \PY{k+kn}{import} \PY{n}{Pool}
 \PY{k}{with} \PY{n}{Pool}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{)} \PY{k}{as} \PY{n}{p}\PY{p}{:}
     \PY{n}{all\PYZus{}res\PYZus{}list} \PY{o}{=} \PY{n}{p}\PY{o}{.}\PY{n}{starmap}\PY{p}{(}\PY{n}{calc\PYZus{}solution\PYZus{}by\PYZus{}parameters}\PY{p}{,} \PY{n}{params}\PY{p}{)}
+    \PY{k}{pass}
         
         
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-[(300, 4.5e+21, 5e-08), (300, 4.5e+21, 1e-07), (300, 4.5e+21, 2e-07), (300,
-4.5e+21, 4e-07), (300, 9e+21, 5e-08), (300, 9e+21, 1e-07), (300, 9e+21, 2e-07),
-(300, 9e+21, 4e-07), (300, 1.8e+22, 5e-08), (300, 1.8e+22, 1e-07), (300,
-1.8e+22, 2e-07), (300, 1.8e+22, 4e-07)]
-    \end{Verbatim}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-<ipython-input-682-dbc76d7b83ac>:33: RuntimeWarning: divide by zero encountered
-in double\_scalars
-  percent\_error = res/vdot\_init*100
-<ipython-input-682-dbc76d7b83ac>:33: RuntimeWarning: divide by zero encountered
-in double\_scalars
-  percent\_error = res/vdot\_init*100
-<ipython-input-682-dbc76d7b83ac>:33: RuntimeWarning: divide by zero encountered
-in double\_scalars
-  percent\_error = res/vdot\_init*100
-<ipython-input-682-dbc76d7b83ac>:33: RuntimeWarning: divide by zero encountered
-in double\_scalars
-  percent\_error = res/vdot\_init*100
-<ipython-input-682-dbc76d7b83ac>:33: RuntimeWarning: divide by zero encountered
-in double\_scalars
-  percent\_error = res/vdot\_init*100
-<ipython-input-682-dbc76d7b83ac>:33: RuntimeWarning: divide by zero encountered
-in double\_scalars
-  percent\_error = res/vdot\_init*100
-<ipython-input-682-dbc76d7b83ac>:33: RuntimeWarning: divide by zero encountered
-in double\_scalars
-  percent\_error = res/vdot\_init*100
-<ipython-input-682-dbc76d7b83ac>:33: RuntimeWarning: divide by zero encountered
-in double\_scalars
-  percent\_error = res/vdot\_init*100
-<ipython-input-682-dbc76d7b83ac>:33: RuntimeWarning: invalid value encountered
-in double\_scalars
-  percent\_error = res/vdot\_init*100
-<ipython-input-682-dbc76d7b83ac>:33: RuntimeWarning: invalid value encountered
-in double\_scalars
-  percent\_error = res/vdot\_init*100
-<ipython-input-682-dbc76d7b83ac>:33: RuntimeWarning: invalid value encountered
-in double\_scalars
-  percent\_error = res/vdot\_init*100
-<ipython-input-682-dbc76d7b83ac>:33: RuntimeWarning: invalid value encountered
-in double\_scalars
-  percent\_error = res/vdot\_init*100
-<ipython-input-682-dbc76d7b83ac>:33: RuntimeWarning: invalid value encountered
-in double\_scalars
-  percent\_error = res/vdot\_init*100
-<ipython-input-682-dbc76d7b83ac>:33: RuntimeWarning: invalid value encountered
-in double\_scalars
-  percent\_error = res/vdot\_init*100
-<ipython-input-682-dbc76d7b83ac>:33: RuntimeWarning: invalid value encountered
-in double\_scalars
-  percent\_error = res/vdot\_init*100
-<ipython-input-682-dbc76d7b83ac>:33: RuntimeWarning: invalid value encountered
-in double\_scalars
-  percent\_error = res/vdot\_init*100
+[(300, 1e+21, 6.25e-09), (300, 1e+21, 1.25e-08), (300, 1e+21, 2.5e-08), (300,
+1e+21, 5e-08), (300, 1e+21, 1e-07), (300, 1e+22, 6.25e-09), (300, 1e+22,
+1.25e-08), (300, 1e+22, 2.5e-08), (300, 1e+22, 5e-08), (300, 1e+22, 1e-07),
+(300, 1e+23, 6.25e-09), (300, 1e+23, 1.25e-08), (300, 1e+23, 2.5e-08), (300,
+1e+23, 5e-08), (300, 1e+23, 1e-07), (300, 1e+24, 6.25e-09), (300, 1e+24,
+1.25e-08), (300, 1e+24, 2.5e-08), (300, 1e+24, 5e-08), (300, 1e+24, 1e-07)]
     \end{Verbatim}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{685}{\boxspacing}
+\prompt{In}{incolor}{1419}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{dF\PYZus{}calc} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{n}{all\PYZus{}res\PYZus{}list}\PY{p}{)}
 \PY{n}{dF\PYZus{}calc}\PY{o}{.}\PY{n}{index} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{dF\PYZus{}calc}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
-    \ldots{} or screen even some more parameters \ldots{}
-
     \hypertarget{exportimport-data}{%
 \paragraph{Export/Import data}\label{exportimport-data}}
 
-The date will be saved for later use and to avoid a recalcualtion. It is
-helpful to directly reimport the data to see if any mistakes in saving
-the date have happened.
+The date will be saved for later use and to avoid a re-calculation. It
+is helpful to directly re-import the data to see if any mistakes have
+happened while saving the date.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{843}{\boxspacing}
+\prompt{In}{incolor}{1420}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{dF\PYZus{}calc}\PY{o}{.}\PY{n}{to\PYZus{}hdf}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{results.h5}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{raw}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{mode}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{w}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \end{Verbatim}
@@ -2253,14 +2125,14 @@ map directly to c-types [inferred\_type->mixed,key->block1\_values] [items->['n'
     \end{Verbatim}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{893}{\boxspacing}
+\prompt{In}{incolor}{1421}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{calc\PYZus{}dF\PYZus{}all} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}hdf}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{results.h5}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{raw}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{877}{\boxspacing}
+\prompt{In}{incolor}{1422}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k}{def} \PY{n+nf}{create\PYZus{}grain\PYZus{}from\PYZus{}data}\PY{p}{(}\PY{n}{dF}\PY{p}{)}\PY{p}{:}
     \PY{k}{if} \PY{n+nb}{type}\PY{p}{(}\PY{n}{dF}\PY{p}{)}\PY{o}{==}\PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{:}
@@ -2301,35 +2173,43 @@ map directly to c-types [inferred\_type->mixed,key->block1\_values] [items->['n'
 minima}\label{estimate-correct-solutions-of-incorrectly-found-minima}}
 
 Sometimes the function to minimize the function does not work was
-expected. In most cases the searching algorithm does just not find the
-minimum of the function and stops after a given number of iterations.
-Generally this could be fixed, additional hints are given to the
-minimization algorithm. Especially a narrow definition of the region,
-where the minimum is to be found is very helpful. To check our solutions
-,we could try to represent these solutions and mark the points, where
-the minimization result is still too high. Since we have solution for
+expected. In most cases the searching algorithm may find a local minimum
+and miss the global minimum. Generally this problem could be solved by
+suppling additional hints to the minimization algorithm, where to look
+for the minimum. To do so we could find the the points, where the
+minimization result is too high. Here again, a graphical representation
+is helpful for a better understanding. Since we have solution for
 multiple doping levels (\(N_D\)) and multiple grain radii (\(R\)), I
 will represent each combination individually. The Pandas
-\texttt{groupby} function allows to split dataframes temporally by group
-labels. By grouping the all the results by the label-tuple (\(N_D\),
-\(R\)), Pandas will do the work and we can represent the individual
-result separetly. since the data halds also a column named \texttt{res}
-with the final result from the minimalization, we can distingush godd
-and bad results very easy.
+\texttt{groupby} function allows to split \texttt{DataFrames} temporally
+by a given group label. By grouping the all the results by the
+label-tuple (\(N_D\), \(R\)), Pandas will do the work and we can
+represent the individual result separately. Since the data holds also a
+column named \texttt{res} with the final result from the minimalization,
+we can distinguish good and bad results easily.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{881}{\boxspacing}
+\prompt{In}{incolor}{1423}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{gs} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}all}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ND}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{R}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
-\PY{n}{fig}\PY{p}{,} \PY{n}{axe} \PY{o}{=} \PY{n}{subplots}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{gs}\PY{p}{)}\PY{o}{/}\PY{o}{/}\PY{l+m+mi}{5}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{16}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{)}\PY{p}{)}
+\PY{n}{fig}\PY{p}{,} \PY{n}{axe} \PY{o}{=} \PY{n}{subplots}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{gs}\PY{p}{)}\PY{o}{/}\PY{o}{/}\PY{l+m+mi}{5}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{16}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{)}\PY{p}{,} \PY{n}{sharey}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
 
 \PY{n}{calc\PYZus{}dF\PYZus{}all}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{E\PYZus{}dot\PYZus{}init\PYZus{}kT\PYZus{}estimation}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{k+kc}{None}
 \PY{k}{for} \PY{n}{ax\PYZus{}i}\PY{p}{,} \PY{p}{(}\PY{p}{(}\PY{n}{ND}\PY{p}{,}\PY{n}{R}\PY{p}{)}\PY{p}{,} \PY{n}{g}\PY{p}{)} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{gs}\PY{p}{)}\PY{p}{:}
+    \PY{c+c1}{\PYZsh{}select the axe}
     \PY{n}{axe} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{axes}\PY{p}{[}\PY{n}{ax\PYZus{}i}\PY{p}{]}
+    
+    \PY{c+c1}{\PYZsh{}selecting on ly the good results by using the \PYZsq{}res\PYZsq{} field}
     \PY{n}{g\PYZus{}good} \PY{o}{=} \PY{n}{g}\PY{p}{[}\PY{n}{g}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{res}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{\PYZlt{}}\PY{l+m+mi}{2}\PY{p}{]}
+    
+    \PY{c+c1}{\PYZsh{}the bad ones are the complent of the good ones; droping the good ones from all results leaves the bad ones back}
     \PY{n}{g\PYZus{}bad} \PY{o}{=} \PY{n}{g}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{n}{g\PYZus{}good}\PY{o}{.}\PY{n}{index}\PY{p}{)}
-    \PY{n}{axe}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{g\PYZus{}good}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{g\PYZus{}good}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{E\PYZus{}dor\PYZus{}init\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{o\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-    \PY{n}{axe}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{g\PYZus{}bad}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{g\PYZus{}bad}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{E\PYZus{}dor\PYZus{}init\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{o}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+    
+    \PY{c+c1}{\PYZsh{}plotting the good and bad results}
+    \PY{n}{axe}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{g\PYZus{}good}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{g\PYZus{}good}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{E\PYZus{}dot\PYZus{}init\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{o\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+    \PY{n}{axe}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{g\PYZus{}bad}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{g\PYZus{}bad}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{E\PYZus{}dot\PYZus{}init\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{o}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+    
+    \PY{c+c1}{\PYZsh{}some plotting sugar}
     \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}yscale}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{symlog}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
     \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}ND\PYZcb{}}\PY{l+s+s1}{,}\PY{l+s+si}{\PYZob{}R\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
     \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}E\PYZus{}}\PY{l+s+si}{\PYZob{}Surface\PYZcb{}}\PY{l+s+s1}{\PYZdl{} [\PYZdl{}k\PYZus{}BT\PYZdl{}]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{22}\PY{p}{)}
@@ -2339,63 +2219,65 @@ and bad results very easy.
 \end{tcolorbox}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{2-Grain-SMOX_files/2-Grain-SMOX_59_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{2-Grain-SMOX_files/2-Grain-SMOX_60_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
     The good results can be distinguished well from the bad ones, where the
-algorithm failed. Additionally a trained eye is bale to give the
+algorithm failed. Additionally a trained eye is able to estimate the
 interval, where the correct solution might should lye. As humans can, so
-does python. For this problem a simple polynomial fit of the good points
+does Python. For this problem a simple polynomial fit of the good points
 is enough. Once the parameters of the polynom are fitted, a estimation
-of the correct solution of the failed points can be calcuated. In the
-following plot, this is done. Since we will need the estimation of the
-correct value as a stating point for a second minimation, we will add
-this value to the Dataframe holding all solutions. Since this function
-might become very handy to check the solution, we will wrap it into a
-function and reuse it alter.
+of the correct solution of the failed points can be calculated. In the
+following plot, this is done. Since we will need the predicted result as
+a starting point for a second minimization, we will add this value to
+the DataFrame holding all solutions and naming it appropriately . Since
+this function might become very handy to check the solution, we will
+wrap it into a function and reuse it alter.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{894}{\boxspacing}
+\prompt{In}{incolor}{1453}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k}{def} \PY{n+nf}{check\PYZus{}solutions}\PY{p}{(}\PY{n}{calc\PYZus{}dF\PYZus{}all}\PY{p}{)}\PY{p}{:}
     \PY{n}{gs} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}all}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ND}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{R}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
-    \PY{n}{fig}\PY{p}{,} \PY{n}{axes} \PY{o}{=} \PY{n}{subplots}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{gs}\PY{p}{)}\PY{o}{/}\PY{o}{/}\PY{l+m+mi}{5}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{16}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{)}\PY{p}{)}
+    \PY{n}{fig}\PY{p}{,} \PY{n}{axes} \PY{o}{=} \PY{n}{subplots}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{gs}\PY{p}{)}\PY{o}{/}\PY{o}{/}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{16}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{)}\PY{p}{,} \PY{n}{sharex}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{sharey}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
 
     \PY{n}{calc\PYZus{}dF\PYZus{}all}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{E\PYZus{}dot\PYZus{}init\PYZus{}kT\PYZus{}estimation}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{k+kc}{None}
     \PY{k}{for} \PY{n}{ax\PYZus{}i}\PY{p}{,} \PY{p}{(}\PY{p}{(}\PY{n}{ND}\PY{p}{,}\PY{n}{R}\PY{p}{)}\PY{p}{,} \PY{n}{g}\PY{p}{)} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{gs}\PY{p}{)}\PY{p}{:}
         \PY{n}{axe} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{axes}\PY{p}{[}\PY{n}{ax\PYZus{}i}\PY{p}{]}
-        \PY{n}{g\PYZus{}good} \PY{o}{=} \PY{n}{g}\PY{p}{[}\PY{n}{g}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{res}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{\PYZlt{}}\PY{l+m+mi}{2}\PY{p}{]}
+        \PY{n}{g\PYZus{}good} \PY{o}{=} \PY{n}{g}\PY{p}{[}\PY{n}{g}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{res}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{\PYZlt{}}\PY{l+m+mi}{1}\PY{p}{]}
         \PY{n}{g\PYZus{}bad} \PY{o}{=} \PY{n}{g}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{n}{g\PYZus{}good}\PY{o}{.}\PY{n}{index}\PY{p}{)}
-        \PY{n}{axe}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{g\PYZus{}good}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{g\PYZus{}good}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{E\PYZus{}dor\PYZus{}init\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{o\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Good solution}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-        \PY{n}{axe}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{g\PYZus{}bad}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{g\PYZus{}bad}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{E\PYZus{}dor\PYZus{}init\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{o}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Bad solution}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{axe}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{g\PYZus{}good}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{g\PYZus{}good}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{E\PYZus{}dot\PYZus{}init\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{o\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Good solution}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{axe}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{g\PYZus{}bad}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{g\PYZus{}bad}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{E\PYZus{}dot\PYZus{}init\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{o}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Bad solution}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
         \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}yscale}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{symlog}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
         \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}ND\PYZcb{}}\PY{l+s+s1}{,}\PY{l+s+si}{\PYZob{}R\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-        \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}E\PYZus{}}\PY{l+s+si}{\PYZob{}Surface\PYZcb{}}\PY{l+s+s1}{\PYZdl{} [\PYZdl{}k\PYZus{}BT\PYZdl{}]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{22}\PY{p}{)}
-        \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{dot}\PY{l+s+si}{\PYZob{}E\PYZcb{}}\PY{l+s+s1}{\PYZus{}}\PY{l+s+si}{\PYZob{}Surface\PYZcb{}}\PY{l+s+s1}{\PYZdl{} [\PYZdl{}k\PYZus{}BT\PYZdl{}]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{22}\PY{p}{)}
+        \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}E\PYZus{}}\PY{l+s+si}{\PYZob{}Surface\PYZcb{}}\PY{l+s+s1}{\PYZdl{} [\PYZdl{}k\PYZus{}BT\PYZdl{}]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{15}\PY{p}{)}
+        \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{dot}\PY{l+s+si}{\PYZob{}E\PYZcb{}}\PY{l+s+s1}{\PYZus{}}\PY{l+s+si}{\PYZob{}Surface\PYZcb{}}\PY{l+s+s1}{\PYZdl{} [\PYZdl{}k\PYZus{}BT\PYZdl{}]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{15}\PY{p}{)}
 
         \PY{n}{x} \PY{o}{=} \PY{n}{g\PYZus{}good}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-        \PY{n}{y} \PY{o}{=} \PY{n}{g\PYZus{}good}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{E\PYZus{}dor\PYZus{}init\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-        \PY{n}{g\PYZus{}fit\PYZus{}params} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{polyfit}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}
+        \PY{n}{y} \PY{o}{=} \PY{n}{g\PYZus{}good}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{E\PYZus{}dot\PYZus{}init\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        \PY{n}{w} \PY{o}{=} \PY{n}{g\PYZus{}good}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{res}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        \PY{n}{g\PYZus{}fit\PYZus{}params} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{polyfit}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{w}\PY{o}{=}\PY{n}{w}\PY{p}{)}
         \PY{n}{fit\PYZus{}func} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{poly1d}\PY{p}{(}\PY{n}{g\PYZus{}fit\PYZus{}params}\PY{p}{)}
         \PY{n}{g\PYZus{}bad\PYZus{}correct\PYZus{}y}  \PY{o}{=} \PY{n}{fit\PYZus{}func}\PY{p}{(}\PY{n}{g\PYZus{}bad}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
         \PY{n}{axe}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{g\PYZus{}bad}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{g\PYZus{}bad\PYZus{}correct\PYZus{}y}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{*k}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{markersize}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.5}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Estimated solution}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
         \PY{n}{calc\PYZus{}dF\PYZus{}all}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{g\PYZus{}bad}\PY{o}{.}\PY{n}{index}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{E\PYZus{}dot\PYZus{}init\PYZus{}kT\PYZus{}estimation}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{g\PYZus{}bad\PYZus{}correct\PYZus{}y}
-        \PY{n}{fig}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+        
 
-    \PY{n}{axe} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{axes}\PY{p}{[}\PY{n}{ax\PYZus{}i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}
+    \PY{n}{axe} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
     \PY{n}{axe}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{o}{*}\PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{get\PYZus{}legend\PYZus{}handles\PYZus{}labels}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+    \PY{n}{fig}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
 \PY{n}{check\PYZus{}solutions}\PY{p}{(}\PY{n}{calc\PYZus{}dF\PYZus{}all}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{2-Grain-SMOX_files/2-Grain-SMOX_61_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{2-Grain-SMOX_files/2-Grain-SMOX_62_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
     By using the estimated correct values of the slope at the surface of the
-grain, the function \texttt{find\_best\_v\_dot\_init} for the bad
+grain, the function \texttt{find\_best\_E\_dot\_init} for the bad
 solutions is repeated. Since the good solutions will have no value for
 the ``estimated correct value'', we will use this fact to select the
 rows in the DataFrame which need to be recalculated.
@@ -2405,53 +2287,65 @@ rows in the DataFrame which need to be recalculated.
 \ldots{}}\label{recalculating-the-failed-solutions-with-a-little-help}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{909}{\boxspacing}
+\prompt{In}{incolor}{1439}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{k}{for} \PY{n}{row\PYZus{}i}\PY{p}{,} \PY{n}{ser\PYZus{}temp} \PY{o+ow}{in} \PY{n}{calc\PYZus{}dF\PYZus{}all}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{n}{subset}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{E\PYZus{}dot\PYZus{}init\PYZus{}kT\PYZus{}estimation}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{iterrows}\PY{p}{(}\PY{p}{)}\PY{p}{:}
-
+\PY{k}{def} \PY{n+nf}{recalculate\PYZus{}by\PYZus{}index}\PY{p}{(}\PY{n}{index}\PY{p}{)}\PY{p}{:}
+    \PY{n}{ser\PYZus{}temp} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}all}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{index}\PY{p}{]}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
     \PY{n}{grain} \PY{o}{=} \PY{n}{create\PYZus{}grain\PYZus{}from\PYZus{}data}\PY{p}{(}\PY{n}{ser\PYZus{}temp}\PY{p}{)}
     \PY{n}{E\PYZus{}init\PYZus{}kT} \PY{o}{=} \PY{n}{ser\PYZus{}temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+    
+    
     
     \PY{c+c1}{\PYZsh{}This is the estimated value from the polynomial fit}
     \PY{n}{estim} \PY{o}{=} \PY{n}{ser\PYZus{}temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{E\PYZus{}dot\PYZus{}init\PYZus{}kT\PYZus{}estimation}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
     \PY{c+c1}{\PYZsh{}Since the correct solution sould be in proximity of this solution, an interval is created from this value (here +\PYZhy{}10\PYZpc{})}
     \PY{n}{bounds} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{p}{(}\PY{n}{estim}\PY{o}{*}\PY{l+m+mf}{0.9}\PY{p}{,} \PY{n}{estim}\PY{o}{*}\PY{l+m+mf}{1.1}\PY{p}{)}\PY{p}{)}
+    \PY{n}{ser\PYZus{}new} \PY{o}{=} \PY{n}{solve\PYZus{}grain\PYZus{}for\PYZus{}E\PYZus{}init\PYZus{}kT}\PY{p}{(}\PY{n}{E\PYZus{}init\PYZus{}kT}\PY{p}{,}\PY{n}{grain}\PY{p}{,} \PY{n}{debug} \PY{o}{=} \PY{k+kc}{False}\PY{p}{,} \PY{n}{bounds} \PY{o}{=} \PY{n}{bounds}\PY{p}{)}
+    \PY{n}{ser\PYZus{}new}\PY{o}{.}\PY{n}{name} \PY{o}{=} \PY{n}{ser\PYZus{}temp}\PY{o}{.}\PY{n}{name}
+    \PY{n}{ser\PYZus{}temp}\PY{o}{.}\PY{n}{update}\PY{p}{(}\PY{n}{ser\PYZus{}new}\PY{p}{)}
+    \PY{k}{return} \PY{n}{ser\PYZus{}temp}
     
-    \PY{c+c1}{\PYZsh{}find the minima again}
-    \PY{n}{res} \PY{o}{=} \PY{n}{find\PYZus{}best\PYZus{}v\PYZus{}dot\PYZus{}init}\PY{p}{(}\PY{n}{E\PYZus{}init\PYZus{}kT}\PY{p}{,} \PY{n}{grain}\PY{p}{,}\PY{n}{debug}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} \PY{n}{bounds}\PY{o}{=}\PY{n}{bounds}\PY{p}{)}
-    
-    \PY{c+c1}{\PYZsh{}save the relevant paramters}
-    \PY{n}{ser\PYZus{}temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{E\PYZus{}dor\PYZus{}init\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{res}\PY{o}{.}\PY{n}{x}
-    \PY{n}{ser\PYZus{}temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{res}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{res}\PY{o}{.}\PY{n}{fun}
-
-    \PY{n}{r}\PY{p}{,}\PY{n}{v}\PY{p}{,}\PY{n}{vdot}\PY{p}{,} \PY{n}{data} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{solve\PYZus{}with\PYZus{}values}\PY{p}{(}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{kT\PYZus{}to\PYZus{}J}\PY{p}{(}\PY{n}{E\PYZus{}init\PYZus{}kT}\PY{p}{)}\PY{p}{,}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{kT\PYZus{}to\PYZus{}J}\PY{p}{(}\PY{n}{res}\PY{o}{.}\PY{n}{x}\PY{p}{)}\PY{p}{,} \PY{p}{)}
-
-    \PY{n}{ser\PYZus{}temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{v}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{v}
-    \PY{n}{ser\PYZus{}temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{v\PYZus{}dot}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{vdot}
-    \PY{n}{ser\PYZus{}temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{r}
-    \PY{n}{n} \PY{o}{=} \PY{p}{[}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{n}{v\PYZus{}J}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{k}{for} \PY{n}{v\PYZus{}J} \PY{o+ow}{in} \PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{kT\PYZus{}to\PYZus{}J}\PY{p}{(}\PY{n}{v}\PY{p}{)}\PY{p}{]}
-    \PY{n}{ser\PYZus{}temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{n}
-    
-    \PY{c+c1}{\PYZsh{}overwrite the existing solution with the optimized on.}
-    \PY{n}{calc\PYZus{}dF\PYZus{}all}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{ser\PYZus{}temp}\PY{o}{.}\PY{n}{name}\PY{p}{]} \PY{o}{=} \PY{n}{ser\PYZus{}temp}
-\PY{n}{calc\PYZus{}dF\PYZus{}all}\PY{o}{.}\PY{n}{to\PYZus{}hdf}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{results.h5}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{corr}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{mode}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{a}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{c+c1}{\PYZsh{}calc\PYZus{}dF\PYZus{}all.loc[ser\PYZus{}temp.name] = ser\PYZus{}new}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{910}{\boxspacing}
+\prompt{In}{incolor}{1448}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n+nb}{len}\PY{p}{(}\PY{n}{calc\PYZus{}dF\PYZus{}all}\PY{p}{)}
+\PY{n}{index\PYZus{}to\PYZus{}recalc} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n}{calc\PYZus{}dF\PYZus{}all}\PY{p}{[}\PY{n}{calc\PYZus{}dF\PYZus{}all}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{res}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{\PYZgt{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{n}{subset}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{E\PYZus{}dot\PYZus{}init\PYZus{}kT\PYZus{}estimation}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{index}\PY{p}{)}
+\PY{k+kn}{from} \PY{n+nn}{multiprocessing} \PY{k+kn}{import} \PY{n}{Pool}
+
+\PY{k}{if} \PY{n+nv+vm}{\PYZus{}\PYZus{}name\PYZus{}\PYZus{}} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZus{}\PYZus{}main\PYZus{}\PYZus{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+    \PY{n}{p} \PY{o}{=} \PY{n}{Pool}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{)}
+    \PY{n}{new\PYZus{}sers} \PY{o}{=} \PY{n}{p}\PY{o}{.}\PY{n}{map}\PY{p}{(}\PY{n}{recalculate\PYZus{}by\PYZus{}index}\PY{p}{,} \PY{n}{index\PYZus{}to\PYZus{}recalc}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
-            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{910}{\boxspacing}
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{1443}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-252
+\PY{k}{for} \PY{n}{s} \PY{o+ow}{in} \PY{n}{new\PYZus{}sers}\PY{p}{:}
+    \PY{n}{calc\PYZus{}dF\PYZus{}all}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{s}\PY{o}{.}\PY{n}{name}\PY{p}{]} \PY{o}{=} \PY{n}{s}
 \end{Verbatim}
 \end{tcolorbox}
-        
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{1444}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{calc\PYZus{}dF\PYZus{}all}\PY{o}{.}\PY{n}{to\PYZus{}hdf}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{results.h5}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{corr}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{mode}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{a}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/usr/lib/python3.8/site-packages/pandas/core/generic.py:2530:
+PerformanceWarning:
+your performance may suffer as PyTables will pickle object types that it cannot
+map directly to c-types [inferred\_type->mixed,key->block1\_values] [items->['n',
+'r', 'v', 'v\_dot', 'E\_dot\_init\_kT\_estimation']]
+
+  pytables.to\_hdf(path\_or\_buf, key, self, **kwargs)
+    \end{Verbatim}
+
     \hypertarget{checking-the-solutions}{%
 \subsubsection{Checking the solutions}\label{checking-the-solutions}}
 
@@ -2459,20 +2353,22 @@ rows in the DataFrame which need to be recalculated.
 should reveal some insight about its quality.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{903}{\boxspacing}
+\prompt{In}{incolor}{1454}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{calc\PYZus{}dF\PYZus{}all} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}hdf}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{results.h5}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{corr}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{calc\PYZus{}dF\PYZus{}all}\PY{p}{[}\PY{n}{calc\PYZus{}dF\PYZus{}all}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{res}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{\PYZgt{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}
 \PY{n}{check\PYZus{}solutions}\PY{p}{(}\PY{n}{calc\PYZus{}dF\PYZus{}all}\PY{p}{)}
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The maximal }\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{error}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{ of the minimization is :}\PY{l+s+s1}{\PYZob{}}\PY{l+s+s1}{calc\PYZus{}dF\PYZus{}all[}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{res}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{].max()\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-The maximal "error" of the minimization is :0.5170560064489109
+17
+The maximal "error" of the minimization is :14990.140443668204
     \end{Verbatim}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{2-Grain-SMOX_files/2-Grain-SMOX_68_1.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{2-Grain-SMOX_files/2-Grain-SMOX_71_1.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -2481,10 +2377,10 @@ The maximal "error" of the minimization is :0.5170560064489109
 grain}\label{shape-of-the-potential-drop-inside-the-grain}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{907}{\boxspacing}
+\prompt{In}{incolor}{1455}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k}{for} \PY{n}{ND}\PY{p}{,} \PY{n}{calc\PYZus{}dF} \PY{o+ow}{in} \PY{n}{calc\PYZus{}dF\PYZus{}all}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ND}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
-    \PY{n}{fig}\PY{p}{,} \PY{n}{axes}\PY{o}{=} \PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{16}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{)}\PY{p}{,} \PY{n}{sharex}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+    \PY{n}{fig}\PY{p}{,} \PY{n}{axes}\PY{o}{=} \PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{16}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{)}\PY{p}{,} \PY{n}{sharex}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
     \PY{n}{fig}\PY{o}{.}\PY{n}{suptitle}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ND = }\PY{l+s+si}{\PYZob{}ND\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{+} \PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{frac}\PY{l+s+si}{\PYZob{}1\PYZcb{}}\PY{l+s+s1}{\PYZob{}}\PY{l+s+s1}{m\PYZca{}3\PYZcb{}\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize} \PY{o}{=} \PY{l+m+mi}{22}\PY{p}{)}
     \PY{c+c1}{\PYZsh{}fig.suptitle(f\PYZsq{}\PYZdl{}\PYZbs{}\PYZbs{}num\PYZob{}\PYZob{}\PYZob{}2e\PYZhy{}10\PYZcb{}\PYZcb{}\PYZcb{}\PYZdl{}\PYZsq{}, fontsize = 22)}
     
@@ -2492,14 +2388,17 @@ grain}\label{shape-of-the-potential-drop-inside-the-grain}}
         \PY{n}{axe} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{axes}\PY{p}{[}\PY{n}{ax\PYZus{}i}\PY{p}{]}
 
         \PY{n}{grain} \PY{o}{=} \PY{n}{create\PYZus{}grain\PYZus{}from\PYZus{}data}\PY{p}{(}\PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{)}
-
+        
 
         \PY{n}{axe}\PY{o}{.}\PY{n}{axhline}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{J\PYZus{}to\PYZus{}kT}\PY{p}{(}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{Diff\PYZus{}EF\PYZus{}EC}\PY{p}{)}\PY{p}{,}
                     \PY{n}{linestyle}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Fermi Level}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
         \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}
+        \PY{n}{axe}\PY{o}{.}\PY{n}{axhspan}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{k}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{pm 1 k\PYZus{}BT\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 
         \PY{k}{for} \PY{n}{vinit}\PY{p}{,} \PY{n}{ser\PYZus{}temp} \PY{o+ow}{in} \PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{o}{.}\PY{n}{iterrows}\PY{p}{(}\PY{p}{)}\PY{p}{:}
-
+            \PY{k}{if} \PY{n}{ser\PYZus{}temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{res}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{\PYZgt{}}\PY{l+m+mi}{5}\PY{p}{:}
+                \PY{k}{continue}
+                
             \PY{n}{r} \PY{o}{=} \PY{n}{ser\PYZus{}temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
             \PY{n}{v} \PY{o}{=} \PY{n}{ser\PYZus{}temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{v}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
             \PY{n}{vdot} \PY{o}{=} \PY{n}{ser\PYZus{}temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{v\PYZus{}dot}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
@@ -2522,7 +2421,7 @@ grain}\label{shape-of-the-potential-drop-inside-the-grain}}
 \end{tcolorbox}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{2-Grain-SMOX_files/2-Grain-SMOX_70_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{2-Grain-SMOX_files/2-Grain-SMOX_73_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -2535,7 +2434,7 @@ grain}\label{shape-of-the-potential-drop-inside-the-grain}}
     \end{Verbatim}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{2-Grain-SMOX_files/2-Grain-SMOX_70_2.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{2-Grain-SMOX_files/2-Grain-SMOX_73_2.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -2548,7 +2447,20 @@ grain}\label{shape-of-the-potential-drop-inside-the-grain}}
     \end{Verbatim}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{2-Grain-SMOX_files/2-Grain-SMOX_70_4.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{2-Grain-SMOX_files/2-Grain-SMOX_73_4.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+
+
+
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{2-Grain-SMOX_files/2-Grain-SMOX_73_6.png}
     \end{center}
     { \hspace*{\fill} \\}
     
