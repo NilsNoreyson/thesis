@@ -379,6 +379,293 @@
     \bibliographystyle{alphadin}
 \bibliography{ipython}
 
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{129}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{from} \PY{n+nn}{part2} \PY{k+kn}{import} \PY{o}{*}
+
+\PY{k}{def} \PY{n+nf}{create\PYZus{}grain\PYZus{}from\PYZus{}data}\PY{p}{(}\PY{n}{dF}\PY{p}{)}\PY{p}{:}
+    \PY{k}{if} \PY{n+nb}{type}\PY{p}{(}\PY{n}{dF}\PY{p}{)}\PY{o}{==}\PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{:}
+        \PY{n}{dF} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{[}\PY{n}{dF}\PY{p}{]}\PY{p}{)}
+        
+    \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{dF}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{temp}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{o}{==}\PY{l+m+mi}{1}\PY{p}{:}
+        \PY{n}{T\PYZus{}C} \PY{o}{=} \PY{n}{dF}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{temp}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+    \PY{k}{else}\PY{p}{:}
+        \PY{k}{raise} \PY{n+ne}{Exception}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Multiple paramters for one grain are invalid.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+    
+    \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{dF}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ND}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{o}{==}\PY{l+m+mi}{1}\PY{p}{:}
+        \PY{n}{ND} \PY{o}{=} \PY{n}{dF}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ND}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+    \PY{k}{else}\PY{p}{:}
+        \PY{k}{raise} \PY{n+ne}{Exception}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Multiple paramters for one grain are invalid.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+    
+    \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{dF}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mass\PYZus{}eff}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{o}{==}\PY{l+m+mi}{1}\PY{p}{:}
+        \PY{n}{mass\PYZus{}e\PYZus{}eff\PYZus{}factor} \PY{o}{=} \PY{n}{dF}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mass\PYZus{}eff}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{/}\PY{n}{CONST}\PY{o}{.}\PY{n}{MASS\PYZus{}E} 
+    \PY{k}{else}\PY{p}{:}
+        \PY{k}{raise} \PY{n+ne}{Exception}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Multiple paramters for one grain are invalid.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+    
+    \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{dF}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{R}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{o}{==}\PY{l+m+mi}{1}\PY{p}{:}
+        \PY{n}{grainsize\PYZus{}radius} \PY{o}{=} \PY{n}{dF}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{R}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+    \PY{k}{else}\PY{p}{:}
+        \PY{k}{raise} \PY{n+ne}{Exception}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Multiple paramters for one grain are invalid.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+
+    
+
+    \PY{n}{material} \PY{o}{=} \PY{n}{Material}\PY{p}{(}\PY{n}{T\PYZus{}C}\PY{p}{,}\PY{n}{ND}\PY{p}{)}
+    \PY{n}{grain} \PY{o}{=} \PY{n}{Grain}\PY{p}{(}\PY{n}{grainsize\PYZus{}radius}\PY{o}{=}\PY{n}{grainsize\PYZus{}radius}\PY{p}{,}\PY{n}{material}\PY{o}{=}\PY{n}{material}\PY{p}{)}
+    
+    \PY{k}{return} \PY{n}{grain}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \hypertarget{data-from-the-publication}{%
+\subsection{Data from the publication}\label{data-from-the-publication}}
+
+    \begin{figure}
+\centering
+\includegraphics{media/rawdata450_1000.jpg}
+\caption{test}
+\end{figure}
+
+    \hypertarget{import-the-experimental-results}{%
+\section{Import the experimental
+results}\label{import-the-experimental-results}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{130}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{calc\PYZus{}dF} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}hdf}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{numerical\PYZus{}sol\PYZus{}2.h5}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{raw}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+
+\PY{n}{dF\PYZus{}450} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}excel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Kelvin\PYZus{}Data.xlsx}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{sheet\PYZus{}name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ipc450}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dV}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{dF\PYZus{}1000} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}excel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Kelvin\PYZus{}Data.xlsx}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{sheet\PYZus{}name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ipc1000}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dV}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+
+\PY{n}{gs} \PY{o}{=} \PY{n}{calc\PYZus{}dF}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{R}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ND}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{131}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{o}{\PYZpc{}}\PY{k}{pylab} qt5
+\PY{o}{\PYZpc{}}\PY{k}{matplotlib} qt5
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Populating the interactive namespace from numpy and matplotlib
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/usr/lib/python3.8/site-packages/IPython/core/magics/pylab.py:159: UserWarning:
+pylab import has clobbered these variables: ['interp', 'axes']
+`\%matplotlib` prevents importing * from pylab and numpy
+  warn("pylab import has clobbered these variables: \%s"  \% clobbered +
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{132}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{optimize} \PY{k+kn}{import} \PY{n}{curve\PYZus{}fit}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{133}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{fig}\PY{p}{,} \PY{n}{axe} \PY{o}{=} \PY{n}{subplots}\PY{p}{(}\PY{p}{)}
+\PY{n}{axe}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{dF\PYZus{}450}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dV}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}\PY{n}{dF\PYZus{}450}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{res}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}yscale}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{log}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mf}{0.2}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mf}{1.2}\PY{p}{)}
+\PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mf}{1e9}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{133}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+(10, 1000000000.0)
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{4-Exp-data_files/4-Exp-data_10_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{134}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{sizes} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{IPC 1000}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{p}{[}\PY{l+m+mf}{100e\PYZhy{}9}\PY{p}{,} \PY{l+m+mf}{50e\PYZhy{}9}\PY{p}{]}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{IPC 450}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{p}{[}\PY{l+m+mf}{6.25e\PYZhy{}9}\PY{p}{,} \PY{l+m+mf}{12.5e\PYZhy{}9}\PY{p}{]}\PY{p}{\PYZcb{}}
+\PY{n}{sizes} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{IPC 1000}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{p}{[}\PY{l+m+mf}{50e\PYZhy{}9}\PY{p}{]}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{IPC 450}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{p}{[}\PY{l+m+mf}{6.25e\PYZhy{}9}\PY{p}{]}\PY{p}{\PYZcb{}}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{136}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{o}{\PYZpc{}}\PY{k}{pylab} inline
+\PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{optimize} \PY{k+kn}{import} \PY{n}{curve\PYZus{}fit}
+\PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{interpolate} \PY{k+kn}{import} \PY{n}{interp1d}
+\PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+
+
+\PY{k}{def} \PY{n+nf}{fit\PYZus{}func}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{a}\PY{p}{,} \PY{n}{b}\PY{p}{,} \PY{n}{c}\PY{p}{,}\PY{n}{d}\PY{p}{,}\PY{n}{e}\PY{p}{)}\PY{p}{:}
+    \PY{k}{return} \PY{n}{a} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{n}{b}\PY{o}{*} \PY{n}{x}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{o}{+}\PY{n}{c}\PY{o}{*} \PY{n}{x}\PY{o}{+}\PY{n}{d} \PY{o}{+} \PY{n}{e}\PY{o}{*}\PY{n}{x}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3}\PY{p}{)}
+
+\PY{n}{rescaled} \PY{o}{=} \PY{k+kc}{True}
+
+\PY{n}{fig}\PY{p}{,} \PY{n}{axes} \PY{o}{=} \PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{16}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
+\PY{k}{for} \PY{n}{ax\PYZus{}i}\PY{p}{,} \PY{p}{(}\PY{n}{sens}\PY{p}{,} \PY{n}{dF}\PY{p}{)} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{p}{[}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{IPC 1000}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{dF\PYZus{}1000}\PY{p}{)}\PY{p}{,}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{IPC 450}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{dF\PYZus{}450}\PY{p}{)}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+    \PY{n}{axe} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{axes}\PY{p}{[}\PY{n}{ax\PYZus{}i}\PY{p}{]}
+    \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{n}{sens}\PY{p}{)}
+    
+    
+    \PY{n}{around\PYZus{}0\PYZus{}indx} \PY{o}{=} \PY{n}{dF}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dV}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{abs}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{index}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{]}
+    \PY{n}{x\PYZus{}fit} \PY{o}{=} \PY{n}{dF}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{around\PYZus{}0\PYZus{}indx}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dV}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+    \PY{n}{y\PYZus{}fit} \PY{o}{=} \PY{n}{dF}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{around\PYZus{}0\PYZus{}indx}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{res}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        
+    \PY{k}{def} \PY{n+nf}{fit\PYZus{}func}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{a}\PY{p}{,} \PY{n}{b}\PY{p}{)}\PY{p}{:}
+        \PY{k}{return} \PY{n}{a} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{b} \PY{o}{*} \PY{n}{x}\PY{p}{)}
+
+    \PY{n}{g\PYZus{}fit\PYZus{}params}\PY{p}{,}\PY{n}{\PYZus{}} \PY{o}{=} \PY{n}{curve\PYZus{}fit}\PY{p}{(}\PY{n}{fit\PYZus{}func}\PY{p}{,} \PY{n}{x\PYZus{}fit}\PY{p}{,} \PY{n}{y\PYZus{}fit}\PY{p}{,} \PY{n}{sigma}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{/}\PY{n}{y\PYZus{}fit}\PY{p}{)}
+
+    \PY{n}{res\PYZus{}flatband} \PY{o}{=} \PY{n}{fit\PYZus{}func}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{o}{*}\PY{n}{g\PYZus{}fit\PYZus{}params}\PY{p}{)}
+    
+    
+    \PY{k}{if} \PY{n}{rescaled}\PY{p}{:}
+        \PY{n}{y} \PY{o}{=} \PY{n}{dF}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{res}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{/}\PY{n}{res\PYZus{}flatband}
+        \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{p}{(}\PY{l+m+mf}{1e\PYZhy{}4}\PY{p}{,}\PY{l+m+mf}{1e3}\PY{p}{)}\PY{p}{)}
+    \PY{k}{else}\PY{p}{:}
+        \PY{n}{y} \PY{o}{=} \PY{n}{dF}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{res}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mf}{10e6}\PY{p}{)}\PY{p}{)}
+        
+    \PY{n}{axe}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{dF}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dV}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}\PY{n}{y}\PY{p}{,} \PY{n}{s}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{)}
+    
+    \PY{k}{if} \PY{n}{rescaled}\PY{p}{:}
+        \PY{n}{axe}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{s}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{label} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Resistance Nitrogen}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{c}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+    \PY{k}{else}\PY{p}{:}
+        \PY{n}{axe}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{res\PYZus{}flatband}\PY{p}{,} \PY{n}{s}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{label} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Resistance Nitrogen}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{c}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+    
+    \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{p}{(}\PY{l+m+mf}{0.2}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mf}{1.2}\PY{p}{)}\PY{p}{)}
+    \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}yscale}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{log}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+    
+    \PY{n}{diff\PYZus{}dF} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{index} \PY{o}{=} \PY{n}{dF}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dV}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+    
+    \PY{n}{calc\PYZus{}dF\PYZus{}sizes} \PY{o}{=} \PY{n}{calc\PYZus{}dF}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
+    \PY{n}{calc\PYZus{}dF\PYZus{}sizes} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}sizes}\PY{p}{[}\PY{n}{calc\PYZus{}dF\PYZus{}sizes}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{R}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{isin}\PY{p}{(}\PY{n}{sizes}\PY{p}{[}\PY{n}{sens}\PY{p}{]}\PY{p}{)}\PY{p}{]}
+    \PY{n}{gs} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}sizes}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{R}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ND}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+    
+    \PY{k}{if} \PY{n}{rescaled}\PY{p}{:}
+        \PY{k}{for} \PY{p}{(}\PY{n}{R}\PY{p}{,}\PY{n}{ND}\PY{p}{)}\PY{p}{,} \PY{n}{calc\PYZus{}dF\PYZus{}grainsize} \PY{o+ow}{in} \PY{n}{gs}\PY{p}{:}
+            \PY{c+c1}{\PYZsh{}diff\PYZus{}dF[f\PYZsq{}\PYZob{}R\PYZcb{}\PYZus{}\PYZob{}ND\PYZcb{}\PYZsq{}] = None}
+            \PY{n}{diff\PYZus{}dF}\PY{p}{[}\PY{p}{(}\PY{n}{R}\PY{p}{,}\PY{n}{ND}\PY{p}{)}\PY{p}{]} \PY{o}{=} \PY{k+kc}{None}
+            \PY{n}{grain} \PY{o}{=} \PY{n}{create\PYZus{}grain\PYZus{}from\PYZus{}data}\PY{p}{(}\PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{)}
+            \PY{n}{flat\PYZus{}band} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{==}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{current}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+            
+            \PY{n}{res} \PY{o}{=} \PY{n}{flat\PYZus{}band}\PY{o}{/}\PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{current}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+            \PY{n}{v} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{*}\PY{n}{CONST}\PY{o}{.}\PY{n}{J\PYZus{}to\PYZus{}eV}\PY{p}{(}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{kT}\PY{p}{)}
+            \PY{c+c1}{\PYZsh{}axe.plot(v,res, \PYZsq{}o\PYZsq{}, alpha=0.1)}
+
+            \PY{n}{interp} \PY{o}{=} \PY{n}{interp1d}\PY{p}{(}\PY{n}{v}\PY{p}{,} \PY{n}{res}\PY{p}{,} \PY{n}{kind}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cubic}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bounds\PYZus{}error}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+            \PY{n}{y\PYZus{}from\PYZus{}num} \PY{o}{=} \PY{n}{interp}\PY{p}{(}\PY{n}{dF}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dV}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+            
+            \PY{n}{axe}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{dF}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dV}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}\PY{n}{y\PYZus{}from\PYZus{}num}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{o}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.1}\PY{p}{)}
+            
+            
+            \PY{n}{diff\PYZus{}dF}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{(}\PY{n}{R}\PY{p}{,}\PY{n}{ND}\PY{p}{)}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{n}{y\PYZus{}from\PYZus{}num}\PY{o}{\PYZhy{}}\PY{n}{y}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{o}{/}\PY{n}{y}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+    
+        \PY{n}{m} \PY{o}{=} \PY{n}{diff\PYZus{}dF}\PY{o}{.}\PY{n}{abs}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{idxmin}\PY{p}{(}\PY{p}{)}
+    
+    
+        \PY{k}{for} \PY{p}{(}\PY{n}{R}\PY{p}{,}\PY{n}{ND}\PY{p}{)}\PY{p}{,} \PY{n}{calc\PYZus{}dF\PYZus{}grainsize} \PY{o+ow}{in} \PY{n}{gs}\PY{p}{:}
+            \PY{k}{if} \PY{p}{(}\PY{n}{R}\PY{p}{,}\PY{n}{ND}\PY{p}{)}\PY{o}{==}\PY{n}{diff\PYZus{}dF}\PY{o}{.}\PY{n}{abs}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{index}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{:}
+                \PY{n}{linestyle}\PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{k\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}
+            \PY{k}{elif} \PY{p}{(}\PY{n}{R}\PY{p}{,}\PY{n}{ND}\PY{p}{)}\PY{o}{==}\PY{n}{diff\PYZus{}dF}\PY{o}{.}\PY{n}{abs}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{index}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{:}
+                \PY{n}{linestyle}\PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}
+                \PY{k}{continue}
+            \PY{k}{else}\PY{p}{:}
+                \PY{k}{continue}
+            
+            \PY{n}{grain} \PY{o}{=} \PY{n}{create\PYZus{}grain\PYZus{}from\PYZus{}data}\PY{p}{(}\PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{)}
+            \PY{n}{flat\PYZus{}band} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{==}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{current}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+            
+            \PY{n}{res} \PY{o}{=} \PY{n}{flat\PYZus{}band}\PY{o}{/}\PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{current}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+            \PY{n}{v} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{*}\PY{n}{CONST}\PY{o}{.}\PY{n}{J\PYZus{}to\PYZus{}eV}\PY{p}{(}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{kT}\PY{p}{)}
+            \PY{c+c1}{\PYZsh{}axe.plot(v,res, \PYZsq{}o\PYZsq{}, alpha=0.1)}
+
+            \PY{n}{interp} \PY{o}{=} \PY{n}{interp1d}\PY{p}{(}\PY{n}{v}\PY{p}{,} \PY{n}{res}\PY{p}{,} \PY{n}{kind}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cubic}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bounds\PYZus{}error}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+            \PY{n}{y\PYZus{}from\PYZus{}num} \PY{o}{=} \PY{n}{interp}\PY{p}{(}\PY{n}{dF}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dV}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+            
+            \PY{c+c1}{\PYZsh{}axe.plot(dF[\PYZsq{}dV\PYZsq{}],y\PYZus{}from\PYZus{}num, \PYZsq{}o\PYZsq{}, alpha=0.1)}
+            \PY{n}{axe}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{v}\PY{p}{,}\PY{n}{res}\PY{p}{,} \PY{n}{linestyle}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,}\PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.5}\PY{p}{)}
+            
+            
+            \PY{c+c1}{\PYZsh{}diff\PYZus{}dF.loc[:,(R,ND)] = ((y\PYZus{}from\PYZus{}num\PYZhy{}y.values)/y.values)**2}
+    
+        \PY{n}{display}\PY{p}{(}\PY{n}{diff\PYZus{}dF}\PY{o}{.}\PY{n}{abs}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+    
+    \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}sens\PYZcb{}}\PY{l+s+s1}{, }\PY{l+s+si}{\PYZob{}m\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+    
+
+            
+            
+        
+       
+    
+
+    
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Populating the interactive namespace from numpy and matplotlib
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/usr/lib/python3.8/site-packages/IPython/core/magics/pylab.py:159: UserWarning:
+pylab import has clobbered these variables: ['interp', 'axes']
+`\%matplotlib` prevents importing * from pylab and numpy
+  warn("pylab import has clobbered these variables: \%s"  \% clobbered +
+    \end{Verbatim}
+
+    
+    \begin{verbatim}
+(5e-08, 1e+22)         5.093919
+(5e-08, 1e+21)        12.950139
+(5e-08, 1e+23)       322.816574
+(5e-08, 1e+24)    504637.193166
+dtype: float64
+    \end{verbatim}
+
+    
+    
+    \begin{verbatim}
+(6.25e-09, 1e+21)       10.118508
+(6.25e-09, 1e+22)       18.067190
+(6.25e-09, 1e+23)      732.871140
+(6.25e-09, 1e+24)    29427.948572
+dtype: float64
+    \end{verbatim}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{4-Exp-data_files/4-Exp-data_12_4.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{figure}
+\centering
+\includegraphics{media/WF450und1000.jpg}
+\caption{test}
+\end{figure}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{9}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+
+\end{Verbatim}
+\end{tcolorbox}
+
 
     % Add a bibliography block to the postdoc
     

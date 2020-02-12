@@ -13,10 +13,13 @@
 \BOOKMARK [3][-]{subsubsection.3.8.2}{Numerical description of the semiconductor}{subsection.3.8}% 13
 \BOOKMARK [3][-]{subsubsection.3.8.3}{Numerical description of the semiconductor grains}{subsection.3.8}% 14
 \BOOKMARK [3][-]{subsubsection.3.8.4}{Additional relevant paramters}{subsection.3.8}% 15
-\BOOKMARK [3][-]{subsubsection.3.8.5}{Putting the pieces together}{subsection.3.8}% 16
-\BOOKMARK [3][-]{subsubsection.3.8.6}{Estimate correct solutions of incorrectly found minima}{subsection.3.8}% 17
-\BOOKMARK [3][-]{subsubsection.3.8.7}{Recalculating the failed solutions with a little help \203}{subsection.3.8}% 18
-\BOOKMARK [3][-]{subsubsection.3.8.8}{Checking the solutions}{subsection.3.8}% 19
-\BOOKMARK [2][-]{subsection.3.9}{Shape of the potential drop inside the grain}{section.3}% 20
-\BOOKMARK [1][-]{section.4}{Summary}{}% 21
-\BOOKMARK [1][-]{section.5}{Bibliography section}{}% 22
+\BOOKMARK [2][-]{subsection.3.9}{Putting the pieces together}{section.3}% 16
+\BOOKMARK [3][-]{subsubsection.3.9.1}{Defining the parameters to be screen}{subsection.3.9}% 17
+\BOOKMARK [3][-]{subsubsection.3.9.2}{Starting a parallelized calculation}{subsection.3.9}% 18
+\BOOKMARK [3][-]{subsubsection.3.9.3}{Export/Import data}{subsection.3.9}% 19
+\BOOKMARK [3][-]{subsubsection.3.9.4}{Refine algorithm}{subsection.3.9}% 20
+\BOOKMARK [3][-]{subsubsection.3.9.5}{Recalculating the incorrect minima \(with boundaries\)}{subsection.3.9}% 21
+\BOOKMARK [3][-]{subsubsection.3.9.6}{Checking the corrected solutions}{subsection.3.9}% 22
+\BOOKMARK [2][-]{subsection.3.10}{Shape of the potential drop inside the grain}{section.3}% 23
+\BOOKMARK [1][-]{section.4}{Summary}{}% 24
+\BOOKMARK [1][-]{section.5}{Bibliography section}{}% 25

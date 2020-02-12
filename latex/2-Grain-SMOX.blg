@@ -8,44 +8,47 @@ Reallocated wiz_functions (elt_size=8) to 6000 items from 3000.
 Reallocated singl_function (elt_size=8) to 100 items from 50.
 Reallocated singl_function (elt_size=8) to 100 items from 50.
 Database file #1: ipython.bib
-You've used 5 entries,
+Warning--I didn't find a database entry for "Oprea2009a"
+Warning--I didn't find a database entry for "Sze2007"
+You've used 7 entries,
             4793 wiz_defined-function locations,
-            938 strings with 7479 characters,
-and the built_in function-call counts, 4621 in all, are:
-= -- 498
-> -- 115
-< -- 91
-+ -- 111
-- -- 45
-* -- 379
-:= -- 741
-add.period$ -- 11
-call.type$ -- 5
-change.case$ -- 28
-chr.to.int$ -- 5
-cite$ -- 5
-duplicate$ -- 104
-empty$ -- 349
-format.name$ -- 70
-if$ -- 942
+            966 strings with 8175 characters,
+and the built_in function-call counts, 6485 in all, are:
+= -- 706
+> -- 153
+< -- 118
++ -- 141
+- -- 57
+* -- 540
+:= -- 1019
+add.period$ -- 15
+call.type$ -- 7
+change.case$ -- 38
+chr.to.int$ -- 7
+cite$ -- 7
+duplicate$ -- 147
+empty$ -- 505
+format.name$ -- 92
+if$ -- 1343
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 28
-newline$ -- 49
-num.names$ -- 15
-pop$ -- 35
+missing$ -- 40
+newline$ -- 65
+num.names$ -- 21
+pop$ -- 47
 preamble$ -- 1
-purify$ -- 38
+purify$ -- 52
 quote$ -- 0
-skip$ -- 163
+skip$ -- 218
 stack$ -- 0
-substring$ -- 549
-swap$ -- 31
-text.length$ -- 25
+substring$ -- 805
+swap$ -- 44
+text.length$ -- 34
 text.prefix$ -- 1
 top$ -- 0
-type$ -- 46
+type$ -- 66
 warning$ -- 0
-while$ -- 41
-width$ -- 6
-write$ -- 93
+while$ -- 57
+width$ -- 9
+write$ -- 129
+(There were 2 warnings)

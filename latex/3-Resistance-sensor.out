@@ -4,10 +4,12 @@
 \BOOKMARK [2][-]{subsection.3.1}{The ``numerical'' grain}{section.3}% 4
 \BOOKMARK [2][-]{subsection.3.2}{Precalc the numerical grains for all conditions}{section.3}% 5
 \BOOKMARK [2][-]{subsection.3.3}{Relaxation}{section.3}% 6
-\BOOKMARK [3][-]{subsubsection.3.3.1}{Concolute2d:}{subsection.3.3}% 7
-\BOOKMARK [1][-]{section.4}{See how a single solution evolves}{}% 8
-\BOOKMARK [2][-]{subsubsection.4.0.1}{Precalcualtion of all conditions}{section.4}% 9
-\BOOKMARK [1][-]{section.5}{check the integral for the charges}{}% 10
-\BOOKMARK [2][-]{subsubsection.5.0.1}{Comparing with experimental data}{section.5}% 11
-\BOOKMARK [3][-]{subsubsection.5.0.2}{The `m' factor}{subsubsection.5.0.1}% 12
-\BOOKMARK [1][-]{section.6}{Bibliography section}{}% 13
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Convolution algorithm}{subsection.3.3}% 7
+\BOOKMARK [3][-]{subsubsection.3.3.2}{Example with `convolve2d'}{subsection.3.3}% 8
+\BOOKMARK [1][-]{section.4}{See how a single solution evolves}{}% 9
+\BOOKMARK [2][-]{subsubsection.4.0.1}{Calculate total resistance}{section.4}% 10
+\BOOKMARK [3][-]{subsubsection.4.0.2}{Precalcualtion of all conditions}{subsubsection.4.0.1}% 11
+\BOOKMARK [1][-]{section.5}{check the integral for the charges}{}% 12
+\BOOKMARK [2][-]{subsubsection.5.0.1}{Comparing with experimental data}{section.5}% 13
+\BOOKMARK [3][-]{subsubsection.5.0.2}{The `m' factor}{subsubsection.5.0.1}% 14
+\BOOKMARK [1][-]{section.6}{Bibliography section}{}% 15

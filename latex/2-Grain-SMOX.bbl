@@ -47,6 +47,17 @@
 \newblock DOI 10.1016/j.snb.2014.10.016. --
 \newblock ISSN 09254005
 
+\bibitem[BW03]{Barsan2003}
+\textsc{B{\^{a}}rsan}, N. ; \textsc{Weimar}, U.:
+\newblock {Understanding the fundamental principles of metal oxide based gas
+  sensors; the example of CO sensing with SnO2 sensors in the presence of
+  humidity}.
+\newblock {In: }\emph{Journal of Physics Condensed Matter} 15 (2003), Nr. 20,
+  R813--R839.
+\newblock \url{http://dx.doi.org/10.1088/0953-8984/15/20/201}. --
+\newblock DOI 10.1088/0953--8984/15/20/201. --
+\newblock ISBN 0953--8984
+
 \bibitem[JOPO15]{Jones}
 \textsc{Jones}, Eric ; \textsc{Oliphant}, Travis ; \textsc{Peterson}, Pearu  ;
   \textsc{Others}:
@@ -54,5 +65,15 @@
   (http://www.scipy.org/)}}.
 \newblock \url{http://www.scipy.org/}.
 \newblock \,Version:\,2015
+
+\bibitem[RK04]{Rothschild2004b}
+\textsc{Rothschild}, Avner ; \textsc{Komem}, Yigal:
+\newblock {The effect of grain size on the sensitivity of nanocrystalline
+  metal-oxide gas sensors}.
+\newblock {In: }\emph{Journal of Applied Physics} 95 (2004), Nr. 11 I, S.
+  6374--6380.
+\newblock \url{http://dx.doi.org/10.1063/1.1728314}. --
+\newblock DOI 10.1063/1.1728314. --
+\newblock ISSN 00218979
 
 \end{thebibliography}

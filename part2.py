@@ -205,3 +205,45 @@ class Grain:
         U_dot_dot = 1-n[0]/self.material.nb -2/r_*U_dot
         return [U_dot, U_dot_dot]
 
+pd.set_option('display.notebook_repr_html', True)
+
+def _repr_latex_(self):
+    return r"""
+    \begin{center}
+    {%s}
+    \end{center}
+    """ % self.to_latex()
+
+pd.DataFrame._repr_latex_ = _repr_latex_  # monkey patch pandas DataFrame
+
+def create_grain_from_data(dF):
+    if type(dF)==pd.Series:
+        dF = pd.DataFrame([dF])
+        
+    if len(dF['temp'].unique())==1:
+        T_C = dF['temp'].unique()[0]
+    else:
+        raise Exception('Multiple paramters for one grain are invalid.')
+    
+    if len(dF['ND'].unique())==1:
+        ND = dF['ND'].unique()[0]
+    else:
+        raise Exception('Multiple paramters for one grain are invalid.')
+    
+    if len(dF['mass_eff'].unique())==1:
+        mass_e_eff_factor = dF['mass_eff'].unique()[0]/CONST.MASS_E 
+    else:
+        raise Exception('Multiple paramters for one grain are invalid.')
+    
+    if len(dF['R'].unique())==1:
+        grainsize_radius = dF['R'].unique()[0]
+    else:
+        raise Exception('Multiple paramters for one grain are invalid.')
+        
+
+    
+
+    material = Material(T_C,ND)
+    grain = Grain(grainsize_radius=grainsize_radius,material=material)
+    
+    return grain
