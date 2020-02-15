@@ -373,6 +373,21 @@
     \tableofcontents 
 \setcounter{section}{0}
 
+    \hypertarget{abstract}{%
+\section{Abstract}\label{abstract}}
+
+The gas sensors being investigated consists of multiple, small
+semiconducting grains. In the previous chapter the effect various of
+surface conditions onto the SMOX grain were modeled and calculated. The
+results show, that the charge distribution inside the grain varies and
+depends on the surface potential and defect concentration of the
+semicondutor. When such a grain is used as a sensor, a bias voltage is
+applied and the resulting resistance is measured. To numerically derive
+the total resistance from a specific charge distribution inside the
+grain, actual conduction path through the grain needs to be understood.
+In this part the conduction path will be numerically derived and in a
+second step the dependency on the overall resistance will be derived.
+
     \hypertarget{review}{%
 \section{Review}\label{review}}
 
@@ -388,7 +403,7 @@ file, all elements will be accessible also in this notebook. The
 following command will do the job: \texttt{from\ part2\ import\ *}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{1}{\boxspacing}
+\prompt{In}{incolor}{2}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{o}{\PYZpc{}}\PY{k}{pylab} inline
 \PY{o}{\PYZpc{}}\PY{k}{load\PYZus{}ext} autoreload
@@ -405,7 +420,7 @@ Populating the interactive namespace from numpy and matplotlib
 \section{Load the results}\label{load-the-results}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{7}{\boxspacing}
+\prompt{In}{incolor}{3}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{calc\PYZus{}dF} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}hdf}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{results.h5}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{corr}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \PY{n}{calc\PYZus{}dF}\PY{o}{.}\PY{n}{index} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{calc\PYZus{}dF}\PY{p}{)}\PY{p}{)}
@@ -429,7 +444,7 @@ thesis the redundant representation of the figures was chosen in this
 case.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{8}{\boxspacing}
+\prompt{In}{incolor}{4}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k}{for} \PY{n}{ND}\PY{p}{,} \PY{n}{calc\PYZus{}dF} \PY{o+ow}{in} \PY{n}{calc\PYZus{}dF\PYZus{}all}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ND}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
     \PY{n}{fig}\PY{p}{,} \PY{n}{axes}\PY{o}{=} \PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{16}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{)}\PY{p}{,} \PY{n}{sharex}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
@@ -483,7 +498,7 @@ case.
 \end{tcolorbox}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{3-Resistance-sensor_files/3-Resistance-sensor_6_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{3-Resistance-sensor_files/3-Resistance-sensor_7_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -496,7 +511,7 @@ case.
     \end{Verbatim}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{3-Resistance-sensor_files/3-Resistance-sensor_6_2.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{3-Resistance-sensor_files/3-Resistance-sensor_7_2.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -509,7 +524,7 @@ case.
     \end{Verbatim}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{3-Resistance-sensor_files/3-Resistance-sensor_6_4.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{3-Resistance-sensor_files/3-Resistance-sensor_7_4.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -522,7 +537,7 @@ case.
     \end{Verbatim}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{3-Resistance-sensor_files/3-Resistance-sensor_6_6.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{3-Resistance-sensor_files/3-Resistance-sensor_7_6.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -630,7 +645,7 @@ easy to use and robust solution.
 \texttt{from\ scipy\ import\ interpolate} adds the \texttt{interpolate}
 module into the kernel. The \texttt{interp1d} function of this module is
 described
-(\href{https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.interp1d.htm}{here})
+(\href{https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.interp1d.html}{here})
 as follows: \textgreater Interpolate a 1-D function. \textgreater{}
 \textgreater x and y are arrays of values used to approximate some
 function f: y = f(x). This class returns a function whose call method
@@ -641,7 +656,7 @@ specific points in the Dataframe, the following function is used to
 create the appropriate function for continuous values of r.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{9}{\boxspacing}
+\prompt{In}{incolor}{5}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{from} \PY{n+nn}{scipy} \PY{k+kn}{import} \PY{n}{interpolate}
 
@@ -671,18 +686,22 @@ grain. Since \(N\times N\) data structures are very common in modern
 application fields like computer vision and image recognition, many
 algorithm dealing with such data structures are available and optimized.
 In this notebook we will not reach out for potentially even faster
-state-of-the-art implementations like PyTorch Tensorflow to deal with
+state-of-the-art implementations like PyTorch or Tensorflow to deal with
 this matrix/tensor, but rather stick to the well established tool of
-SciPy. On advantage of using ``just'' SciPy is, that it is easily
-available on most operation system and second the performance is good
-enough for this use case.
+SciPy. A nice review on about what SciPy is can be found here:
+\cite{Virtanen2020}
+\href{https://www.nature.com/articles/s41592-019-0686-2.pdf}{(SciPy 1.0:
+fundamental algorithms for scientific computing in Python)}. On
+advantage of using ``just'' SciPy is, that it is easily available on
+most operation system and second the performance is good enough for this
+use case.
 
 First we create now the data structure of the grain for further
 simulations. The \(N\times N\) cubes will be represented by a
 \texttt{numpy} array.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{10}{\boxspacing}
+\prompt{In}{incolor}{6}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k}{def} \PY{n+nf}{initaliz\PYZus{}d\PYZus{}v}\PY{p}{(}\PY{n}{d\PYZus{}v}\PY{p}{,} \PY{n}{d\PYZus{}mask}\PY{p}{,} \PY{n}{v}\PY{p}{)}\PY{p}{:}
     \PY{n}{d\PYZus{}v}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{n}{v}
@@ -774,7 +793,7 @@ common pixel based pictures, the function \texttt{imshow} is very handy
 to represent the data.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{12}{\boxspacing}
+\prompt{In}{incolor}{7}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{d\PYZus{}cond\PYZus{}plots} \PY{o}{=} \PY{p}{[}\PY{p}{]}
 \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{ser} \PY{o+ow}{in} \PY{n}{calc\PYZus{}dF\PYZus{}all}\PY{o}{.}\PY{n}{iterrows}\PY{p}{(}\PY{p}{)}\PY{p}{:}
@@ -866,7 +885,7 @@ initial surface potentials expressed in units of \(\frac{k_BT}{e}\)
     \end{Verbatim}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{3-Resistance-sensor_files/3-Resistance-sensor_18_1.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{3-Resistance-sensor_files/3-Resistance-sensor_19_1.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -876,14 +895,14 @@ initial surface potentials expressed in units of \(\frac{k_BT}{e}\)
 \hypertarget{convolution-algorithm}{%
 \subsubsection{Convolution algorithm}\label{convolution-algorithm}}
 
-Equation (\(\ref{u_center}\)) is the basis of the relaxation process.
-The potential at each cube will be recalculated according to:
-\(U_0 = \frac{\sum_{i}{U_i*n_i}}{\sum_{i}{n_i}}\label{u_center}\). The
-indices \(i\) stand for the direct neighbors of \(U_0\). The following
-simple example should explain how \texttt{convolve2d} can be used to
-solve our task efficiently. The function needs two parameters as inputs.
-The first is the matrix itself, while the second is the description of
-the convolution operation. In a very short description, this is what the
+Equation (\ref{u_center}) is the basis of the relaxation process. The
+potential at each cube will be recalculated according to:
+\(U_0 = \frac{\sum_{i}{U_i*n_i}}{\sum_{i}{n_i}}\). The indices \(i\)
+stand for the direct neighbors of \(U_0\). The following simple example
+should explain how \texttt{convolve2d} can be used to solve our task
+efficiently. The function needs two parameters as inputs. The first is
+the matrix itself, while the second is the description of the
+convolution operation. In a very short description, this is what the
 algorithm will do:
 
 \begin{enumerate}
@@ -1040,7 +1059,7 @@ change anymore, the iterations can be stopped.
 \end{tcolorbox}
 
     \hypertarget{see-how-a-single-solution-evolves}{%
-\section{See how a single solution
+\subsubsection{See how a single solution
 evolves}\label{see-how-a-single-solution-evolves}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
@@ -1115,7 +1134,7 @@ evolves}\label{see-how-a-single-solution-evolves}}
 \end{tcolorbox}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{3-Resistance-sensor_files/3-Resistance-sensor_25_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{3-Resistance-sensor_files/3-Resistance-sensor_26_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -1181,7 +1200,7 @@ I_{Total} = \sum I_{c_i}*2*\Pi*r_i = \sum (U_{(c-1)_{i}}-U_{(c-1)_{i}})* n_{c_i}
 
 The total resistance \(R_{Total}\) of the grain is then defined by:
 \begin{align}
-R_{Total} = \frac{I_{Total}}{V_{Total}} = \frac{\sum (U_{(c-1)_{i}}-U_{(c-1)_{i}})* n_{c_i} * 2*\Pi*r_i * k}{V_{Total}}
+R_{Total} = \frac{V_{Total}}{I_{Total}} = \frac{V_{Total}}{\sum (U_{(c-1)_{i}}-U_{(c-1)_{i}})* n_{c_i} * 2*\Pi*r_i * k}
 \end{align}
 
 In the field of gas sensor research the absolute value of the resistance
@@ -1189,24 +1208,30 @@ is not necessarily the best figure to analyze the performance. Often the
 ratio of the resistances offers more insights. In this case also the
 total resistance \(R_{Total}\) is not as interesting as the resistance
 change from a reference condition. As reference condition the resistance
-at the flatband situation \(R_{Total_{0}}\) is selected. In rapport to
+at the flatband situation \(R_{Total_{0}}\) is selected. This reference
+situation is typically reached under the expose of pure nitrogen. In the
+presence of nitrogen, no reactive species is interacting with the
+surface and the number of trapped charges a the surface can be
+considered equal to 0, hence no band bending is present. In rapport to
 the resistance at the flatband situation, where the surface potential is
-\(0k_BT/e\), the resistance at a specific surface potential V will be
-named \(R_{Total_{V_S}}\). When calculating the ratio of both previously
-introduced constant k has no importance anymore. The only value which
-needs to be derived from the model is then:
+\(0k_BT/e\), the resistance at a specific surface potential \(V_S\) will
+be named \(R_{Total_{V_S}}\). When calculating the ratio of both, the
+previously introduced constant k has no importance anymore. The only
+value which needs to be derived from the model is then:
 
 \begin{align}
-    R^*_{Total_{V_S}} = {\sum (U_{(c-1)_{i}}-U_{(c-1)_{i}})* n_{c_i} * 2*\Pi*r_i }
+    I^*_{Total_{V_S}} = {\sum (U_{(c-1)_{i}}-U_{(c-1)_{i}})* n_{c_i} * 2*\Pi*r_i }
 \end{align}
 
-Once \(R^*_{Total_{V_S}}\) is calculated for all surface potentials
-\(V_S\), the ratio of those values with \(R^*_{Total_{0}}\) will reveal
-how a specific grain changes its resistance under different surface
-conditions.
-
-The described calculation of \(R^*_{Total_{V_S}}\) is implemented in the
-the next cell in Python.
+Once \(I^*_{Total_{V_S}}\) is calculated for all surface potentials
+\(V_S\), the ratio of those values with \(I^*_{Total_{0}}\) will reveal
+how a specific grain changes its resistance under different conditions.
+The relative change in resistance can simply be calculated be dividing
+each \(I^*_{Total_{V_S}}\) by its corresponding value
+\(I^*_{Total_{0}}\) in the flat band situation. As final result of this
+calculation the relative change in resistance
+\(\Delta R_{V_S} = \frac{R_{V_S}}{R_{0}} = \frac{I_{Total_0}}{I_{Total_{V_S}}}= \frac{I^*_{Total_0}}{I^*_{Total_{V_S}}}\)
+of a grain in rapport to the flat band situation will be gained.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{69}{\boxspacing}
@@ -1281,10 +1306,29 @@ chapter, this task will be parallelized.
 3108.441292285919
     \end{Verbatim}
 
+    The previously described calculation of \(\Delta R_{V_S}\) from
+\(I^*_{Total_{V_S}}\) is implemented in the the next cell in Python.
+
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{25}{\boxspacing}
+\prompt{In}{incolor}{160}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{calc\PYZus{}dF\PYZus{}sol}\PY{o}{.}\PY{n}{to\PYZus{}hdf}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{numerical\PYZus{}sol\PYZus{}3.h5}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{raw}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{mode}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{w}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{complevel}\PY{o}{=}\PY{l+m+mi}{9}\PY{p}{,}\PY{n}{complib}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bzip2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{k}{def} \PY{n+nf}{get\PYZus{}flatband\PYZus{}current}\PY{p}{(}\PY{n}{dF}\PY{p}{)}\PY{p}{:}
+    \PY{n}{flatband\PYZus{}current} \PY{o}{=} \PY{n}{dF}\PY{p}{[}\PY{n}{dF}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{==}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{current}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+    \PY{k}{return} \PY{n}{flatband\PYZus{}current}
+    
+\PY{k}{def} \PY{n+nf}{calc\PYZus{}res\PYZus{}change}\PY{p}{(}\PY{n}{dF}\PY{p}{)}\PY{p}{:}
+    \PY{n}{flatband\PYZus{}current} \PY{o}{=} \PY{n}{get\PYZus{}flatband\PYZus{}current}\PY{p}{(}\PY{n}{dF}\PY{p}{)}
+    \PY{n}{rel\PYZus{}res} \PY{o}{=} \PY{n}{flatband\PYZus{}current}\PY{o}{/}\PY{n}{dF}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{current}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+    \PY{n}{dF}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rel\PYZus{}res\PYZus{}change}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{rel\PYZus{}res}
+    \PY{k}{return} \PY{n}{dF}
+\PY{n}{calc\PYZus{}dF\PYZus{}sol\PYZus{}with\PYZus{}rel\PYZus{}res\PYZus{}change} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}sol}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{R}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{temp}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ND}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{n}{calc\PYZus{}res\PYZus{}change}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{161}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{calc\PYZus{}dF\PYZus{}sol\PYZus{}with\PYZus{}rel\PYZus{}res\PYZus{}change}\PY{o}{.}\PY{n}{to\PYZus{}hdf}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{numerical\PYZus{}sol.h5}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{raw}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{mode}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{w}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{complevel}\PY{o}{=}\PY{l+m+mi}{9}\PY{p}{,}\PY{n}{complib}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lzo}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
@@ -1299,122 +1343,71 @@ map directly to c-types [inferred\_type->mixed,key->block1\_values]
     \end{Verbatim}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{26}{\boxspacing}
+\prompt{In}{incolor}{168}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{calc\PYZus{}dF\PYZus{}sol} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}hdf}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{numerical\PYZus{}sol\PYZus{}3.h5}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{raw}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{calc\PYZus{}dF\PYZus{}sol} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}hdf}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{numerical\PYZus{}sol.h5}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{raw}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
-    \hypertarget{check-the-integral-for-the-charges}{%
-\section{check the integral for the
-charges}\label{check-the-integral-for-the-charges}}
+    \hypertarget{representing-final-results}{%
+\subsubsection{Representing final
+results}\label{representing-final-results}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{30}{\boxspacing}
+\prompt{In}{incolor}{158}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{31}{\boxspacing}
+\prompt{In}{incolor}{169}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{index} \PY{o}{=} \PY{l+m+mi}{8}
-\PY{n}{ser} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}sol}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{n}{index}\PY{p}{]}
+\PY{n}{fig}\PY{p}{,} \PY{n}{axes} \PY{o}{=} \PY{n}{subplots}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{calc\PYZus{}dF\PYZus{}sol}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ND}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{o}{/}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{16}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{)}\PY{p}{,} \PY{n}{sharey}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{sharex}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
 
-
-\PY{n}{fig}\PY{p}{,} \PY{n}{axes} \PY{o}{=} \PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{,}\PY{l+m+mi}{16}\PY{p}{)}\PY{p}{)}
-\PY{k}{for} \PY{n}{v} \PY{o+ow}{in} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{]}\PY{p}{:}
-    \PY{k}{try}\PY{p}{:}
-        \PY{n}{ser} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}sol}\PY{p}{[}\PY{p}{(}\PY{n}{calc\PYZus{}dF\PYZus{}sol}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{R}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{==}\PY{l+m+mf}{100e\PYZhy{}9}\PY{p}{)} \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{calc\PYZus{}dF\PYZus{}sol}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ND}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{==}\PY{l+m+mf}{1e+23}\PY{p}{)} \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{calc\PYZus{}dF\PYZus{}sol}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{==}\PY{n}{v}\PY{p}{)}\PY{p}{]}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
-    \PY{k}{except}\PY{p}{:}
-        \PY{k}{continue}
-    \PY{n}{grain} \PY{o}{=} \PY{n}{create\PYZus{}grain\PYZus{}from\PYZus{}data}\PY{p}{(}\PY{n}{ser}\PY{p}{)}
-
-
-    \PY{c+c1}{\PYZsh{}print(alle,surf, round((surf\PYZhy{}alle)/alle*100,2))}
-
-    \PY{n}{axe} \PY{o}{=} \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
-
-    \PY{n}{n\PYZus{}avg} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{trapz}\PY{p}{(}\PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
-\PY{n}{interactive}
-
-    \PY{n}{axe}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{*}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{LD}\PY{o}{/}\PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{R}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{o}{/}\PY{n}{n\PYZus{}avg}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.7}\PY{p}{)}
-
-    \PY{n}{axe}\PY{o}{.}\PY{n}{axvline}\PY{p}{(}\PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{R}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
-    
-    \PY{n}{axe} \PY{o}{=} \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
-    \PY{n}{axe}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{*}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{LD}\PY{p}{,} \PY{n}{v}\PY{o}{\PYZhy{}}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{v}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{)}
-    \PY{c+c1}{\PYZsh{}axe.set\PYZus{}ylim(\PYZhy{}8,8)}
-    \PY{n}{axe}\PY{o}{.}\PY{n}{axvline}\PY{p}{(}\PY{n}{ser}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{R}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
-    \PY{c+c1}{\PYZsh{}ser}
-\end{Verbatim}
-\end{tcolorbox}
-
-    \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{3-Resistance-sensor_files/3-Resistance-sensor_38_0.png}
-    \end{center}
-    { \hspace*{\fill} \\}
-    
-    These results are in line with the results presented from this
-publication:
-
-\href{./Papers/Modeling_of_sensor_properties_for_reducing_gases_and_charge_distribution_in.pdf}{related
-publication}
-
-    \hypertarget{comparing-with-experimental-data}{%
-\subsubsection{Comparing with experimental
-data}\label{comparing-with-experimental-data}}
-
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{33}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{calc\PYZus{}dF\PYZus{}size} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}sol}
-\PY{n}{calc\PYZus{}dF\PYZus{}size} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}sol}
-\PY{n}{fig}\PY{p}{,} \PY{n}{axes} \PY{o}{=} \PY{n}{subplots}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{calc\PYZus{}dF\PYZus{}size}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ND}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{o}{/}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{16}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{)}\PY{p}{,} \PY{n}{sharey}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{sharex}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
-\PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{fig}\PY{o}{.}\PY{n}{axes}\PY{p}{)}\PY{o}{==}\PY{l+m+mi}{1}\PY{p}{:}
-    \PY{n}{axes} \PY{o}{=} \PY{p}{[}\PY{n}{axes}\PY{p}{]}
-\PY{k}{for} \PY{n}{ax\PYZus{}i}\PY{p}{,}\PY{p}{(}\PY{n}{ND}\PY{p}{,}\PY{n}{calc\PYZus{}dF\PYZus{}n}\PY{p}{)} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{calc\PYZus{}dF\PYZus{}size}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ND}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+\PY{k}{for} \PY{n}{ax\PYZus{}i}\PY{p}{,}\PY{p}{(}\PY{n}{ND}\PY{p}{,}\PY{n}{calc\PYZus{}dF\PYZus{}n}\PY{p}{)} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{calc\PYZus{}dF\PYZus{}sol}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ND}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}\PY{p}{:}
     
     \PY{n}{axe} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{axes}\PY{p}{[}\PY{n}{ax\PYZus{}i}\PY{p}{]}
     \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}N\PYZus{}D\PYZdl{}=}\PY{l+s+s1}{\PYZsq{}}\PY{o}{+}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}ND\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-    \PY{n}{axe\PYZus{}up} \PY{o}{=} \PY{n}{axe}\PY{o}{.}\PY{n}{twiny}\PY{p}{(}\PY{p}{)}
     
+    \PY{n}{axe\PYZus{}up} \PY{o}{=} \PY{n}{axe}\PY{o}{.}\PY{n}{twiny}\PY{p}{(}\PY{p}{)}
     
     \PY{k}{for} \PY{n}{R}\PY{p}{,}\PY{n}{calc\PYZus{}dF\PYZus{}grainsize} \PY{o+ow}{in} \PY{n}{calc\PYZus{}dF\PYZus{}n}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{R}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
         
         \PY{n}{grain} \PY{o}{=} \PY{n}{create\PYZus{}grain\PYZus{}from\PYZus{}data}\PY{p}{(}\PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
-        \PY{n}{axe}\PY{o}{.}\PY{n}{axvline}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{J\PYZus{}to\PYZus{}kT}\PY{p}{(}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{Diff\PYZus{}EF\PYZus{}EC}\PY{p}{)}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Fermi\PYZhy{}Level}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-
         
-        \PY{n}{s} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{d\PYZus{}v}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+        \PY{c+c1}{\PYZsh{}s = calc\PYZus{}dF\PYZus{}grainsize[\PYZsq{}d\PYZus{}v\PYZsq{}].iloc[0].shape[0]}
         
-        \PY{n}{flat\PYZus{}band} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{==}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{current}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-        \PY{n}{res} \PY{o}{=} \PY{n}{flat\PYZus{}band}\PY{o}{/}\PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{current}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-        \PY{c+c1}{\PYZsh{}res = 2000/calc\PYZus{}dF\PYZus{}grainsize[\PYZsq{}current\PYZsq{}]}
+        \PY{n}{flat\PYZus{}band} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{==}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rel\PYZus{}res\PYZus{}change}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        \PY{n}{res} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rel\PYZus{}res\PYZus{}change}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
         
         
-        \PY{c+c1}{\PYZsh{}res = 1/calc\PYZus{}dF\PYZus{}grainsize[\PYZsq{}current\PYZsq{}]}
         \PY{n}{v} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
         \PY{n}{rel\PYZus{}size} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{R}\PY{o}{/}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{LD}
-        \PY{n}{axe}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{v}\PY{p}{,} \PY{n}{res}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{o\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label} \PY{o}{=} \PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{GrainRadius = }\PY{l+s+s1}{\PYZob{}}\PY{l+s+s1}{R*1e9:.0f\PYZcb{}nm\PYZdl{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{equiv\PYZdl{}}\PY{l+s+si}{\PYZob{}rel\PYZus{}size:.2f\PYZcb{}}\PY{l+s+s1}{LD}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
+        
+        \PY{n}{axe}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{v}\PY{p}{,} \PY{n}{res}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{o\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label} \PY{o}{=} \PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{GrainRadius = }\PY{l+s+s1}{\PYZob{}}\PY{l+s+s1}{R*1e9:.2f\PYZcb{}nm\PYZdl{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{equiv\PYZdl{}}\PY{l+s+si}{\PYZob{}rel\PYZus{}size:.2f\PYZcb{}}\PY{l+s+s1}{LD}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{}have a additional graph in units of meV on the x axis}
+        \PY{n}{axe\PYZus{}up}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{v}\PY{o}{*}\PY{n}{CONST}\PY{o}{.}\PY{n}{J\PYZus{}to\PYZus{}eV}\PY{p}{(}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{kT}\PY{p}{)}\PY{o}{*}\PY{l+m+mi}{1000}\PY{p}{,} \PY{n}{res}\PY{p}{,}\PY{n}{alpha}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
         
         
         \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}yscale}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{log}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-        
-        \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{frac}\PY{l+s+si}{\PYZob{}R\PYZcb{}}\PY{l+s+s1}{\PYZob{}}\PY{l+s+s1}{R\PYZus{}}\PY{l+s+si}{\PYZob{}Flatband\PYZcb{}}\PY{l+s+s1}{\PYZcb{}\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{22}\PY{p}{)}
-        \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}E\PYZus{}C(r)\PYZdl{} [\PYZdl{}k\PYZus{}BT\PYZdl{}]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{22}\PY{p}{)}
-        
-        \PY{n}{axe}\PY{o}{.}\PY{n}{tick\PYZus{}params}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{both}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{which}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{major}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{labelsize}\PY{o}{=}\PY{l+m+mi}{22}\PY{p}{)}
-        
+        \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{frac}\PY{l+s+si}{\PYZob{}R\PYZcb{}}\PY{l+s+s1}{\PYZob{}}\PY{l+s+s1}{R\PYZus{}}\PY{l+s+si}{\PYZob{}Flatband\PYZcb{}}\PY{l+s+s1}{\PYZcb{}\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{15}\PY{p}{)}
+        \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}E\PYZus{}}\PY{l+s+s1}{\PYZob{}}\PY{l+s+s1}{C\PYZus{}}\PY{l+s+si}{\PYZob{}Surface\PYZcb{}}\PY{l+s+s1}{\PYZcb{}\PYZdl{} [\PYZdl{}k\PYZus{}BT\PYZdl{}]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{22}\PY{p}{)}
+        \PY{n}{axe}\PY{o}{.}\PY{n}{tick\PYZus{}params}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{both}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{which}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{major}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{labelsize}\PY{o}{=}\PY{l+m+mi}{15}\PY{p}{)}
         \PY{n}{axe}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{b}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
-        \PY{c+c1}{\PYZsh{}axe.set\PYZus{}xlim(10,\PYZhy{}10)}
         
-    \PY{n}{axe\PYZus{}up}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{v}\PY{o}{*}\PY{n}{CONST}\PY{o}{.}\PY{n}{J\PYZus{}to\PYZus{}eV}\PY{p}{(}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{kT}\PY{p}{)}\PY{o}{*}\PY{l+m+mi}{1000}\PY{p}{,} \PY{n}{res}\PY{p}{,}\PY{n}{alpha}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
-    \PY{c+c1}{\PYZsh{}\PYZsh{}axe\PYZus{}up.set\PYZus{}xlim(10*CONST.J\PYZus{}to\PYZus{}eV(grain.material.kT)*1000,\PYZhy{}10*CONST.J\PYZus{}to\PYZus{}eV(grain.material.kT)*1000)}
+       
+    \PY{c+c1}{\PYZsh{}draw the Fermi\PYZhy{}Level}
+    \PY{n}{axe}\PY{o}{.}\PY{n}{axvline}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{J\PYZus{}to\PYZus{}kT}\PY{p}{(}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{Diff\PYZus{}EF\PYZus{}EC}\PY{p}{)}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Fermi\PYZhy{}Level}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}        
+    \PY{n}{axe}\PY{o}{.}\PY{n}{axvline}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{color} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Flat band}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}        
+    
     \PY{k}{if} \PY{n}{ax\PYZus{}i} \PY{o+ow}{in} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{:}
-        \PY{n}{axe\PYZus{}up}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}E\PYZus{}C(r)\PYZdl{} [\PYZdl{}meV\PYZdl{}]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{22}\PY{p}{)}
-        \PY{n}{axe\PYZus{}up}\PY{o}{.}\PY{n}{tick\PYZus{}params}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{both}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{which}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{major}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{labelsize}\PY{o}{=}\PY{l+m+mi}{22}\PY{p}{)}
+        \PY{n}{axe\PYZus{}up}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}E\PYZus{}C(r)\PYZdl{} [\PYZdl{}meV\PYZdl{}]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}
+        \PY{n}{axe\PYZus{}up}\PY{o}{.}\PY{n}{tick\PYZus{}params}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{both}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{which}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{major}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{labelsize}\PY{o}{=}\PY{l+m+mi}{15}\PY{p}{)}
+    \PY{k}{else}\PY{p}{:}
+        \PY{n}{axe\PYZus{}up}\PY{o}{.}\PY{n}{tick\PYZus{}params}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{both}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{which}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{major}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{labelsize}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+        \PY{k}{pass}
+        
         
     \PY{n}{fig}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
     \PY{n}{axe}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
@@ -1426,142 +1419,59 @@ data}\label{comparing-with-experimental-data}}
     \end{center}
     { \hspace*{\fill} \\}
     
-    \hypertarget{the-m-factor}{%
-\subsubsection{The `m' factor}\label{the-m-factor}}
+    \hypertarget{summary}{%
+\subsection{Summary}\label{summary}}
 
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{34}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{calc\PYZus{}dF\PYZus{}n\PYZus{}all\PYZus{}ND} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}sol}
+Before using the new dataset to interpret experimental results, some
+interesting features can already be seen in the last figure.
 
-\PY{n}{fig}\PY{p}{,} \PY{n}{axes} \PY{o}{=} \PY{n}{subplots}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{calc\PYZus{}dF\PYZus{}size}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ND}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{o}{/}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{30}\PY{p}{,}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{,} \PY{n}{sharey}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{sharex}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\hypertarget{fully-depleted-small-grains}{%
+\subsubsection{Fully depleted small
+grains:}\label{fully-depleted-small-grains}}
 
-\PY{k}{for} \PY{n}{ax\PYZus{}i}\PY{p}{,}\PY{p}{(}\PY{n}{ND}\PY{p}{,}\PY{n}{calc\PYZus{}dF\PYZus{}n}\PY{p}{)} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{calc\PYZus{}dF\PYZus{}size}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ND}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}\PY{p}{:}
-    
-    \PY{n}{axe} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{axes}\PY{p}{[}\PY{n}{ax\PYZus{}i}\PY{p}{]}
-    \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{n}{ND}\PY{p}{)}
-    
-    \PY{n}{axe\PYZus{}up} \PY{o}{=} \PY{n}{axe}\PY{o}{.}\PY{n}{twiny}\PY{p}{(}\PY{p}{)}
-    \PY{k}{for} \PY{n}{ax\PYZus{}i}\PY{p}{,} \PY{p}{(}\PY{n}{R}\PY{p}{,}\PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{)} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{calc\PYZus{}dF\PYZus{}n}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{R}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}\PY{p}{:}
-        \PY{k}{if} \PY{n}{R}\PY{o}{==}\PY{l+m+mf}{50e\PYZhy{}9}\PY{p}{:}
-            \PY{k}{pass}
-        \PY{k}{else}\PY{p}{:}
-            \PY{k}{pass}
-        \PY{n}{grain} \PY{o}{=} \PY{n}{create\PYZus{}grain\PYZus{}from\PYZus{}data}\PY{p}{(}\PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
-        \PY{n}{axe}\PY{o}{.}\PY{n}{axvline}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{J\PYZus{}to\PYZus{}kT}\PY{p}{(}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{Diff\PYZus{}EF\PYZus{}EC}\PY{p}{)}\PY{p}{)}
-        \PY{n}{axe}\PY{o}{.}\PY{n}{axvline}\PY{p}{(}\PY{n}{linestyle}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{k}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-        
-        \PY{n}{flat\PYZus{}band} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{==}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{current}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-        \PY{n}{res} \PY{o}{=} \PY{n}{flat\PYZus{}band}\PY{o}{/}\PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{current}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-        \PY{n}{res} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{/}\PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{current}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-        \PY{n}{log\PYZus{}res} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{p}{[}\PY{n+nb}{float}\PY{p}{(}\PY{n}{r}\PY{p}{)} \PY{k}{for} \PY{n}{r} \PY{o+ow}{in} \PY{n}{res}\PY{o}{.}\PY{n}{values}\PY{p}{]}\PY{p}{)}
-        \PY{n}{v} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-        \PY{n}{m} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{diff}\PY{p}{(}\PY{n}{log\PYZus{}res}\PY{p}{)}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{diff}\PY{p}{(}\PY{n}{v}\PY{p}{)}
-        
-        \PY{n}{sc} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{charges\PYZus{}trapped\PYZus{}at\PYZus{}surface}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-        \PY{c+c1}{\PYZsh{}print(sc,(grain.material.LD**(2/3)*surf))}
-        \PY{n}{surf} \PY{o}{=} \PY{n}{R}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{o}{*}\PY{l+m+mi}{4}\PY{o}{*}\PY{n}{pi}
-        \PY{c+c1}{\PYZsh{}surf\PYZus{}ratio = (grain.material.nb**(2/3)*surf)/sc}
-        \PY{n}{surf\PYZus{}ratio} \PY{o}{=} \PY{n}{sc}\PY{o}{/}\PY{n}{surf}
-        \PY{n}{v} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-        \PY{n}{axe}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{v}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{1}\PY{o}{/}\PY{n}{m}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{o\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label} \PY{o}{=} \PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{GrainRadius = }\PY{l+s+s1}{\PYZob{}}\PY{l+s+s1}{R*1e9:.0f\PYZcb{}nm}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
-        \PY{c+c1}{\PYZsh{}axe.plot(v, res, \PYZsq{}o\PYZhy{}\PYZsq{}, label = f\PYZsq{}\PYZob{}size\PYZus{}n\PYZcb{} \PYZob{}R\PYZcb{}\PYZsq{}, linewidth=5)}
-        \PY{c+c1}{\PYZsh{}axe.set\PYZus{}yscale(\PYZsq{}log\PYZsq{})}
+The position of the conduction band at the surface \(E_{C_{Surface}}\)
+is far away from the position of the Fermi energy \(E_{Fermi}\) and the
+grain radius \(R\) is small compared to the Debye length (\(R<5*L_DR\)).
+In this case the resistance changes in the depletion layer controlled
+conduction mechanism similar for all grains. This can be explained by
+the fact, that the grains are fully depleted and the effect of the
+distinct depletion layer is not preset. For those small grains, the
+effect of the different grain size has an impact on the sensing
+properties regarding only when the conduction band bending approaches
+the Fermi level energy.
 
-        \PY{n}{axe}\PY{o}{.}\PY{n}{tick\PYZus{}params}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{both}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{which}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{major}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{labelsize}\PY{o}{=}\PY{l+m+mi}{22}\PY{p}{)}
+\hypertarget{large-grains}{%
+\subsubsection{Large grains:}\label{large-grains}}
 
-        \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{m}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}  \PY{o}{=} \PY{l+m+mi}{22}\PY{p}{)}
-        \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}E\PYZus{}C(r)\PYZdl{} [\PYZdl{}k\PYZus{}BT\PYZdl{}]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{22}\PY{p}{)}
-        \PY{n}{axe}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{b}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
-        \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{)}
-    \PY{n}{axe\PYZus{}up}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{v}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{CONST}\PY{o}{.}\PY{n}{J\PYZus{}to\PYZus{}eV}\PY{p}{(}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{kT}\PY{p}{)}\PY{o}{*}\PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mi}{1}\PY{o}{/}\PY{n}{m}\PY{p}{,}\PY{n}{alpha}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
-    \PY{n}{axe\PYZus{}up}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}E\PYZus{}C(r)\PYZdl{} [\PYZdl{}meV\PYZdl{}]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{22}\PY{p}{)}
-    \PY{n}{axe\PYZus{}up}\PY{o}{.}\PY{n}{tick\PYZus{}params}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{both}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{which}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{major}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{labelsize}\PY{o}{=}\PY{l+m+mi}{22}\PY{p}{)}
+For large grains (\(R<5*L_DR\)), which are not fully depleted, the
+effect of a high resistive surface layer add up with the reduction of
+the area of a low resistive bulk. Since large grains are not fully
+depleted, the low resistive area in the center of the grain get smaller
+with increasing surface potential. Those two effects add up and the
+total resistance changes. The small grains, which are fully depleted
+this effect is not present. Once the larger grains get full depleted,
+the volume effect of the surface layer is not present anymore and the
+change in resistance is comparable to the smaller grains.
 
-    \PY{n}{fig}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
-    \PY{n}{axe}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}\PY{p}{;}
-\end{Verbatim}
-\end{tcolorbox}
+\hypertarget{flat-band-situation}{%
+\subsubsection{Flat band situation:}\label{flat-band-situation}}
 
-    \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{3-Resistance-sensor_files/3-Resistance-sensor_43_0.png}
-    \end{center}
-    { \hspace*{\fill} \\}
-    
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{35}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{calc\PYZus{}dF\PYZus{}size} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}sol}
-\PY{n}{calc\PYZus{}dF\PYZus{}size} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}sol}
-\PY{c+c1}{\PYZsh{}fig, axes = subplots(len(calc\PYZus{}dF\PYZus{}size[\PYZsq{}ND\PYZsq{}].unique()),1,figsize = (16,9), sharey=True, sharex=True)}
-\PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{fig}\PY{o}{.}\PY{n}{axes}\PY{p}{)}\PY{o}{==}\PY{l+m+mi}{1}\PY{p}{:}
-    \PY{n}{axes} \PY{o}{=} \PY{p}{[}\PY{n}{axes}\PY{p}{]}
-\PY{n}{fig}\PY{p}{,} \PY{n}{axe} \PY{o}{=} \PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{16}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{)}\PY{p}{,} \PY{n}{sharey}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{sharex}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
-\PY{k}{for} \PY{n}{ax\PYZus{}i}\PY{p}{,}\PY{p}{(}\PY{n}{size\PYZus{}n}\PY{p}{,}\PY{n}{calc\PYZus{}dF\PYZus{}n}\PY{p}{)} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{calc\PYZus{}dF\PYZus{}size}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ND}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}\PY{p}{:}
-    
-    \PY{c+c1}{\PYZsh{}axe = axes[ax\PYZus{}i]}
-    \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{n}{size\PYZus{}n}\PY{p}{)}
-    \PY{n}{axe2}\PY{o}{=} \PY{n}{axe}\PY{o}{.}\PY{n}{twinx}\PY{p}{(}\PY{p}{)}
-    \PY{k}{for} \PY{n}{ax\PYZus{}i}\PY{p}{,} \PY{p}{(}\PY{n}{R}\PY{p}{,}\PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{)} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{calc\PYZus{}dF\PYZus{}n}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{R}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}\PY{p}{:}
-        \PY{n}{flat\PYZus{}band} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{==}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{current}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-        
-        \PY{n}{calc\PYZus{}dF\PYZus{}grainsize} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{charges\PYZus{}trapped\PYZus{}at\PYZus{}surface}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{abs}\PY{p}{(}\PY{p}{)}\PY{o}{\PYZgt{}}\PY{l+m+mf}{0.01}\PY{p}{]}
-        
-        \PY{n}{grain} \PY{o}{=} \PY{n}{create\PYZus{}grain\PYZus{}from\PYZus{}data}\PY{p}{(}\PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
-        \PY{c+c1}{\PYZsh{}print((grain.material.LD)*1e9)}
-        \PY{c+c1}{\PYZsh{}print(calc\PYZus{}dF\PYZus{}grainsize[\PYZsq{}d\PYZus{}v\PYZsq{}].iloc[0].shape)}
-        \PY{n}{s} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{d\PYZus{}v}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
-        \PY{c+c1}{\PYZsh{}print(calc\PYZus{}dF\PYZus{}grainsize[\PYZsq{}cube\PYZus{}size\PYZus{}value\PYZsq{}].iloc[0]*1e9)}
-        \PY{c+c1}{\PYZsh{}print()}
-        
-        
-        \PY{n}{res} \PY{o}{=} \PY{n}{flat\PYZus{}band}\PY{o}{/}\PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{current}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-        \PY{c+c1}{\PYZsh{}res = 2000/calc\PYZus{}dF\PYZus{}grainsize[\PYZsq{}current\PYZsq{}]}
-        \PY{n}{sc} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{charges\PYZus{}trapped\PYZus{}at\PYZus{}surface}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-        \PY{c+c1}{\PYZsh{}print(sc,(grain.material.LD**(2/3)*surf))}
-        \PY{c+c1}{\PYZsh{}surf = R**2*4*pi}
-        \PY{n}{surf} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{grain\PYZus{}surface}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-        \PY{c+c1}{\PYZsh{}surf\PYZus{}ratio = (grain.material.nb**(2/3)*surf)/sc}
-        \PY{n}{surf\PYZus{}ratio} \PY{o}{=} \PY{n}{sc}\PY{o}{/}\PY{n}{surf}\PY{o}{/}\PY{l+m+mf}{1e12}
-        
-        \PY{n}{sc} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{charges\PYZus{}trapped\PYZus{}at\PYZus{}surface}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-        
-        \PY{c+c1}{\PYZsh{}res = 1/calc\PYZus{}dF\PYZus{}grainsize[\PYZsq{}current\PYZsq{}]}
-        \PY{n}{v} \PY{o}{=} \PY{n}{calc\PYZus{}dF\PYZus{}grainsize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einit\PYZus{}kT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-        \PY{n}{rel\PYZus{}size} \PY{o}{=} \PY{n}{grain}\PY{o}{.}\PY{n}{R}\PY{o}{/}\PY{n}{grain}\PY{o}{.}\PY{n}{material}\PY{o}{.}\PY{n}{LD}
-        \PY{c+c1}{\PYZsh{}axe.plot(v, res, \PYZsq{}o\PYZhy{}\PYZsq{}, label = f\PYZsq{}Grainsize = \PYZob{}R*1e9:.0f\PYZcb{}nm \PYZob{}s\PYZcb{} \PYZob{}calc\PYZus{}dF\PYZus{}grainsize.iloc[0].name\PYZcb{} \PYZob{}rel\PYZus{}size:.2f\PYZcb{}LD\PYZsq{}, linewidth=5)}
-        \PY{n}{axe}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{surf\PYZus{}ratio}\PY{p}{,} \PY{n}{res}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{o\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label} \PY{o}{=} \PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Grainsize = }\PY{l+s+s1}{\PYZob{}}\PY{l+s+s1}{R*1e9:.0f\PYZcb{}nm }\PY{l+s+si}{\PYZob{}s\PYZcb{}}\PY{l+s+s1}{ }\PY{l+s+si}{\PYZob{}calc\PYZus{}dF\PYZus{}grainsize.iloc[0].name\PYZcb{}}\PY{l+s+s1}{ }\PY{l+s+si}{\PYZob{}rel\PYZus{}size:.2f\PYZcb{}}\PY{l+s+s1}{LD}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
-        \PY{n}{idxmax} \PY{o}{=} \PY{n}{res}\PY{o}{.}\PY{n}{idxmax}\PY{p}{(}\PY{p}{)}
-        \PY{n}{axe}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{n}{surf\PYZus{}ratio}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{idxmax}\PY{p}{]}\PY{p}{,} \PY{n}{res}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{idxmax}\PY{p}{]}\PY{o}{*}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{50}\PY{p}{,}\PY{l+m+mi}{200}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{100}\PY{p}{,} \PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}rel\PYZus{}size:.2f\PYZcb{}}\PY{l+s+s1}{LD }\PY{l+s+s1}{\PYZob{}}\PY{l+s+s1}{R*1e9:.0f\PYZcb{}nm}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-        \PY{c+c1}{\PYZsh{}axe2.plot(v,surf\PYZus{}ratio,  \PYZsq{}o\PYZhy{}\PYZsq{}, linewidth=1,label = f\PYZsq{}Grainsize = \PYZob{}R*1e9:.0f\PYZcb{}nm \PYZob{}s\PYZcb{} \PYZob{}calc\PYZus{}dF\PYZus{}grainsize.iloc[0].name\PYZcb{} \PYZob{}rel\PYZus{}size:.2f\PYZcb{}LD\PYZsq{})}
-        
-        
-        \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}yscale}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{log}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-        \PY{n}{axe2}\PY{o}{.}\PY{n}{set\PYZus{}yscale}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{symlog}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-        \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}xscale}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{symlog}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-        \PY{c+c1}{\PYZsh{}axe.set\PYZus{}xlim(1e12,1e17)}
-        \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{frac}\PY{l+s+si}{\PYZob{}R\PYZcb{}}\PY{l+s+s1}{\PYZob{}}\PY{l+s+s1}{R\PYZus{}}\PY{l+s+si}{\PYZob{}Flatband\PYZcb{}}\PY{l+s+s1}{\PYZcb{}\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{22}\PY{p}{)}
-        \PY{n}{axe}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}E\PYZus{}C(r)\PYZdl{} [\PYZdl{}k\PYZus{}BT\PYZdl{}]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{22}\PY{p}{)}
-        
-        \PY{n}{axe}\PY{o}{.}\PY{n}{tick\PYZus{}params}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{both}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{which}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{major}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{labelsize}\PY{o}{=}\PY{l+m+mi}{22}\PY{p}{)}
-        
-        \PY{n}{axe}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{b}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
-        \PY{c+c1}{\PYZsh{}axe2.legend()}
+Additionally it can be noticed, that the flat band situation may not be
+the point, where the conduction starts to change. Rather the proximity
+to the Fermi level is responsible for altering the conduction mechanism.
 
-    \PY{n}{fig}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
-    \PY{n}{axe}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\hypertarget{conclusion}{%
+\subsection{Conclusion}\label{conclusion}}
 
+Real experimental data from simultaneous work function and resistance
+measurements can be fitted to this dataset. Since the detection of the
+grain size is rather simple, the fitting of the corresponding plots will
+reveal the corresponding Debye length and doping level \(N_D\). As
+additional feature for further understanding the surface reactions, the
+number of involved trapped charges at the surface can be extracted from
+the numerical model. \href{./4-Exp-data.ipynb}{Non-PDF readers, could
+use this link to guide them to the next notebook.}
 
-    
-    
-\end{Verbatim}
-\end{tcolorbox}
-
-    \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{3-Resistance-sensor_files/3-Resistance-sensor_44_0.png}
-    \end{center}
-    { \hspace*{\fill} \\}
-    
     \hypertarget{bibliography-section}{%
 \section{Bibliography section}\label{bibliography-section}}
 

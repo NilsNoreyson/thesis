@@ -1,15 +1,19 @@
-\contentsline {section}{\numberline {1}Review}{1}{section.1}% 
-\contentsline {section}{\numberline {2}Load the results}{2}{section.2}% 
-\contentsline {section}{\numberline {3}From charge distribution to resistance}{5}{section.3}% 
-\contentsline {subsection}{\numberline {3.1}The ``numerical'' grain}{5}{subsection.3.1}% 
-\contentsline {subsection}{\numberline {3.2}Precalc the numerical grains for all conditions}{10}{subsection.3.2}% 
-\contentsline {subsection}{\numberline {3.3}Relaxation}{12}{subsection.3.3}% 
-\contentsline {subsubsection}{\numberline {3.3.1}Convolution algorithm}{12}{subsubsection.3.3.1}% 
-\contentsline {subsubsection}{\numberline {3.3.2}Example with `convolve2d'}{14}{subsubsection.3.3.2}% 
-\contentsline {section}{\numberline {4}See how a single solution evolves}{15}{section.4}% 
-\contentsline {subsubsection}{\numberline {4.0.1}Calculate total resistance}{17}{subsubsection.4.0.1}% 
-\contentsline {subsubsection}{\numberline {4.0.2}Precalcualtion of all conditions}{19}{subsubsection.4.0.2}% 
-\contentsline {section}{\numberline {5}check the integral for the charges}{20}{section.5}% 
-\contentsline {subsubsection}{\numberline {5.0.1}Comparing with experimental data}{23}{subsubsection.5.0.1}% 
-\contentsline {subsubsection}{\numberline {5.0.2}The `m' factor}{24}{subsubsection.5.0.2}% 
-\contentsline {section}{\numberline {6}Bibliography section}{28}{section.6}% 
+\contentsline {section}{\numberline {1}Abstract}{1}{section.1}% 
+\contentsline {section}{\numberline {2}Review}{2}{section.2}% 
+\contentsline {section}{\numberline {3}Load the results}{2}{section.3}% 
+\contentsline {section}{\numberline {4}From charge distribution to resistance}{6}{section.4}% 
+\contentsline {subsection}{\numberline {4.1}The ``numerical'' grain}{6}{subsection.4.1}% 
+\contentsline {subsection}{\numberline {4.2}Precalc the numerical grains for all conditions}{11}{subsection.4.2}% 
+\contentsline {subsection}{\numberline {4.3}Relaxation}{13}{subsection.4.3}% 
+\contentsline {subsubsection}{\numberline {4.3.1}Convolution algorithm}{13}{subsubsection.4.3.1}% 
+\contentsline {subsubsection}{\numberline {4.3.2}Example with `convolve2d'}{15}{subsubsection.4.3.2}% 
+\contentsline {subsubsection}{\numberline {4.3.3}See how a single solution evolves}{16}{subsubsection.4.3.3}% 
+\contentsline {subsubsection}{\numberline {4.3.4}Calculate total resistance}{18}{subsubsection.4.3.4}% 
+\contentsline {subsubsection}{\numberline {4.3.5}Precalcualtion of all conditions}{20}{subsubsection.4.3.5}% 
+\contentsline {subsubsection}{\numberline {4.3.6}Representing final results}{21}{subsubsection.4.3.6}% 
+\contentsline {subsection}{\numberline {4.4}Summary}{23}{subsection.4.4}% 
+\contentsline {subsubsection}{\numberline {4.4.1}Fully depleted small grains:}{23}{subsubsection.4.4.1}% 
+\contentsline {subsubsection}{\numberline {4.4.2}Large grains:}{23}{subsubsection.4.4.2}% 
+\contentsline {subsubsection}{\numberline {4.4.3}Flat band situation:}{24}{subsubsection.4.4.3}% 
+\contentsline {subsection}{\numberline {4.5}Conclusion}{24}{subsection.4.5}% 
+\contentsline {section}{\numberline {5}Bibliography section}{24}{section.5}% 

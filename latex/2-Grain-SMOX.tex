@@ -377,23 +377,27 @@
 \section{Abstract}\label{abstract}}
 
 A semi conducting metal oxide (SMOX) based gas sensor translates
-chemical reactions at the surface into a change of resistance. The
-change in resistance is triggered by free charge carriers trapped of
-injected due to the surface reactions. While the specific chemistry at
-the surface is by itself a large research still being actively
-investigated, the effect of the change in the free charge carrier
-density inside the grain can be investigated separately. This will be
-the topic of the next two chapters of this thesis. By applying well
-known theoretical models about semiconductors to the SMOX sensor grains,
-the influence of the material and it's shape will result in a better
-understanding of the transduction of chemical reactions into measurable
-resistances. Besides the resistance of a sensor, it is possible to
-measure with the Kelvin Probe method one additional parameter crucial
-for a deeper understanding: the work function of the semiconductor. The
-goal of this thesis is to use the experimental input from simultaneous
-work function and resistance measurements to gain additional knowledge
-about the charge distribution on the surface and inside the investigated
-material.
+chemical reactions at the surface into a change of resistance. Free
+charge carriers being trapped or injected in the material due to the
+surface reactions, result in a change in resistance. While the specific
+chemistry at the surface is by itself a large research topic being
+actively investigated, the effect inside the grain can be investigated,
+to some extend, separately. Even if is not possible to fully describe a
+SMOX sensor without combining the (chemical) effects related to the
+surface reactions with the processes inside the semiconductor such a
+work will still provide new insights. The topic of the next two chapters
+of this work will be focusing on deriving such a numerical model
+describing describing the processes happening inside the semiconductor.
+By applying well known theoretical models about semiconductors to the
+SMOX sensor, the influence of the material and it's shape will result in
+a better understanding of the transduction of chemical reactions into
+measurable resistances. Besides the resistance of the semiconductor, it
+is also possible to measure with the Kelvin Probe method one additional
+parameter crucial for a deeper understanding: the work function of the
+semiconductor. The goal of this thesis is to provide a tool, with which
+experimental data from simultaneous work function and resistance
+measurements and be analyzed in detail to gain a better understanding
+about the overall processes involved in sensing with SMOX materials.
 
     \hypertarget{motivation}{%
 \section{Motivation}\label{motivation}}
@@ -408,23 +412,23 @@ region of the semiconductor. Based on this depletion layer assumption,
 many investigations have successfully lead to a deep understanding of
 the sensing mechanism.
 
-Nevertheless, the assumption the existence of an depletion layer is not
-always valid. Recent experimental results have shown, that even under
-atmospheric conditions which are common in real live, the dominant
-impact of oxygen may be gone. It could be shown, that under conditions
-of 50\% r.h. and low concentrations of CO (\textless100 ppm) in
-synthetic air, the depletion layer is not present anymore and a
-accumulation layer manifests. The following figure shows the
-experimental results from such a measurement. In the beginning of the
-experiment a \(SnO_2\) based gas sensor was exposed to pure nitrogen.
-For this sensor it can be assumed, that under this condition no band
-bending is present. This means, that the resistance under nitrogen
-corresponds to the flat band situation. An increase of the resistance
-indicates the presence of a depletion layer since less free charge
-carriers are available for the conductions. A decrease of the resistance
-would indicate the presence of an accumulation layer. In the following
-figure we clearly see, that a conduction band switch is present. A
-detailed description of the finding can be found here \cite{Barsan2015}.
+Nevertheless,the existence of an depletion layer is not always valid.
+Recent experimental results have shown, that even under atmospheric
+conditions which are common in real live, the dominant impact of oxygen
+may be gone. It could be shown, that under conditions of 50\% r.h. and
+low concentrations of CO (\textless100 ppm) in synthetic air, the
+depletion layer is not present anymore and a accumulation layer
+manifests. The following figure shows the experimental results from such
+a measurement. In the beginning of the experiment a \(SnO_2\) based gas
+sensor was exposed to pure nitrogen. For this sensor it can be assumed,
+that under this condition no band bending is present. This means, that
+the resistance under nitrogen corresponds to the flat band situation. An
+increase of the resistance indicates the presence of a depletion layer
+since less free charge carriers are available for the conductions. A
+decrease of the resistance would indicate the presence of an
+accumulation layer. In the following figure we clearly see, that a
+conduction band switch is present. A detailed description of the finding
+can be found here \cite{Barsan2015}.
 
 \begin{figure}
 \centering
@@ -434,27 +438,29 @@ detailed description of the finding can be found here \cite{Barsan2015}.
 
     With the absence of the depletion layer also most simplifications are
 not valid anymore. Mainly the validity of the Schottky and Boltzmann
-approximation may not given anymore. Facing those facts the equations to
-describe the transduction mechanism for a specific electrical band
+approximation may not be given anymore. Facing those facts the equations
+to describe the transduction mechanism for a specific electrical band
 configurations needed a more general descriptions, which includes a
 depletion and accumulation layer controlled transduction mechanism.
 
 To describe such a semiconductor the set of differential equations is
-available in literature. Previously used simplifications for such
-problems are not valid in the generalized case and finding an
-analytically solution exceeded by far my intellectual capabilities. This
-is why a I chose to go a different path by finding a numerical solution
-for the problem.
+available in literature. Common simplifications for such problems have
+not been valid in the generalized case needed to describe the sensor and
+finding an analytically solution exceeded by far my intellectual
+capabilities. This is why a I chose to go a different path by
+numerically deriving solutions for the problem.
 
-While working in the field of SMOX already some years, I was used to
-describe transduction processes by assigning different parts of an
-analytical solution to properties of the sensor. With a numerical
+While working in the field of SMOX sensors already some years, I was
+used to describe transduction processes by assigning different parts of
+an analytical solution to properties of the sensor. With a numerical
 solution this is not possible anymore and this was certainly a drawback
 of this method. On the other side the relation between intrinsic
 properties can still be studied also in detail. By solving the equations
-numerically for multiple combinations of the intrinsic property. The
+numerically for multiple combinations of the intrinsic property the
 resulting dataset can then again be used gain insights about the
-fundamental relations of the parameters. Therefore the goal was first to
+fundamental relations of the parameters. Also the comparison of the
+numerical results with experimental data might reveals properties, which
+can not be measured easily otherwise. Therefore the goal was first to
 break the problem of describing a SMOX sensor into smaller discreet
 parts and second trying to solve each of it individually.
 
@@ -838,11 +844,11 @@ nevertheless concentrate on the gives ranges.
 \subsection{Poisson equation as system of
 ODEs}\label{poisson-equation-as-system-of-odes}}
 
-The Python SciPy package \cite{Jones} will now be used to numerically
-solve the derived equations. The ``odesolvers'' of SciPy are able to
-solve first order ODEs, or systems of first order ODES. To solve a
-second order ODE, if must first by converted by changes of variables to
-a system of first order ODES.
+The Python SciPy package (\cite{Jones}, \cite{Virtanen2020} ) will now
+be used to numerically solve the derived equations. The ``odesolvers''
+of SciPy are able to solve first order ODEs, or systems of first order
+ODES. To solve a second order ODE, if must first by converted by changes
+of variables to a system of first order ODES.
 
 Equation (\ref{poisson_no_units}) is an ODE of second order, so it it
 needs to be express as a system of first order ODES.
@@ -1162,7 +1168,7 @@ their influence on the overall performance of a sensing material.
 
 Based on Michael Hübners work it is possible to derive a value for the
 energetic distance between Fermi level and conduction band
-\(\Delta_{CF} = E_C-E_F,\).
+\(\Delta E_{CF} = E_C-E_F,\).
 
 Since the energetic distance from the Fermi level mainly defines the
 occupation probability of the states in the conduction band, this term
