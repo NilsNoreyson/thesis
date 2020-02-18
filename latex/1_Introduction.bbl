@@ -7,6 +7,26 @@
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
+\bibitem[BD05]{Batzill2005}
+\textsc{Batzill}, Matthias ; \textsc{Diebold}, Ulrike:
+\newblock {The surface and materials science of tin oxide}.
+\newblock {In: }\emph{Progress in Surface Science} 79 (2005), Nr. 2-4, S.
+  47--154.
+\newblock \url{http://dx.doi.org/10.1016/j.progsurf.2005.09.002}. --
+\newblock DOI 10.1016/j.progsurf.2005.09.002. --
+\newblock ISBN 0079--6816
+
+\bibitem[BW03]{Barsan2003}
+\textsc{B{\^{a}}rsan}, N. ; \textsc{Weimar}, U.:
+\newblock {Understanding the fundamental principles of metal oxide based gas
+  sensors; the example of CO sensing with SnO2 sensors in the presence of
+  humidity}.
+\newblock {In: }\emph{Journal of Physics Condensed Matter} 15 (2003), Nr. 20,
+  R813--R839.
+\newblock \url{http://dx.doi.org/10.1088/0953-8984/15/20/201}. --
+\newblock DOI 10.1088/0953--8984/15/20/201. --
+\newblock ISBN 0953--8984
+
 \bibitem[Dav13]{Osipov2016}
 \textsc{Davenport}, Thomas~H.:
 \newblock \emph{{The Rise of Data Discovery}}.
@@ -22,6 +42,17 @@
 \newblock \url{http://dx.doi.org/10.1109/MCSE.2007.55}. --
 \newblock DOI 10.1109/MCSE.2007.55. --
 \newblock ISSN 15219615
+
+\bibitem[OBW09]{Oprea2009a}
+\textsc{Oprea}, Alexandru ; \textsc{B{\^{a}}rsan}, Nicolae  ; \textsc{Weimar},
+  Udo:
+\newblock {Work function changes in gas sensitive materials: Fundamentals and
+  applications}.
+\newblock {In: }\emph{Sensors and Actuators, B: Chemical} 142 (2009), Nr. 2,
+  470--493.
+\newblock \url{http://dx.doi.org/10.1016/j.snb.2009.06.043}. --
+\newblock DOI 10.1016/j.snb.2009.06.043. --
+\newblock ISSN 09254005
 
 \bibitem[RPGB17]{Randles2017}
 \textsc{Randles}, Bernadette~M. ; \textsc{Pasquetto}, Irene~V. ;
