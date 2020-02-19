@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2020.2.7)  18 FEB 2020 17:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2020.2.7)  19 FEB 2020 17:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1171,29 +1171,29 @@ Package pdftex.def Info: "media/pics/""sliced_cube".png  used on input line 601
 .
 (pdftex.def)             Requested size: 963.59766pt x 542.02367pt.
  [67 <./media/pics/sliced_cube.png>] [68] [69] [70] [71] [72]
-<"3-Resistance-sensor_files/""3-Resistance-sensor_19_0".png, id=203, 409.53pt x
- 299.1175pt>
+<"3-Resistance-sensor_files/""3-Resistance-sensor_19_0".png, id=203, 965.6075pt
+ x 627.34375pt>
 File: "3-Resistance-sensor_files/""3-Resistance-sensor_19_0".png Graphic file (
 type png)
 <use "3-Resistance-sensor_files/""3-Resistance-sensor_19_0".png>
 Package pdftex.def Info: "3-Resistance-sensor_files/""3-Resistance-sensor_19_0"
-.png  used on input line 917.
-(pdftex.def)             Requested size: 409.52899pt x 299.11676pt.
+.png  used on input line 919.
+(pdftex.def)             Requested size: 965.60515pt x 627.34221pt.
  [73]
-Underfull \hbox (badness 10000) in paragraph at lines 919--920
+Underfull \hbox (badness 10000) in paragraph at lines 921--922
 
  []
 
-<"3-Resistance-sensor_files/""3-Resistance-sensor_19_1".png, id=209, 922.44624p
-t x 640.3925pt>
+<"3-Resistance-sensor_files/""3-Resistance-sensor_19_1".png, id=209, 944.52875p
+t x 711.65875pt>
 File: "3-Resistance-sensor_files/""3-Resistance-sensor_19_1".png Graphic file (
 type png)
 <use "3-Resistance-sensor_files/""3-Resistance-sensor_19_1".png>
 Package pdftex.def Info: "3-Resistance-sensor_files/""3-Resistance-sensor_19_1"
-.png  used on input line 922.
-(pdftex.def)             Requested size: 922.44398pt x 640.39093pt.
+.png  used on input line 924.
+(pdftex.def)             Requested size: 944.52644pt x 711.65701pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 924--925
+Underfull \hbox (badness 10000) in paragraph at lines 926--927
 
  []
 
@@ -1205,10 +1205,10 @@ File: "3-Resistance-sensor_files/""3-Resistance-sensor_26_0".png Graphic file (
 type png)
 <use "3-Resistance-sensor_files/""3-Resistance-sensor_26_0".png>
 Package pdftex.def Info: "3-Resistance-sensor_files/""3-Resistance-sensor_26_0"
-.png  used on input line 1167.
+.png  used on input line 1169.
 (pdftex.def)             Requested size: 936.49646pt x 538.00868pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1169--1170
+Underfull \hbox (badness 10000) in paragraph at lines 1171--1172
 
  []
 
@@ -1220,20 +1220,20 @@ File: "3-Resistance-sensor_files/""3-Resistance-sensor_41_0".png Graphic file (
 type png)
 <use "3-Resistance-sensor_files/""3-Resistance-sensor_41_0".png>
 Package pdftex.def Info: "3-Resistance-sensor_files/""3-Resistance-sensor_41_0"
-.png  used on input line 1448.
+.png  used on input line 1450.
 (pdftex.def)             Requested size: 1148.28719pt x 642.39844pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1450--1451
+Underfull \hbox (badness 10000) in paragraph at lines 1452--1453
 
  []
 
 [84 <./3-Resistance-sensor_files/3-Resistance-sensor_41_0.png>]
 (./3-Resistance-sensor.bbl) [85] [86]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1520.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1520.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1522.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1522.
  (./3-Resistance-sensor.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1520.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1520.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1522.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1522.
 
 Package rerunfilecheck Info: File `3-Resistance-sensor.out' has not changed.
 (rerunfilecheck)             Checksum: CAEFE16A4530CBF4C74E3EEB777D1212;1370.
@@ -1241,7 +1241,7 @@ Package rerunfilecheck Info: File `3-Resistance-sensor.out' has not changed.
 Here is how much of TeX's memory you used:
  21652 strings out of 492167
  388266 string characters out of 6131559
- 552095 words of memory out of 5000000
+ 554361 words of memory out of 5000000
  25460 multiletter control sequences out of 15000+600000
  46894 words of font info for 122 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1258,7 +1258,7 @@ r/share/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb></usr/share/texmf-d
 ist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/
 palatino/uplr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb
 >
-Output written on 3-Resistance-sensor.pdf (26 pages, 1043716 bytes).
+Output written on 3-Resistance-sensor.pdf (26 pages, 1119184 bytes).
 PDF statistics:
  363 PDF objects out of 1000 (max. 8388607)
  302 compressed objects within 4 object streams
