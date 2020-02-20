@@ -1,13 +1,16 @@
-from scipy import constants as sciConst
-import scipy 
-from scipy.integrate import quad
-from scipy.interpolate import interp1d
-import scipy
+
 from functools import lru_cache
+
 import numpy as np
 import pandas as pd
+
+import scipy
+from scipy import constants as sciConst
 from scipy.integrate import solve_ivp
-import numpy as np
+from scipy.integrate import quad
+from scipy.interpolate import interp1d
+
+
 
 class Constant:
     def __init__(self):
@@ -32,8 +35,10 @@ class Constant:
     
     def J_to_eV(self,J):
         return J/self.E_CHARGE
+    
+    
 
-CONST = Constant()
+
 
 def calc_kT(T_C):
     """
@@ -48,7 +53,8 @@ def calc_eff_density_of_states(T_C,mass_e_eff_factor):
     """
     Calculate the eff. densitiy of states in the conduction band
     T_C = Temp in °C
-    mass_e_eff_factor = material specific factor to calculate the effective mass from the electron mass
+    mass_e_eff_factor = material specific factor to calculate the effective mass
+                        from the electron mass
     """
     
     kT = calc_kT(T_C)
@@ -63,7 +69,8 @@ def calc_EDCF_by_temp(T_C, ND,mass_e_eff_factor):
     ND = number of donors per m³
     ND = 9e21 # 9*10**15 cm**3 Mich Thesis Seite 50
     
-    mass_e_eff_factor = material specific factor to calculate the effective mass from the electron mass
+    mass_e_eff_factor = material specific factor to calculate the effective mass
+                        from the electron mass
     """
     
         
@@ -84,7 +91,7 @@ def calc_EDCF_by_temp(T_C, ND,mass_e_eff_factor):
     poly_params = (c,t1, t2, t3)
 
 
-    solutions=scipy.roots(poly_params)
+    solutions=np.roots(poly_params)
     EDCFs = []
     for sol in solutions:
         if sol.imag == 0:
@@ -97,12 +104,9 @@ def calc_EDCF_by_temp(T_C, ND,mass_e_eff_factor):
 
 
 
-from scipy.integrate import quad
-from scipy.interpolate import interp1d
-import scipy
-from functools import lru_cache
-import numpy as np
-import pandas as pd
+
+
+
 
 
 
@@ -150,7 +154,11 @@ class Material:
         E_c+Diff_EF_EC+E_Fermi-E_Fermi = E_c+Diff_EF_EC
         TODO: THIS SHOULD BE IN THE TEXT ABOVE SOMEWHERE
         '''
-        f=1.0/(1+np.exp((E_c+self.Diff_EF_EC)/self.kT))
+        if (E_c+self.Diff_EF_EC)/self.kT>100:
+            f = 0
+        else:
+            f=1.0/(1+np.exp((E_c+self.Diff_EF_EC)/self.kT))
+        
         return f
 
     def n_E(self,E,E_c):
@@ -162,37 +170,90 @@ class Material:
                                    
     @lru_cache(maxsize=512*512*512)
     def n(self, E_c):
+        '''
+        Calculate the number of charges in the conduction band at the position E_C 
+        E_C  = the postition of the conduction band in J
+        '''
         n, n_err = quad(lambda E:self.n_E(E, E_c),E_c,E_c+self.kT*100)
         return n, n_err
 
     
+def boltzmann_acc(material, E_c):
+    return np.exp(-(E_c+material.Diff_EF_EC)/(material.kT*2))
+
+def boltzmann(material,E_c):
+    return np.exp(-(E_c+material.Diff_EF_EC)/material.kT)
+
+def densitiy_of_states(material,E, E_c):
+
+    return 4*np.pi*(2*material.MASS_E_EFF)**(3.0/2.0)/CONST.h**3*(E-E_c)**0.5
+
+def n_boltzmann(material,E_c):
+
+    return boltzmann(material,E_c)*material.NC
+
+def n_boltzmann_acc(material,E_c):
+
+    return boltzmann_acc(material,E_c)*material.NC
     
 
+from scipy.integrate import solve_ivp
 class Grain:
-    def __init__(self,grainsize_radius,material,rPoints=100):
+    def __init__(self,grainsize_radius,material,rPoints=1000):
         self.R = grainsize_radius
         self.material = material
-        self.rs = self.R*(1.0-np.logspace(0,3,num=rPoints)/1e3) #calcualtion points from surface to center (not lnear spaced)
-        self.rs = np.linspace(self.R/1000, self.R, 1000)
+        self.rs = np.linspace(self.R/1000, self.R, rPoints)
     
   
     def solve_with_values(self,E_init, E_dot_init):
-        r = self.rs/self.material.LD
+        r_LD = self.rs/self.material.LD
         E_init_kT = self.material.J_to_kT(E_init)
         E_dot_init_kt = self.material.J_to_kT(E_dot_init)
 
-        #the solver should stop, when the slope is zero. This is reasonable since if the slope is zero, this should be the lowest point of the graph
-        #so, when we "hit_ground" the solver should stop, to save some computational time
-        def hit_ground(t, y): return y[1]
+        #the solver should stop, when the slope is zero.
+        #This is reasonable since if the slope is zero, this should be the lowest
+        #point of the graph so, when we "hit_ground" the solver should stop,
+        #to save some computational time
+        def hit_ground(t, y):
+            #print(y)
+            if y[0]:
+                if E_init_kT<0:
+                    if y[0]>0:
+                        return 0
+                    if y[0]<E_init_kT:
+                        return 0
+                else:
+                    if y[0]<0:
+                        return 0
+                    if y[0]>E_init_kT:
+                        return 0
+
+            if y[1]:
+                if abs(y[1])<0.0001:
+                    return 0
+            return y[1]
         hit_ground.terminal = True
         
-        #this is the solver
-        data = solve_ivp(self.deriv_E_E_dot,(r[-1],r[0]),  [E_init_kT,E_dot_init_kt], events=hit_ground, method = 'Radau',max_step=max(r)/1000)
+
+        #see the docstring why I chose the metohd BDF
+        data = solve_ivp(self.deriv_E_E_dot,(r_LD[-1],r_LD[0]),  [E_init_kT,E_dot_init_kt],
+                         t_eval=r_LD[::-1], events=hit_ground, method = 'BDF')
         
-        #since we start the iteration to solve the equation from the outside, the results have to be revered 
+        #since we start the iteration to solve the equation from the outside,
+        #the results have to be revered
+        
         r = data.t[::-1]
         v = data.y[0][::-1]
         v_dot = data.y[1][::-1]
+        
+        #sinde we stop the evaluation earlier, when v_dot = 0,
+        #the missing elements are fileed up
+        missing_elements_count = len(r_LD)-len(r)
+        r = np.concatenate((r_LD[:missing_elements_count], r))
+        v = np.concatenate((np.ones(missing_elements_count)*v[0],v))
+        v_dot = np.concatenate((np.ones(missing_elements_count)*v_dot[0],v_dot))
+        
+        
 
         return r,v, v_dot, data
 
@@ -205,16 +266,8 @@ class Grain:
         U_dot_dot = 1-n[0]/self.material.nb -2/r_*U_dot
         return [U_dot, U_dot_dot]
 
-pd.set_option('display.notebook_repr_html', True)
 
-def _repr_latex_(self):
-    return r"""
-    \begin{center}
-    {%s}
-    \end{center}
-    """ % self.to_latex()
 
-pd.DataFrame._repr_latex_ = _repr_latex_  # monkey patch pandas DataFrame
 
 def create_grain_from_data(dF):
     if type(dF)==pd.Series:
@@ -228,7 +281,7 @@ def create_grain_from_data(dF):
     if len(dF['ND'].unique())==1:
         ND = dF['ND'].unique()[0]
     else:
-        raise Exception('Multiple paramters for one grain are invalid.')
+        raise Exception('Multiple paramters for onehttps://duckduckgo.com/?t=ffsb&q=relative+square+error+weights&atb=v152-1&ia=web grain are invalid.')
     
     if len(dF['mass_eff'].unique())==1:
         mass_e_eff_factor = dF['mass_eff'].unique()[0]/CONST.MASS_E 
@@ -247,3 +300,15 @@ def create_grain_from_data(dF):
     grain = Grain(grainsize_radius=grainsize_radius,material=material)
     
     return grain
+
+CONST = Constant()
+pd.set_option('display.notebook_repr_html', True)
+
+def _repr_latex_(self):
+    return r"""
+    \begin{center}
+    {%s}
+    \end{center}
+    """ % self.to_latex()
+
+pd.DataFrame._repr_latex_ = _repr_latex_  # monkey patch pandas DataFrame
