@@ -309,6 +309,6 @@ def _repr_latex_(self):
     \begin{center}
     {%s}
     \end{center}
-    """ % self.to_latex()
+    """ % self.to_latex(escape=False)
 
 pd.DataFrame._repr_latex_ = _repr_latex_  # monkey patch pandas DataFrame
