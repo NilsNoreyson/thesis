@@ -24,7 +24,7 @@ def format_axe(axe, ylabel = None, set_ylim=False):
 
 
 
-def fit_exp_with_num_data(dF_exp, calc_dF, sens='SensorName', caption_figure='Best fit results.'):
+def fit_exp_with_num_data(dF_exp, calc_dF, sens='SensorName', caption_figure=None):
     #instead of unsing the row number
     #each row has the value of dV as index
     dF_exp.index = dF_exp['dV']
@@ -164,7 +164,8 @@ def fit_exp_with_num_data(dF_exp, calc_dF, sens='SensorName', caption_figure='Be
     display(fig);
 
     caption = Latex(r'\begin{center}'+'\n'+caption_figure+'\n'+r'\end{center}')
-    #display(caption)
+    if caption:
+        display(caption)
 
 
     #display the numerical data
@@ -182,7 +183,7 @@ def fit_exp_with_num_data(dF_exp, calc_dF, sens='SensorName', caption_figure='Be
     display(best_fits_error_dF)
 
     caption = Latex(r'''\begin{center}
-    Table with the best fit parameters
+    Table with the best fitting simulation parameters
     \end{center}''')
     display(caption)
 
@@ -200,7 +201,7 @@ def fit_exp_with_num_data(dF_exp, calc_dF, sens='SensorName', caption_figure='Be
 
 
     caption = Latex(r'''\begin{center}
-    Table with material properties of the best fitting material.
+    Table with material properties of the best fitting simulation.
     \end{center}''')
     display(caption)
     return best_fits_error_dF
